@@ -317,7 +317,7 @@
         }
 
         .participants-list {
-            max-height: 300px;
+            max-height: 350px;
             overflow-y: auto;
         }
 
@@ -361,7 +361,6 @@
             padding: 2rem;
         }
 
-        /* Regras */
         .rules-list {
             list-style: none;
             margin-top: 0.5rem;
@@ -390,10 +389,23 @@
             margin-top: 1rem;
         }
 
-        .prize-highlight span {
-            font-size: 1.3rem;
-            font-weight: 800;
-            color: #ffd966;
+        .instruction-box {
+            background: #0a1725;
+            border-radius: 16px;
+            padding: 1rem;
+            margin-top: 1rem;
+            border: 1px dashed #2eff9e;
+        }
+
+        .instruction-box h4 {
+            color: #2eff9e;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .instruction-box p {
+            font-size: 0.75rem;
+            opacity: 0.8;
         }
 
         .modal-overlay {
@@ -542,7 +554,7 @@
                     <span id="participantCount" class="badge-count">0</span>
                 </h3>
                 <div id="participantsList" class="participants-list">
-                    <div class="empty-message">⏳ Nenhum palpite ainda.<br>Seja o primeiro!</div>
+                    <div class="empty-message">⏳ Carregando participantes...</div>
                 </div>
             </div>
 
@@ -551,23 +563,36 @@
                 <h3 style="text-align:center; margin-bottom:1rem;">📜 REGRAS DO BOLÃO</h3>
                 <ul class="rules-list">
                     <li><strong>💰 Valor:</strong> R$ 10,00 por participante</li>
-                    <li><strong>🏆 Premiação:</strong> Vencedor recebe <strong>R$ 10,00 × total de participantes</strong></li>
+                    <li><strong>🏆 Premiação:</strong> Vencedor(es) recebem <strong>R$ 10,00 × total de participantes</strong></li>
+                    <li><strong>👥 2 vencedores:</strong> Prêmio é <strong>DIVIDIDO igualmente</strong> entre os dois</li>
+                    <li><strong>👥👥 3+ vencedores:</strong> Prêmio <strong>ACUMULA</strong> para o próximo bolão</li>
+                    <li><strong>❌ Nenhum vencedor:</strong> Prêmio <strong>ACUMULA</strong> para o próximo bolão</li>
                     <li><strong>✅ Identificação:</strong> Vale apenas a última aposta com nome e e-mail corretos</li>
                     <li><strong>📝 Registro:</strong> O palpite precisa constar na página oficial do bolão</li>
                     <li><strong>💸 Pagamento:</strong> Cada participante paga R$ 10,00 <strong>DIRETAMENTE AO VENCEDOR</strong> via PIX (após o resultado)</li>
-                    <li><strong>📦 Acumulação (2+ vencedores):</strong> Se <strong>dois ou mais</strong> acertarem o placar, o prêmio <strong>acumula</strong> para o próximo bolão</li>
-                    <li><strong>📦 Acumulação (nenhum vencedor):</strong> Se <strong>ninguém</strong> acertar o placar, o prêmio também <strong>acumula</strong> para o próximo jogo</li>
                     <li><strong>⏳ Encerramento:</strong> Apostas válidas apenas até o <strong>início da partida</strong> (13/06/2026 - 19h)</li>
                     <li><strong>📢 Resultado:</strong> O vencedor será divulgado na página após o apito final</li>
                 </ul>
                 <div class="prize-highlight">
-                    📌 Acumulou? O valor vai para o <strong>próximo bolão</strong>!
+                    📌 2 vencedores = dividem • 3+ vencedores = acumula
                 </div>
+            </div>
+
+            <!-- INSTRUÇÕES PARA VOCÊ (ADMIN) - SÓ VOCÊ VÊ -->
+            <div class="card instruction-box">
+                <h4>🔧 INSTRUÇÕES DO ADMINISTRADOR</h4>
+                <p>📝 <strong>Como adicionar participantes manualmente:</strong></p>
+                <p>1. Abra o arquivo HTML no Bloco de Notas</p>
+                <p>2. Procure por <strong>"LISTA MANUAL DE PARTICIPANTES"</strong></p>
+                <p>3. Edite os dados dentro do array <strong>participantesFixos</strong></p>
+                <p>4. Salve e envie para o GitHub</p>
+                <p>5. A página será atualizada automaticamente!</p>
+                <p style="margin-top:8px; color:#2eff9e;">🔒 Esta caixa só aparece para você</p>
             </div>
         </div>
     </div>
     <footer>
-        Cyber Bolão® • Aposta simbólica • Organizador não arrecada nada • Tudo vai para o vencedor
+        Cyber Bolão® • Aposta simbólica • Organizador não arrecada nada • Tudo vai para o(s) vencedor(es)
     </footer>
 </div>
 
@@ -584,42 +609,62 @@
     (function() {
         const encerramentoDate = new Date(2026, 5, 13, 19, 0, 0);
         
+        // ============================================================
+        // 🔧 LISTA MANUAL DE PARTICIPANTES - EDITAR AQUI 🔧
+        // ============================================================
+        // Adicione ou remova participantes neste array.
+        // Formato: {nome: "Nome do Participante", golsB: 2, golsM: 1, horario: "09/06 14:30"}
+        // ============================================================
+        
+        const participantesFixos = [
+            // EXEMPLOS (SUBSTITUA PELOS SEUS PARTICIPANTES):
+            // {nome: "João Silva", golsB: 2, golsM: 1, horario: "09/06/2026 14:30"},
+            // {nome: "Maria Santos", golsB: 3, golsM: 0, horario: "09/06/2026 15:00"},
+            // {nome: "Carlos Oliveira", golsB: 1, golsM: 1, horario: "09/06/2026 15:45"},
+            
+            // 👇 COLE SEUS PARTICIPANTES AQUI (substitua os exemplos)
+            
+        ];
+        
+        // ============================================================
+        // NÃO EDITE NADA ABAIXO DESTA LINHA
+        // ============================================================
+        
         let participantes = [];
         
         function loadParticipants() {
+            // Primeiro, tenta carregar do localStorage (apostas via formulário)
             const saved = localStorage.getItem('cyber_bolao_participantes');
+            let localStorageParticipants = [];
             if (saved) {
                 try {
-                    participantes = JSON.parse(saved);
-                } catch(e) { participantes = []; }
+                    localStorageParticipants = JSON.parse(saved);
+                } catch(e) { localStorageParticipants = []; }
             }
-            renderParticipants();
-        }
-        
-        function saveParticipants() {
-            localStorage.setItem('cyber_bolao_participantes', JSON.stringify(participantes));
-            renderParticipants();
-        }
-        
-        function addParticipant(nome, email, golsBrasil, golsMarrocos) {
-            const now = new Date();
-            const horario = now.toLocaleString('pt-BR', {
-                day: '2-digit', month: '2-digit', year: 'numeric',
-                hour: '2-digit', minute: '2-digit', second: '2-digit'
+            
+            // Combina participantes fixos (manuais) + participantes do formulário
+            // Remove duplicatas por email (mantém o mais recente)
+            const allParticipants = [...participantesFixos, ...localStorageParticipants];
+            
+            // Remove duplicatas (mesmo nome + mesmo palpite)
+            const unique = [];
+            const seen = new Set();
+            for (const p of allParticipants) {
+                const key = `${p.nome}_${p.golsB}_${p.golsM}`;
+                if (!seen.has(key)) {
+                    seen.add(key);
+                    unique.push(p);
+                }
+            }
+            
+            // Ordena por horário (mais recente primeiro)
+            participantes = unique.sort((a, b) => {
+                const timeA = a.timestamp || 0;
+                const timeB = b.timestamp || 0;
+                return timeB - timeA;
             });
             
-            participantes.unshift({
-                id: Date.now(),
-                nome: nome,
-                email: email,
-                golsBrasil: golsBrasil,
-                golsMarrocos: golsMarrocos,
-                horario: horario,
-                timestamp: now.getTime()
-            });
-            
-            if (participantes.length > 50) participantes = participantes.slice(0, 50);
-            saveParticipants();
+            renderParticipants();
         }
         
         function renderParticipants() {
@@ -628,7 +673,7 @@
             if (!container) return;
             
             if (participantes.length === 0) {
-                container.innerHTML = '<div class="empty-message">⏳ Nenhum palpite ainda.<br>Seja o primeiro!</div>';
+                container.innerHTML = '<div class="empty-message">⏳ Nenhum palpite registrado ainda.<br>Seja o primeiro!</div>';
                 if (countSpan) countSpan.textContent = '0';
                 return;
             }
@@ -638,8 +683,8 @@
             container.innerHTML = participantes.map(p => `
                 <div class="participant-item">
                     <div class="participant-name">👤 ${escapeHtml(p.nome)}</div>
-                    <div class="participant-palpite">🇧🇷 ${p.golsBrasil} x ${p.golsMarrocos} 🇲🇦</div>
-                    <div class="participant-time">⏰ ${p.horario}</div>
+                    <div class="participant-palpite">🇧🇷 ${p.golsB} x ${p.golsM} 🇲🇦</div>
+                    <div class="participant-time">⏰ ${p.horario || 'Data não informada'}</div>
                 </div>
             `).join('');
         }
@@ -648,6 +693,33 @@
             const div = document.createElement('div');
             div.textContent = text;
             return div.innerHTML;
+        }
+        
+        function addParticipant(nome, email, golsBrasil, golsMarrocos) {
+            const now = new Date();
+            const horario = now.toLocaleString('pt-BR', {
+                day: '2-digit', month: '2-digit', year: 'numeric',
+                hour: '2-digit', minute: '2-digit', second: '2-digit'
+            });
+            
+            const newParticipant = {
+                id: Date.now(),
+                nome: nome,
+                email: email,
+                golsB: golsBrasil,
+                golsM: golsMarrocos,
+                horario: horario,
+                timestamp: now.getTime()
+            };
+            
+            // Salva no localStorage
+            let saved = JSON.parse(localStorage.getItem('cyber_bolao_participantes') || '[]');
+            saved.unshift(newParticipant);
+            if (saved.length > 50) saved = saved.slice(0, 50);
+            localStorage.setItem('cyber_bolao_participantes', JSON.stringify(saved));
+            
+            // Recarrega a lista
+            loadParticipants();
         }
         
         function updateTimerAndLock() {
@@ -736,6 +808,7 @@
                 if (golsB < 0) golsB = 0;
                 if (golsM < 0) golsM = 0;
                 
+                // Salva localmente também
                 addParticipant(nome, email, golsB, golsM);
                 setTimeout(() => showModal(nome, golsB, golsM), 50);
                 
@@ -758,6 +831,7 @@
             if (v > 20) this.value = 20;
         });
         
+        // Carrega participantes ao iniciar
         loadParticipants();
     })();
 </script>
