@@ -20,7 +20,7 @@
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
@@ -43,6 +43,12 @@
             color: #bcdfd0;
             font-weight: 500;
             margin-top: 6px;
+        }
+
+        .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
         }
 
         .card {
@@ -94,6 +100,20 @@
             padding: 0.7rem;
             border-radius: 60px;
             color: #caffdf;
+            transition: all 0.3s;
+        }
+
+        .timer-block.urgent {
+            background: #8b3a1c;
+            color: #ffd966;
+            animation: pulse 1s infinite;
+            font-size: 1.5rem;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.9; transform: scale(1.01); }
+            100% { opacity: 1; transform: scale(1); }
         }
 
         .match-title {
@@ -161,7 +181,7 @@
             min-width: 180px;
         }
 
-        input {
+        input, select {
             width: 100%;
             background: #0c1825;
             border: 1px solid #2a4a3c;
@@ -174,7 +194,7 @@
             transition: all 0.2s;
         }
 
-        input:focus {
+        input:focus, select:focus {
             border-color: #2eff9e;
             box-shadow: 0 0 8px #1eff90;
         }
@@ -272,41 +292,55 @@
             box-shadow: 0 0 15px #2eff9e;
         }
 
-        .optional-text {
-            font-size: 0.7rem;
-            text-align: center;
-            margin-top: 14px;
-            opacity: 0.7;
+        .share-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            justify-content: center;
         }
 
-        .closed-message {
-            text-align: center;
-            background: #2c1118;
-            border-left: 8px solid #ff5e6e;
-            padding: 2rem;
-            border-radius: 32px;
+        .share-btn {
+            background: #1e3a2f;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: 0.2s;
+            border: none;
+            color: white;
         }
 
-        .closed-message h2 {
-            color: #ffb3bb;
-            font-size: 1.8rem;
+        .share-btn:hover {
+            background: #2c6950;
+            transform: scale(1.05);
         }
 
-        footer {
-            text-align: center;
-            font-size: 0.75rem;
-            margin-top: 2rem;
-            opacity: 0.7;
+        .ranking-list {
+            list-style: none;
+            margin-top: 1rem;
         }
 
-        /* modal de sucesso */
+        .ranking-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid #2a4a3c;
+        }
+
+        .prize-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            color: #ffd966;
+        }
+
         .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0,0,0,0.85);
             backdrop-filter: blur(4px);
             display: flex;
             align-items: center;
@@ -325,7 +359,7 @@
             border: 1px solid #2eff9e;
             border-radius: 32px;
             padding: 2rem;
-            max-width: 380px;
+            max-width: 400px;
             text-align: center;
             box-shadow: 0 25px 40px black;
         }
@@ -342,8 +376,22 @@
             font-weight: bold;
             cursor: pointer;
         }
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #ffd700;
+            position: absolute;
+            animation: fall 3s linear forwards;
+        }
+        @keyframes fall {
+            to { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
 
-        @media (max-width: 680px) {
+        @media (max-width: 800px) {
+            .two-columns {
+                grid-template-columns: 1fr;
+            }
             body {
                 padding: 1rem;
             }
@@ -370,279 +418,257 @@
 <div class="container">
     
     <div class="logo-area">
-        <h1>⚡ CYBER BOLÃO</h1>
+        <h1>? CYBER BOLÃO</h1>
         <p>Brasil x Marrocos • Copa do Mundo 2026</p>
     </div>
 
-    <!-- Card informativo com valor da aposta -->
-    <div class="card">
-        <div class="info-grid">
-            <div class="info-item">
-                <h3>💰 VALOR DA APOSTA</h3>
-                <p>R$ 10,00</p>
-            </div>
-            <div class="info-item">
-                <h3>📅 PARTIDA</h3>
-                <p>13/06/2026 - 19:00</p>
-            </div>
-            <div class="info-item">
-                <h3>⏱️ ENCERRAMENTO</h3>
-                <p>início do jogo</p>
-            </div>
-        </div>
-        <div id="countdownArea" class="timer-block">
-            🔄 Carregando contador...
-        </div>
-    </div>
-
-    <!-- Área dinâmica (substituída quando encerrar) -->
-    <div id="dynamicContent">
-        <div class="card">
-            <div class="match-title">🇧🇷 🆚 🇲🇦 • GRANDE DUELO</div>
-            
-            <!-- BANDEIRAS REAIS (sem emoji) - imagens externas confiáveis -->
-            <div class="flags-wrapper">
-                <div class="team-card">
-                    <img class="flag-img" src="https://flagcdn.com/w320/br.png" 
-                         alt="Bandeira do Brasil" 
-                         onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/320px-Flag_of_Brazil.svg.png';">
-                    <div class="team-name">BRASIL</div>
-                </div>
-                <div class="vs-badge">VS</div>
-                <div class="team-card">
-                    <img class="flag-img" src="https://flagcdn.com/w320/ma.png" 
-                         alt="Bandeira de Marrocos"
-                         onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Flag_of_Morocco.svg/320px-Flag_of_Morocco.svg.png';">
-                    <div class="team-name">MARROCOS</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- FORMULÁRIO - sem valor da aposta no botão, apenas campos organizados -->
-        <form id="bolaoForm">
-            <!-- NÃO usamos action real para evitar erro 404, vamos capturar via JS e exibir modal -->
-            <!-- Os dados serão apenas simulados como enviados, mas sem redirecionamento quebrado -->
+    <div class="two-columns">
+        <!-- COLUDA ESQUERDA: INFORMAÇÕES + FORMULÁRIO -->
+        <div>
             <div class="card">
-                <div class="form-row-duo">
-                    <div class="field">
-                        <input type="text" name="Nome" id="nomeCompleto" placeholder="Nome completo *" required>
-                    </div>
-                    <div class="field">
-                        <input type="email" name="Email" id="emailUsuario" placeholder="E-mail *" required>
-                    </div>
+                <div class="info-grid">
+                    <div class="info-item"><h3>?? VALOR DA APOSTA</h3><p>R$ 10,00</p></div>
+                    <div class="info-item"><h3>?? PARTIDA</h3><p>13/06/2026 - 19:00</p></div>
+                    <div class="info-item"><h3>?? ENCERRAMENTO</h3><p>início do jogo</p></div>
                 </div>
-                
-                <div class="form-group" style="margin-top: 1rem;">
-                    <input type="text" name="Equipe" id="equipeOp" placeholder="Equipe ou empresa (opcional)">
-                </div>
-
-                <!-- SEÇÃO DE PLACAR -->
-                <div class="placar-container">
-                    <div class="placar-title">🎯 PALPITE DO PLACAR</div>
-                    <div class="score-row">
-                        <div class="score-team">
-                            <label>
-                                <img class="small-flag" src="https://flagcdn.com/w80/br.png" alt="Brasil" 
-                                     onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/80px-Flag_of_Brazil.svg.png'">
-                                BRASIL
-                            </label>
-                            <input type="number" name="Gols_Brasil" id="golsBrasil" min="0" max="20" required value="0" step="1">
-                        </div>
-                        <div class="vs-divider">X</div>
-                        <div class="score-team">
-                            <label>
-                                <img class="small-flag" src="https://flagcdn.com/w80/ma.png" alt="Marrocos"
-                                     onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Flag_of_Morocco.svg/80px-Flag_of_Morocco.svg.png'">
-                                MARROCOS
-                            </label>
-                            <input type="number" name="Gols_Marrocos" id="golsMarrocos" min="0" max="20" required value="0" step="1">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Botão sem valor monetário (apenas enviar palpite) -->
-                <button type="submit" class="btn-submit" id="submitBtn">
-                    🚀 ENVIAR PALPITE
-                </button>
-                <div class="optional-text">
-                    ✅ Após enviar, você receberá um resumo do seu palpite. (simulação)
-                </div>
+                <div id="countdownArea" class="timer-block">?? Carregando...</div>
             </div>
-        </form>
+
+            <div id="dynamicContent">
+                <div class="card">
+                    <div class="match-title">???? ?? ???? • GRANDE DUELO</div>
+                    <div class="flags-wrapper">
+                        <div class="team-card">
+                            <img class="flag-img" src="https://flagcdn.com/w320/br.png" alt="Brasil" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/320px-Flag_of_Brazil.svg.png';">
+                            <div class="team-name">BRASIL</div>
+                        </div>
+                        <div class="vs-badge">VS</div>
+                        <div class="team-card">
+                            <img class="flag-img" src="https://flagcdn.com/w320/ma.png" alt="Marrocos" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Flag_of_Morocco.svg/320px-Flag_of_Morocco.svg.png';">
+                            <div class="team-name">MARROCOS</div>
+                        </div>
+                    </div>
+                </div>
+
+                <form id="bolaoForm">
+                    <div class="card">
+                        <div class="form-row-duo">
+                            <div class="field"><input type="text" id="nomeCompleto" placeholder="Nome completo *" required></div>
+                            <div class="field"><input type="email" id="emailUsuario" placeholder="E-mail *" required></div>
+                        </div>
+                        <div class="form-group" style="margin-top: 1rem;">
+                            <input type="text" id="equipeOp" placeholder="Equipe ou empresa (opcional)">
+                        </div>
+
+                        <div class="placar-container">
+                            <div class="placar-title">?? PALPITE DO PLACAR</div>
+                            <div class="score-row">
+                                <div class="score-team">
+                                    <label><img class="small-flag" src="https://flagcdn.com/w80/br.png" alt="Brasil"> BRASIL</label>
+                                    <input type="number" id="golsBrasil" min="0" max="20" required value="0" step="1">
+                                </div>
+                                <div class="vs-divider">X</div>
+                                <div class="score-team">
+                                    <label><img class="small-flag" src="https://flagcdn.com/w80/ma.png" alt="Marrocos"> MARROCOS</label>
+                                    <input type="number" id="golsMarrocos" min="0" max="20" required value="0" step="1">
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-submit" id="submitBtn">?? ENVIAR PALPITE</button>
+                        <div class="share-buttons">
+                            <button type="button" class="share-btn" onclick="shareBolao()">?? Convidar amigos</button>
+                            <button type="button" class="share-btn" onclick="copyLink()">?? Copiar link</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- COLUNA DIREITA: RANKING + PREMIAÇÃO -->
+        <div>
+            <div class="card">
+                <h3 style="text-align:center; margin-bottom:1rem;">?? PREMIAÇÃO</h3>
+                <div class="prize-item"><span>?? 1º lugar</span><span>R$ 150,00</span></div>
+                <div class="prize-item"><span>?? 2º lugar</span><span>R$ 80,00</span></div>
+                <div class="prize-item"><span>?? 3º lugar</span><span>R$ 40,00</span></div>
+                <div class="prize-item"><span>?? Participação especial</span><span>Brindes</span></div>
+            </div>
+
+            <div class="card">
+                <h3 style="text-align:center; margin-bottom:1rem;">?? RANKING ATUAL</h3>
+                <ul class="ranking-list" id="rankingList">
+                    <li><span>1º • João Vitor</span><span>? 3 acertos</span></li>
+                    <li><span>2º • Amanda Lima</span><span>? 2 acertos</span></li>
+                    <li><span>3º • Carlos Mendes</span><span>? 2 acertos</span></li>
+                    <li><span>4º • Rafaela Souza</span><span>? 1 acerto</span></li>
+                    <li><span>5º • Bruno Oliveira</span><span>? 1 acerto</span></li>
+                </ul>
+                <p style="font-size:0.7rem; margin-top:0.8rem; text-align:center;">? Ranking atualizado após cada jogo</p>
+            </div>
+
+            <div class="card">
+                <h3 style="text-align:center; margin-bottom:0.8rem;">?? ÚLTIMOS CONFRONTOS</h3>
+                <ul class="ranking-list">
+                    <li><span>Brasil 3 x 0 Marrocos</span><span>2019</span></li>
+                    <li><span>Brasil 1 x 0 Marrocos</span><span>2018</span></li>
+                    <li><span>Brasil 2 x 1 Marrocos</span><span>2015</span></li>
+                </ul>
+            </div>
+        </div>
     </div>
     <footer>
         Cyber Bolão® • Aposta simbólica • Arrecadação destinada a premiação dos vencedores.
     </footer>
 </div>
 
-<!-- Modal de confirmação (sem redirecionamento) -->
 <div id="successModal" class="modal-overlay">
     <div class="modal-content">
-        <h3>✅ PALPITE REGISTRADO!</h3>
-        <p id="modalMessage">Obrigado por participar do Cyber Bolão.</p>
+        <h3>? PALPITE CONFIRMADO!</h3>
+        <p id="modalMessage">Obrigado por participar! Você receberá atualizações por e-mail.</p>
         <button class="close-modal" onclick="closeModal()">FECHAR</button>
     </div>
 </div>
 
 <script>
-    (function() {
-        const encerramentoDate = new Date(2026, 5, 13, 19, 0, 0);
+    const encerramentoDate = new Date(2026, 5, 13, 19, 0, 0);
+    let animationInterval = null;
+
+    function updateTimerAndLock() {
+        const agora = new Date();
+        const diffMs = encerramentoDate - agora;
+        const countdownElem = document.getElementById('countdownArea');
+        const dynamicDiv = document.getElementById('dynamicContent');
         
-        function updateTimerAndLock() {
-            const agora = new Date();
-            const diffMs = encerramentoDate - agora;
-            const countdownElem = document.getElementById('countdownArea');
-            const dynamicDiv = document.getElementById('dynamicContent');
-            
-            if (diffMs <= 0) {
-                if (countdownElem) {
-                    countdownElem.innerHTML = "⛔ APOSTAS ENCERRADAS ⛔";
-                    countdownElem.style.background = "#3c1a28";
-                    countdownElem.style.color = "#ffbcbc";
-                }
-                if (dynamicDiv && !dynamicDiv.hasAttribute('data-closed')) {
-                    dynamicDiv.setAttribute('data-closed', 'true');
-                    dynamicDiv.innerHTML = `
-                        <div class="card closed-message">
-                            <h2>🔒 APOSTAS ENCERRADAS</h2>
-                            <p style="margin-top: 0.8rem; font-size: 1.1rem;">Brasil x Marrocos - 13/06/2026 às 19h</p>
-                            <div style="margin-top: 1.5rem; display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
-                                <div style="text-align:center">
-                                    <img class="flag-img" src="https://flagcdn.com/w320/br.png" alt="Brasil" style="width:80px; border-radius:12px;">
-                                    <p><strong>BRASIL</strong></p>
-                                </div>
-                                <div style="text-align:center">
-                                    <img class="flag-img" src="https://flagcdn.com/w320/ma.png" alt="Marrocos" style="width:80px; border-radius:12px;">
-                                    <p><strong>MARROCOS</strong></p>
-                                </div>
-                            </div>
-                            <p style="margin-top: 1.3rem;">✅ Resultados em breve. Fique atento!</p>
-                        </div>
-                    `;
-                }
+        if (diffMs <= 0) {
+            if (countdownElem) {
+                countdownElem.innerHTML = "? APOSTAS ENCERRADAS ?";
+                countdownElem.style.background = "#3c1a28";
+                countdownElem.classList.remove('urgent');
+            }
+            if (dynamicDiv && !dynamicDiv.hasAttribute('data-closed')) {
+                dynamicDiv.setAttribute('data-closed', 'true');
+                dynamicDiv.innerHTML = `<div class="card closed-message" style="text-align:center; background:#2c1118; border-left:8px solid #ff5e6e; padding:2rem; border-radius:32px;"><h2>?? APOSTAS ENCERRADAS</h2><p style="margin-top:0.8rem;">Brasil x Marrocos - 13/06/2026 às 19h</p><div style="margin-top:1rem;"><img src="https://flagcdn.com/w320/br.png" width="60" style="border-radius:12px;"> X <img src="https://flagcdn.com/w320/ma.png" width="60" style="border-radius:12px;"></div><p style="margin-top:1rem;">? Resultados em breve</p></div>`;
+            }
+            return;
+        }
+        
+        const horasRest = diffMs / (1000*60*60);
+        const dias = Math.floor(diffMs / (1000*60*60*24));
+        const horas = Math.floor((diffMs % (1000*60*60*24)) / (1000*60*60));
+        const minutos = Math.floor((diffMs % (1000*60*60)) / (1000*60));
+        const segundos = Math.floor((diffMs % (1000*60)) / 1000);
+        
+        if (countdownElem) {
+            countdownElem.innerHTML = `? TEMPO PARA ENCERRAR: ${dias}d ${horas}h ${minutos}m ${segundos}s`;
+            if (horasRest < 1 && horasRest > 0) {
+                countdownElem.classList.add('urgent');
+            } else {
+                countdownElem.classList.remove('urgent');
+            }
+        }
+    }
+    
+    updateTimerAndLock();
+    setInterval(updateTimerAndLock, 1000);
+
+    // Confetti simples
+    function startConfetti() {
+        for(let i=0;i<80;i++) {
+            const conf = document.createElement('div');
+            conf.classList.add('confetti');
+            conf.style.left = Math.random() * 100 + '%';
+            conf.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 60%)`;
+            conf.style.width = Math.random() * 8 + 4 + 'px';
+            conf.style.height = Math.random() * 12 + 6 + 'px';
+            conf.style.position = 'fixed';
+            conf.style.top = '-10px';
+            conf.style.pointerEvents = 'none';
+            conf.style.zIndex = '9999';
+            document.body.appendChild(conf);
+            setTimeout(() => conf.remove(), 3000);
+        }
+    }
+
+    window.showModal = function(message) {
+        const modal = document.getElementById('successModal');
+        const msgSpan = document.getElementById('modalMessage');
+        if (msgSpan) msgSpan.innerHTML = message;
+        if (modal) modal.classList.add('active');
+        startConfetti();
+    };
+    window.closeModal = function() {
+        const modal = document.getElementById('successModal');
+        if (modal) modal.classList.remove('active');
+    };
+
+    const form = document.getElementById('bolaoForm');
+    const btn = document.getElementById('submitBtn');
+    if(form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const now = new Date();
+            if(now >= encerramentoDate) {
+                alert("? Apostas encerradas! O tempo expirou.");
                 return;
             }
-            
-            const dias = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-            const horas = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutos = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
-            const segundos = Math.floor((diffMs % (1000 * 60)) / 1000);
-            
-            if (countdownElem) {
-                countdownElem.innerHTML = `⏳ TEMPO PARA ENCERRAR: ${dias}d ${horas}h ${minutos}m ${segundos}s`;
+            const nome = document.getElementById('nomeCompleto')?.value.trim();
+            const email = document.getElementById('emailUsuario')?.value.trim();
+            if(!nome || !email) {
+                alert("Preencha nome e e-mail corretamente.");
+                return;
             }
+            let golsB = parseInt(document.getElementById('golsBrasil')?.value,10) || 0;
+            let golsM = parseInt(document.getElementById('golsMarrocos')?.value,10) || 0;
+            if(golsB<0) golsB=0; if(golsM<0) golsM=0;
+            if(golsB>20) golsB=20; if(golsM>20) golsM=20;
             
-            if (diffMs < 3600000 && diffMs > 0) {
-                countdownElem.style.background = "#3e2c1c";
-                countdownElem.style.color = "#ffeaac";
-            } else {
-                countdownElem.style.background = "#0a1420b3";
-            }
-        }
-        
-        updateTimerAndLock();
-        setInterval(updateTimerAndLock, 1000);
-        
-        // Modal functions
-        window.showModal = function(message) {
-            const modal = document.getElementById('successModal');
-            const msgSpan = document.getElementById('modalMessage');
-            if (msgSpan) msgSpan.innerText = message;
-            if (modal) modal.classList.add('active');
-        };
-        window.closeModal = function() {
-            const modal = document.getElementById('successModal');
-            if (modal) modal.classList.remove('active');
-        };
-        
-        // lida com submit sem erro 404, apenas simula envio e mostra modal
-        const form = document.getElementById('bolaoForm');
-        const btn = document.getElementById('submitBtn');
-        
-        if (form) {
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                const now = new Date();
-                if (now >= encerramentoDate) {
-                    alert("⛔ As apostas já foram encerradas! O tempo para palpites expirou.");
-                    return false;
-                }
-                
-                // Coleta dados
-                const nome = document.getElementById('nomeCompleto')?.value.trim();
-                const email = document.getElementById('emailUsuario')?.value.trim();
-                const equipe = document.getElementById('equipeOp')?.value.trim() || 'Não informado';
-                let golsB = parseInt(document.getElementById('golsBrasil')?.value, 10);
-                let golsM = parseInt(document.getElementById('golsMarrocos')?.value, 10);
-                
-                if (!nome || !email) {
-                    alert("Por favor, preencha nome completo e e-mail.");
-                    return;
-                }
-                if (isNaN(golsB)) golsB = 0;
-                if (isNaN(golsM)) golsM = 0;
-                if (golsB < 0) golsB = 0;
-                if (golsM < 0) golsM = 0;
-                if (golsB > 20) golsB = 20;
-                if (golsM > 20) golsM = 20;
-                
-                // Simular envio para um webhook ou apenas mostrar modal de sucesso
-                // Não há mais redirecionamento quebrado, apenas experiência local
-                const mensagemResumo = `Olá ${nome}, seu palpite para Brasil x Marrocos foi registrado!<br><br>🇧🇷 ${golsB} x ${golsM} 🇲🇦<br><br>Em breve o resultado do bolão.`;
-                showModal(mensagemResumo);
-                
-                // Opcional: resetar campos? deixamos como estão, mas pode limpar se quiser
-                // Mas não vamos enviar para URL inválida.
-                
-                // Podemos também exibir no console para debug
-                console.log("Palpite enviado:", {nome, email, equipe, golsBrasil: golsB, golsMarrocos: golsM});
-                
-                // Alterar texto do botão momentaneamente para dar feedback
-                const originalText = btn.innerText;
-                btn.innerText = "✅ ENVIADO!";
-                setTimeout(() => {
-                    btn.innerText = originalText;
-                }, 2000);
-            });
-        }
-        
-        // Limitar inputs gols
-        const inputBrasil = document.getElementById('golsBrasil');
-        const inputMarrocos = document.getElementById('golsMarrocos');
-        function limitInput(inputEl) {
-            if (!inputEl) return;
-            inputEl.addEventListener('change', function() {
-                let v = parseInt(this.value, 10);
-                if (isNaN(v)) this.value = 0;
-                if (v < 0) this.value = 0;
-                if (v > 20) this.value = 20;
-            });
-            inputEl.addEventListener('input', function() {
-                let v = parseInt(this.value, 10);
-                if (!isNaN(v) && v > 20) this.value = 20;
-                if (!isNaN(v) && v < 0) this.value = 0;
-            });
-        }
-        limitInput(inputBrasil);
-        limitInput(inputMarrocos);
-        
-        // fallback imagens
-        const allFlags = document.querySelectorAll('.flag-img, .small-flag');
-        allFlags.forEach(img => {
-            img.addEventListener('error', function() {
-                if (this.src.includes('br')) {
-                    this.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/160px-Flag_of_Brazil.svg.png';
-                } else if (this.src.includes('ma')) {
-                    this.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Flag_of_Morocco.svg/160px-Flag_of_Morocco.svg.png';
-                }
-            });
+            const mensagem = `? Olá ${nome}, seu palpite foi registrado!<br><br>???? ${golsB} x ${golsM} ????<br><br>Boa sorte! Você está concorrendo a R$150,00.`;
+            showModal(mensagem);
+            
+            // salvar no localStorage para "ranking dinamico" ficticio
+            let palpites = JSON.parse(localStorage.getItem('cyber_palpites') || '[]');
+            palpites.push({nome, email, golsB, golsM, data: new Date().toISOString()});
+            localStorage.setItem('cyber_palpites', JSON.stringify(palpites));
+            
+            btn.innerText = "? ENVIADO!";
+            setTimeout(() => btn.innerText = "?? ENVIAR PALPITE", 2000);
+            form.reset();
+            document.getElementById('golsBrasil').value = 0;
+            document.getElementById('golsMarrocos').value = 0;
         });
-        
-        // remove possível recaptcha fantasma
-        const fakeInputs = document.querySelectorAll('input[name="_captcha"], input[name="_next"], input[name="_subject"]');
-        fakeInputs.forEach(el => el.remove());
-    })();
+    }
+
+    function limitInput(inputEl) {
+        if(!inputEl) return;
+        inputEl.addEventListener('change', function() {
+            let v = parseInt(this.value,10);
+            if(isNaN(v)) this.value = 0;
+            if(v<0) this.value = 0;
+            if(v>20) this.value = 20;
+        });
+    }
+    limitInput(document.getElementById('golsBrasil'));
+    limitInput(document.getElementById('golsMarrocos'));
+
+    window.shareBolao = function() {
+        if(navigator.share) {
+            navigator.share({ title: 'Cyber Bolão', text: 'Participe do bolão Brasil x Marrocos! R$150 em prêmios.', url: window.location.href });
+        } else {
+            alert("Compartilhe este link com seus amigos: " + window.location.href);
+        }
+    };
+    window.copyLink = function() {
+        navigator.clipboard.writeText(window.location.href);
+        alert("Link copiado! Compartilhe com seus amigos.");
+    };
+
+    document.querySelectorAll('.flag-img, .small-flag').forEach(img => {
+        img.addEventListener('error', function() {
+            if(this.src.includes('br')) this.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/160px-Flag_of_Brazil.svg.png';
+            else if(this.src.includes('ma')) this.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Flag_of_Morocco.svg/160px-Flag_of_Morocco.svg.png';
+        });
+    });
 </script>
 </body>
 </html>
