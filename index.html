@@ -20,7 +20,7 @@
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
@@ -45,10 +45,21 @@
             margin-top: 6px;
         }
 
+        /* Layout duas colunas */
         .two-columns {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
+            display: flex;
+            gap: 1.8rem;
+            flex-wrap: wrap;
+        }
+
+        .col-left {
+            flex: 1.2;
+            min-width: 280px;
+        }
+
+        .col-right {
+            flex: 0.9;
+            min-width: 280px;
         }
 
         .card {
@@ -74,12 +85,12 @@
             border-radius: 20px;
             padding: 0.9rem 1.2rem;
             flex: 1;
-            min-width: 130px;
+            min-width: 100px;
             border-bottom: 2px solid #2eff9e;
         }
 
         .info-item h3 {
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             color: #b3ffd8;
@@ -88,13 +99,13 @@
 
         .info-item p {
             font-weight: 700;
-            font-size: 1.2rem;
+            font-size: 1rem;
         }
 
         .timer-block {
             text-align: center;
             margin-top: 1rem;
-            font-size: 1.35rem;
+            font-size: 1.2rem;
             font-weight: 700;
             background: #0a1420b3;
             padding: 0.7rem;
@@ -117,56 +128,53 @@
 
         .match-title {
             text-align: center;
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             font-weight: 700;
-            margin-bottom: 1.2rem;
-            letter-spacing: -0.3px;
+            margin-bottom: 1rem;
         }
 
         .flags-wrapper {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 2rem;
+            gap: 1.5rem;
             flex-wrap: wrap;
-            margin: 1rem 0 0.5rem;
         }
 
         .team-card {
             text-align: center;
             background: #0f1a24;
-            padding: 0.8rem 1.8rem;
+            padding: 0.6rem 1.2rem;
             border-radius: 40px;
-            min-width: 150px;
+            min-width: 120px;
         }
 
         .flag-img {
-            width: 90px;
-            height: 64px;
+            width: 70px;
+            height: 50px;
             object-fit: cover;
-            border-radius: 14px;
+            border-radius: 12px;
             box-shadow: 0 5px 12px rgba(0,0,0,0.4);
             border: 1px solid #46ffb0;
-            background-color: #fff2;
         }
 
         .team-name {
-            margin-top: 0.6rem;
+            margin-top: 0.5rem;
             font-weight: 800;
-            font-size: 1.2rem;
+            font-size: 1rem;
         }
 
         .vs-badge {
-            font-size: 1.9rem;
+            font-size: 1.5rem;
             font-weight: 800;
             background: #1e3a2f;
-            padding: 0.2rem 1.2rem;
+            padding: 0.2rem 1rem;
             border-radius: 50px;
             color: #c0ffe0;
         }
 
         .form-group {
-            margin-bottom: 1.4rem;
+            margin-bottom: 1.2rem;
         }
 
         .form-row-duo {
@@ -177,7 +185,7 @@
 
         .form-row-duo .field {
             flex: 1;
-            min-width: 180px;
+            min-width: 150px;
         }
 
         input {
@@ -185,12 +193,11 @@
             background: #0c1825;
             border: 1px solid #2a4a3c;
             border-radius: 20px;
-            padding: 0.9rem 1.2rem;
+            padding: 0.8rem 1rem;
             color: white;
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 500;
             outline: none;
-            transition: all 0.2s;
         }
 
         input:focus {
@@ -200,566 +207,28 @@
 
         .placar-container {
             background: #07121e;
-            border-radius: 28px;
-            padding: 1.5rem;
-            margin: 1rem 0 1.2rem;
+            border-radius: 24px;
+            padding: 1rem;
+            margin: 1rem 0;
         }
 
         .placar-title {
             text-align: center;
             font-weight: 600;
             color: #b3ffd8;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
+            margin-bottom: 0.8rem;
+            font-size: 0.85rem;
         }
 
         .score-row {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 1.8rem;
+            gap: 1rem;
             flex-wrap: wrap;
         }
 
         .score-team {
             text-align: center;
             flex: 1;
-            min-width: 140px;
-        }
-
-        .score-team label {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 0.6rem;
-            color: #e2ffef;
-        }
-
-        .small-flag {
-            width: 32px;
-            height: 24px;
-            border-radius: 6px;
-            object-fit: cover;
-            border: 1px solid #3effab;
-        }
-
-        .score-team input {
-            text-align: center;
-            font-size: 2.2rem;
-            font-weight: 800;
-            width: 130px;
-            background: #0a1725;
-            border: 2px solid #2c6950;
-            border-radius: 40px;
-            padding: 0.5rem;
-        }
-
-        .vs-divider {
-            font-size: 2rem;
-            font-weight: 800;
-            background: #173e30;
-            width: 70px;
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 60px;
-            color: #b6ffdb;
-        }
-
-        .btn-submit {
-            background: linear-gradient(95deg, #1eff9e, #00bc6e);
-            border: none;
-            width: 100%;
-            padding: 1rem;
-            font-size: 1.25rem;
-            font-weight: 800;
-            border-radius: 44px;
-            color: #022115;
-            cursor: pointer;
-            transition: 0.2s;
-            letter-spacing: 1px;
-            margin-top: 0.6rem;
-        }
-
-        .btn-submit:hover {
-            transform: scale(1.01);
-            box-shadow: 0 0 15px #2eff9e;
-        }
-
-        /* Lista de participantes */
-        .participants-list {
-            max-height: 400px;
-            overflow-y: auto;
-        }
-
-        .participant-item {
-            background: #0a1725;
-            border-radius: 16px;
-            padding: 0.8rem;
-            margin-bottom: 0.8rem;
-            border-left: 3px solid #2eff9e;
-        }
-
-        .participant-name {
-            font-weight: 700;
-            color: #2eff9e;
-        }
-
-        .participant-palpite {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin: 0.3rem 0;
-        }
-
-        .participant-time {
-            font-size: 0.7rem;
-            opacity: 0.6;
-        }
-
-        .badge-count {
-            background: #2eff9e;
-            color: #022115;
-            padding: 0.2rem 0.6rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            margin-left: 0.5rem;
-        }
-
-        .empty-message {
-            text-align: center;
-            opacity: 0.5;
-            padding: 2rem;
-        }
-
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.85);
-            backdrop-filter: blur(4px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            visibility: hidden;
-            opacity: 0;
-            transition: 0.2s;
-        }
-        .modal-overlay.active {
-            visibility: visible;
-            opacity: 1;
-        }
-        .modal-content {
-            background: #0f212f;
-            border: 1px solid #2eff9e;
-            border-radius: 32px;
-            padding: 2rem;
-            max-width: 380px;
-            text-align: center;
-            box-shadow: 0 25px 40px black;
-        }
-        .modal-content h3 {
-            color: #2eff9e;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-        .modal-content p {
-            font-size: 1rem;
-            line-height: 1.5;
-            margin: 0.8rem 0;
-        }
-        .close-modal {
-            background: #2eff9e;
-            border: none;
-            margin-top: 1.4rem;
-            padding: 0.6rem 1.8rem;
-            border-radius: 40px;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-
-        @media (max-width: 800px) {
-            .two-columns {
-                grid-template-columns: 1fr;
-            }
-            body {
-                padding: 1rem;
-            }
-            .flag-img {
-                width: 65px;
-                height: 46px;
-            }
-            .team-name {
-                font-size: 1rem;
-            }
-            .score-team input {
-                width: 95px;
-                font-size: 1.8rem;
-            }
-            .vs-divider {
-                width: 50px;
-                height: 50px;
-                font-size: 1.4rem;
-            }
-        }
-    </style>
-</head>
-<body>
-<div class="container">
-    
-    <div class="logo-area">
-        <h1>⚡ CYBER BOLÃO</h1>
-        <p>Brasil x Marrocos • Copa do Mundo 2026</p>
-    </div>
-
-    <div class="two-columns">
-        <!-- COLUNA ESQUERDA: FORMULÁRIO E INFORMAÇÕES -->
-        <div>
-            <div class="card">
-                <div class="info-grid">
-                    <div class="info-item"><h3>💰 VALOR DA APOSTA</h3><p>R$ 10,00</p></div>
-                    <div class="info-item"><h3>📅 PARTIDA</h3><p>13/06/2026 - 19:00</p></div>
-                    <div class="info-item"><h3>⏱️ ENCERRAMENTO</h3><p>início do jogo</p></div>
-                </div>
-                <div id="countdownArea" class="timer-block">🔄 Carregando contador...</div>
-            </div>
-
-            <div id="dynamicContent">
-                <div class="card">
-                    <div class="match-title">Brasil vs Marrocos • GRANDE DUELO</div>
-                    <div class="flags-wrapper">
-                        <div class="team-card">
-                            <img class="flag-img" src="https://flagcdn.com/w320/br.png" 
-                                 alt="Bandeira do Brasil" 
-                                 onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/320px-Flag_of_Brazil.svg.png';">
-                            <div class="team-name">BRASIL</div>
-                        </div>
-                        <div class="vs-badge">VS</div>
-                        <div class="team-card">
-                            <img class="flag-img" src="https://flagcdn.com/w320/ma.png" 
-                                 alt="Bandeira de Marrocos"
-                                 onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Flag_of_Morocco.svg/320px-Flag_of_Morocco.svg.png';">
-                            <div class="team-name">MARROCOS</div>
-                        </div>
-                    </div>
-                </div>
-
-                <form action="https://formsubmit.co/gabriel@cyss.com.br" method="POST" id="bolaoForm">
-                    <input type="hidden" name="_subject" value="NOVO PALPITE - BRASIL x MARROCOS">
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_template" value="table">
-                    
-                    <div class="card">
-                        <div class="form-row-duo">
-                            <div class="field">
-                                <input type="text" name="Nome" id="nomeCompleto" placeholder="Nome completo *" required>
-                            </div>
-                            <div class="field">
-                                <input type="email" name="Email" id="emailUsuario" placeholder="E-mail *" required>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group" style="margin-top: 1rem;">
-                            <input type="text" name="Equipe_Empresa" id="equipeOp" placeholder="Equipe ou empresa (opcional)">
-                        </div>
-
-                        <div class="placar-container">
-                            <div class="placar-title">🎯 PALPITE DO PLACAR</div>
-                            <div class="score-row">
-                                <div class="score-team">
-                                    <label><img class="small-flag" src="https://flagcdn.com/w80/br.png" alt="Brasil"> BRASIL</label>
-                                    <input type="number" name="Gols_Brasil" id="golsBrasil" min="0" max="20" required value="0" step="1">
-                                </div>
-                                <div class="vs-divider">X</div>
-                                <div class="score-team">
-                                    <label><img class="small-flag" src="https://flagcdn.com/w80/ma.png" alt="Marrocos"> MARROCOS</label>
-                                    <input type="number" name="Gols_Marrocos" id="golsMarrocos" min="0" max="20" required value="0" step="1">
-                                </div>
-                            </div>
-                        </div>
-
-                        <button type="submit" class="btn-submit" id="submitBtn">
-                            🚀 ENVIAR PALPITE
-                        </button>
-                        <p style="font-size: 0.7rem; text-align: center; margin-top: 14px; opacity:0.7;">
-                            ✅ Você receberá uma cópia do palpite por e-mail.
-                        </p>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <!-- COLUNA DIREITA: LISTA DE PARTICIPANTES -->
-        <div class="card">
-            <h3 style="text-align:center; margin-bottom:1rem;">
-                📋 PARTICIPANTES 
-                <span id="participantCount" class="badge-count">0</span>
-            </h3>
-            <div id="participantsList" class="participants-list">
-                <div class="empty-message">⏳ Nenhum palpite registrado ainda.<br>Seja o primeiro!</div>
-            </div>
-        </div>
-    </div>
-    <footer style="text-align: center; font-size: 0.75rem; margin-top: 2rem; opacity: 0.7;">
-        Cyber Bolão® • Aposta simbólica
-    </footer>
-</div>
-
-<!-- MODAL DE CONFIRMAÇÃO -->
-<div id="successModal" class="modal-overlay">
-    <div class="modal-content">
-        <h3>✅ PALPITE ENVIADO!</h3>
-        <p id="modalMessage"></p>
-        <button class="close-modal" onclick="closeModal()">FECHAR</button>
-    </div>
-</div>
-
-<script>
-    (function() {
-        const encerramentoDate = new Date(2026, 5, 13, 19, 0, 0);
-        
-        // ==================== REGISTRO DE PARTICIPANTES (localStorage) ====================
-        let participantes = [];
-        
-        function loadParticipants() {
-            const saved = localStorage.getItem('cyber_bolao_participantes');
-            if (saved) {
-                try {
-                    participantes = JSON.parse(saved);
-                } catch(e) { participantes = []; }
-            }
-            renderParticipants();
-        }
-        
-        function saveParticipants() {
-            localStorage.setItem('cyber_bolao_participantes', JSON.stringify(participantes));
-            renderParticipants();
-        }
-        
-        function addParticipant(nome, email, golsBrasil, golsMarrocos) {
-            const now = new Date();
-            const horario = now.toLocaleString('pt-BR', {
-                day: '2-digit', month: '2-digit', year: 'numeric',
-                hour: '2-digit', minute: '2-digit', second: '2-digit'
-            });
-            
-            participantes.unshift({
-                id: Date.now(),
-                nome: nome,
-                email: email,
-                golsBrasil: golsBrasil,
-                golsMarrocos: golsMarrocos,
-                horario: horario,
-                timestamp: now.getTime()
-            });
-            
-            // Mantém apenas os últimos 50 participantes
-            if (participantes.length > 50) participantes = participantes.slice(0, 50);
-            saveParticipants();
-        }
-        
-        function renderParticipants() {
-            const container = document.getElementById('participantsList');
-            const countSpan = document.getElementById('participantCount');
-            
-            if (!container) return;
-            
-            if (participantes.length === 0) {
-                container.innerHTML = '<div class="empty-message">⏳ Nenhum palpite registrado ainda.<br>Seja o primeiro!</div>';
-                if (countSpan) countSpan.textContent = '0';
-                return;
-            }
-            
-            if (countSpan) countSpan.textContent = participantes.length;
-            
-            const html = participantes.map(p => `
-                <div class="participant-item">
-                    <div class="participant-name">👤 ${escapeHtml(p.nome)}</div>
-                    <div class="participant-palpite">🇧🇷 ${p.golsBrasil} x ${p.golsMarrocos} 🇲🇦</div>
-                    <div class="participant-time">⏰ ${p.horario}</div>
-                </div>
-            `).join('');
-            
-            container.innerHTML = html;
-        }
-        
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
-        
-        // ==================== TIMER E BLOQUEIO ====================
-        function updateTimerAndLock() {
-            const agora = new Date();
-            const diffMs = encerramentoDate - agora;
-            const countdownElem = document.getElementById('countdownArea');
-            const dynamicDiv = document.getElementById('dynamicContent');
-            
-            if (diffMs <= 0) {
-                if (countdownElem) {
-                    countdownElem.innerHTML = "⛔ APOSTAS ENCERRADAS ⛔";
-                    countdownElem.style.background = "#3c1a28";
-                    countdownElem.classList.remove('urgent');
-                }
-                if (dynamicDiv && !dynamicDiv.hasAttribute('data-closed')) {
-                    dynamicDiv.setAttribute('data-closed', 'true');
-                    dynamicDiv.innerHTML = `
-                        <div class="card" style="text-align:center; background:#2c1118; border-left:8px solid #ff5e6e; padding:2rem; border-radius:32px;">
-                            <h2 style="color:#ffb3bb;">🔒 APOSTAS ENCERRADAS</h2>
-                            <p style="margin-top:0.8rem;">Brasil x Marrocos - 13/06/2026 às 19h</p>
-                            <div style="margin-top:1.5rem; display:flex; justify-content:center; gap:2rem;">
-                                <img src="https://flagcdn.com/w320/br.png" width="60" style="border-radius:12px;">
-                                <span style="font-size:1.5rem;">VS</span>
-                                <img src="https://flagcdn.com/w320/ma.png" width="60" style="border-radius:12px;">
-                            </div>
-                            <p style="margin-top:1.3rem;">✅ Resultados em breve. Fique atento!</p>
-                        </div>
-                    `;
-                }
-                return;
-            }
-            
-            const horasRest = diffMs / (1000*60*60);
-            const dias = Math.floor(diffMs / (1000*60*60*24));
-            const horas = Math.floor((diffMs % (1000*60*60*24)) / (1000*60*60));
-            const minutos = Math.floor((diffMs % (1000*60*60)) / (1000*60));
-            const segundos = Math.floor((diffMs % (1000*60)) / 1000);
-            
-            if (countdownElem) {
-                countdownElem.innerHTML = `⏳ TEMPO PARA ENCERRAR: ${dias}d ${horas}h ${minutos}m ${segundos}s`;
-                if (horasRest < 1 && horasRest > 0) {
-                    countdownElem.classList.add('urgent');
-                } else {
-                    countdownElem.classList.remove('urgent');
-                }
-            }
-        }
-        
-        updateTimerAndLock();
-        setInterval(updateTimerAndLock, 1000);
-        
-        // ==================== CONFETTI ====================
-        function startConfetti() {
-            for(let i = 0; i < 60; i++) {
-                const conf = document.createElement('div');
-                conf.style.position = 'fixed';
-                conf.style.left = Math.random() * 100 + '%';
-                conf.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 60%)`;
-                conf.style.width = Math.random() * 8 + 4 + 'px';
-                conf.style.height = Math.random() * 12 + 6 + 'px';
-                conf.style.top = '-10px';
-                conf.style.pointerEvents = 'none';
-                conf.style.zIndex = '9999';
-                conf.style.borderRadius = '2px';
-                document.body.appendChild(conf);
-                setTimeout(() => conf.remove(), 3000);
-            }
-        }
-        
-        window.closeModal = function() {
-            const modal = document.getElementById('successModal');
-            if (modal) modal.classList.remove('active');
-        };
-        
-        function showModal(nome, golsB, golsM) {
-            const modal = document.getElementById('successModal');
-            const msgSpan = document.getElementById('modalMessage');
-            if (msgSpan) {
-                msgSpan.innerHTML = `Olá ${nome}, seu palpite foi registrado!<br><br>🇧🇷 BRASIL ${golsB} x ${golsM} MARROCOS 🇲🇦<br><br>Você receberá a confirmação por e-mail.<br><br>Boa sorte!`;
-            }
-            if (modal) modal.classList.add('active');
-            startConfetti();
-        }
-        
-        // ==================== SUBMIT DO FORMULÁRIO ====================
-        const form = document.getElementById('bolaoForm');
-        const btn = document.getElementById('submitBtn');
-        
-        if (form) {
-            form.addEventListener('submit', function(e) {
-                const now = new Date();
-                if (now >= encerramentoDate) {
-                    e.preventDefault();
-                    alert("⛔ As apostas já foram encerradas! O tempo para palpites expirou.");
-                    return false;
-                }
-                
-                const nome = document.getElementById('nomeCompleto')?.value.trim();
-                const email = document.getElementById('emailUsuario')?.value.trim();
-                
-                if (!nome || !email) {
-                    e.preventDefault();
-                    alert("Por favor, preencha nome completo e e-mail.");
-                    return false;
-                }
-                
-                let golsB = parseInt(document.getElementById('golsBrasil')?.value, 10) || 0;
-                let golsM = parseInt(document.getElementById('golsMarrocos')?.value, 10) || 0;
-                
-                if (golsB < 0) golsB = 0;
-                if (golsM < 0) golsM = 0;
-                if (golsB > 20) golsB = 20;
-                if (golsM > 20) golsM = 20;
-                
-                // ADICIONA O PARTICIPANTE À LISTA LOCAL
-                addParticipant(nome, email, golsB, golsM);
-                
-                // Mostra modal de confirmação
-                setTimeout(() => {
-                    showModal(nome, golsB, golsM);
-                }, 100);
-                
-                // Feedback no botão
-                const originalText = btn.innerText;
-                btn.innerText = "📧 ENVIANDO...";
-                setTimeout(() => {
-                    btn.innerText = originalText;
-                }, 3000);
-                
-                // O formulário continua e envia para o FormSubmit
-            });
-        }
-        
-        // ==================== LIMITAR INPUTS DE GOLS ====================
-        const inputBrasil = document.getElementById('golsBrasil');
-        const inputMarrocos = document.getElementById('golsMarrocos');
-        
-        function limitInput(inputEl) {
-            if (!inputEl) return;
-            inputEl.addEventListener('change', function() {
-                let v = parseInt(this.value, 10);
-                if (isNaN(v)) this.value = 0;
-                if (v < 0) this.value = 0;
-                if (v > 20) this.value = 20;
-            });
-        }
-        limitInput(inputBrasil);
-        limitInput(inputMarrocos);
-        
-        // ==================== FALLBACK DAS IMAGENS ====================
-        document.querySelectorAll('.flag-img, .small-flag').forEach(img => {
-            img.addEventListener('error', function() {
-                if (this.src.includes('br')) {
-                    this.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/160px-Flag_of_Brazil.svg.png';
-                } else if (this.src.includes('ma')) {
-                    this.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Flag_of_Morocco.svg/160px-Flag_of_Morocco.svg.png';
-                }
-            });
-        });
-        
-        // ==================== CARREGAR PARTICIPANTES AO INICIAR ====================
-        loadParticipants();
-    })();
-</script>
-</body>
-</html>
+            min-width: 120
