@@ -132,7 +132,6 @@
             margin-bottom: 1.2rem;
         }
 
-        /* === CORREÇÃO DAS BANDEIRAS: LADO A LADO === */
         .flags-wrapper {
             display: flex;
             justify-content: center;
@@ -178,7 +177,6 @@
             display: inline-block;
         }
 
-        /* Responsivo: se a tela for muito pequena, aí sim quebra */
         @media (max-width: 550px) {
             .flags-wrapper {
                 flex-wrap: wrap;
@@ -318,9 +316,8 @@
             box-shadow: 0 0 15px #2eff9e;
         }
 
-        /* Lista de participantes */
         .participants-list {
-            max-height: 400px;
+            max-height: 300px;
             overflow-y: auto;
         }
 
@@ -362,6 +359,41 @@
             text-align: center;
             opacity: 0.5;
             padding: 2rem;
+        }
+
+        /* Regras */
+        .rules-list {
+            list-style: none;
+            margin-top: 0.5rem;
+        }
+
+        .rules-list li {
+            padding: 0.6rem 0;
+            border-bottom: 1px solid rgba(46, 255, 158, 0.2);
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        .rules-list li:last-child {
+            border-bottom: none;
+        }
+
+        .rules-list strong {
+            color: #2eff9e;
+        }
+
+        .prize-highlight {
+            background: #1e3a2f;
+            border-radius: 16px;
+            padding: 0.8rem;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .prize-highlight span {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #ffd966;
         }
 
         .modal-overlay {
@@ -439,7 +471,6 @@
                 <div class="card">
                     <div class="match-title">🇧🇷  BRASIL vs MARROCOS  🇲🇦</div>
                     
-                    <!-- BANDEIRAS CORRIGIDAS: LADO A LADO -->
                     <div class="flags-wrapper">
                         <div class="team-card">
                             <img class="flag-img" src="https://flagcdn.com/w320/br.png" 
@@ -502,8 +533,9 @@
             </div>
         </div>
 
-        <!-- COLUNA DIREITA: LISTA DE PARTICIPANTES -->
+        <!-- COLUNA DIREITA -->
         <div class="col-right">
+            <!-- PARTICIPANTES -->
             <div class="card">
                 <h3 style="text-align:center; margin-bottom:1rem;">
                     📋 PARTICIPANTES 
@@ -513,10 +545,29 @@
                     <div class="empty-message">⏳ Nenhum palpite ainda.<br>Seja o primeiro!</div>
                 </div>
             </div>
+
+            <!-- REGRAS -->
+            <div class="card">
+                <h3 style="text-align:center; margin-bottom:1rem;">📜 REGRAS DO BOLÃO</h3>
+                <ul class="rules-list">
+                    <li><strong>💰 Valor:</strong> R$ 10,00 por participante</li>
+                    <li><strong>🏆 Premiação:</strong> Vencedor recebe <strong>R$ 10,00 × total de participantes</strong></li>
+                    <li><strong>✅ Identificação:</strong> Vale apenas a última aposta com nome e e-mail corretos</li>
+                    <li><strong>📝 Registro:</strong> O palpite precisa constar na página oficial do bolão</li>
+                    <li><strong>💸 Pagamento:</strong> Cada participante paga R$ 10,00 <strong>DIRETAMENTE AO VENCEDOR</strong> via PIX (após o resultado)</li>
+                    <li><strong>📦 Acumulação (2+ vencedores):</strong> Se <strong>dois ou mais</strong> acertarem o placar, o prêmio <strong>acumula</strong> para o próximo bolão</li>
+                    <li><strong>📦 Acumulação (nenhum vencedor):</strong> Se <strong>ninguém</strong> acertar o placar, o prêmio também <strong>acumula</strong> para o próximo jogo</li>
+                    <li><strong>⏳ Encerramento:</strong> Apostas válidas apenas até o <strong>início da partida</strong> (13/06/2026 - 19h)</li>
+                    <li><strong>📢 Resultado:</strong> O vencedor será divulgado na página após o apito final</li>
+                </ul>
+                <div class="prize-highlight">
+                    📌 Acumulou? O valor vai para o <strong>próximo bolão</strong>!
+                </div>
+            </div>
         </div>
     </div>
     <footer>
-        Cyber Bolão® • Aposta simbólica
+        Cyber Bolão® • Aposta simbólica • Organizador não arrecada nada • Tudo vai para o vencedor
     </footer>
 </div>
 
@@ -533,7 +584,6 @@
     (function() {
         const encerramentoDate = new Date(2026, 5, 13, 19, 0, 0);
         
-        // ==================== PARTICIPANTES ====================
         let participantes = [];
         
         function loadParticipants() {
@@ -600,7 +650,6 @@
             return div.innerHTML;
         }
         
-        // ==================== TIMER ====================
         function updateTimerAndLock() {
             const agora = new Date();
             const diffMs = encerramentoDate - agora;
@@ -634,7 +683,6 @@
         updateTimerAndLock();
         setInterval(updateTimerAndLock, 1000);
         
-        // ==================== CONFETTI ====================
         function startConfetti() {
             for(let i = 0; i < 50; i++) {
                 const conf = document.createElement('div');
@@ -662,7 +710,6 @@
             startConfetti();
         }
         
-        // ==================== SUBMIT ====================
         const form = document.getElementById('bolaoForm');
         const btn = document.getElementById('submitBtn');
         
@@ -698,7 +745,6 @@
             });
         }
         
-        // Limitar inputs
         document.getElementById('golsBrasil')?.addEventListener('change', function() {
             let v = parseInt(this.value,10);
             if (isNaN(v)) this.value = 0;
