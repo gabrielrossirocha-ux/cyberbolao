@@ -334,16 +334,6 @@
             cursor: pointer;
             font-size: 1rem;
         }
-        .confetti {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            position: absolute;
-            animation: fall 3s linear forwards;
-        }
-        @keyframes fall {
-            to { transform: translateY(100vh) rotate(360deg); opacity: 0; }
-        }
 
         @media (max-width: 680px) {
             body {
@@ -372,7 +362,7 @@
 <div class="container">
     
     <div class="logo-area">
-        <h1>? CYBER BOLÃO</h1>
+        <h1>⚡ CYBER BOLÃO</h1>
         <p>Brasil x Marrocos • Copa do Mundo 2026</p>
     </div>
 
@@ -380,29 +370,28 @@
     <div class="card">
         <div class="info-grid">
             <div class="info-item">
-                <h3>?? VALOR DA APOSTA</h3>
+                <h3>💰 VALOR DA APOSTA</h3>
                 <p>R$ 10,00</p>
             </div>
             <div class="info-item">
-                <h3>?? PARTIDA</h3>
+                <h3>📅 PARTIDA</h3>
                 <p>13/06/2026 - 19:00</p>
             </div>
             <div class="info-item">
-                <h3>?? ENCERRAMENTO</h3>
+                <h3>⏱️ ENCERRAMENTO</h3>
                 <p>início do jogo</p>
             </div>
         </div>
         <div id="countdownArea" class="timer-block">
-            ?? Carregando contador...
+            🔄 Carregando contador...
         </div>
     </div>
 
-    <!-- Área dinâmica (substituída quando encerrar) -->
+    <!-- Área dinâmica -->
     <div id="dynamicContent">
         <div class="card">
             <div class="match-title">Brasil vs Marrocos • GRANDE DUELO</div>
             
-            <!-- BANDEIRAS REAIS -->
             <div class="flags-wrapper">
                 <div class="team-card">
                     <img class="flag-img" src="https://flagcdn.com/w320/br.png" 
@@ -420,51 +409,52 @@
             </div>
         </div>
 
-        <!-- FORMULÁRIO -->
-        <form id="bolaoForm">
+        <!-- FORMULÁRIO COM FORMSUBMIT -->
+        <form action="https://formsubmit.co/gabriel@cyss.com.br" method="POST" id="bolaoForm">
+            <input type="hidden" name="_subject" value="NOVO PALPITE - BRASIL x MARROCOS">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+            
             <div class="card">
                 <div class="form-row-duo">
                     <div class="field">
-                        <input type="text" id="nomeCompleto" placeholder="Nome completo *" required>
+                        <input type="text" name="Nome" id="nomeCompleto" placeholder="Nome completo *" required>
                     </div>
                     <div class="field">
-                        <input type="email" id="emailUsuario" placeholder="E-mail *" required>
+                        <input type="email" name="Email" id="emailUsuario" placeholder="E-mail *" required>
                     </div>
                 </div>
                 
                 <div class="form-group" style="margin-top: 1rem;">
-                    <input type="text" id="equipeOp" placeholder="Equipe ou empresa (opcional)">
+                    <input type="text" name="Equipe_Empresa" id="equipeOp" placeholder="Equipe ou empresa (opcional)">
                 </div>
 
-                <!-- PLACAR -->
                 <div class="placar-container">
-                    <div class="placar-title">?? PALPITE DO PLACAR</div>
+                    <div class="placar-title">🎯 PALPITE DO PLACAR</div>
                     <div class="score-row">
                         <div class="score-team">
                             <label>
-                                <img class="small-flag" src="https://flagcdn.com/w80/br.png" alt="Brasil" 
-                                     onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/80px-Flag_of_Brazil.svg.png'">
+                                <img class="small-flag" src="https://flagcdn.com/w80/br.png" alt="Brasil">
                                 BRASIL
                             </label>
-                            <input type="number" id="golsBrasil" min="0" max="20" required value="0" step="1">
+                            <input type="number" name="Gols_Brasil" id="golsBrasil" min="0" max="20" required value="0" step="1">
                         </div>
                         <div class="vs-divider">X</div>
                         <div class="score-team">
                             <label>
-                                <img class="small-flag" src="https://flagcdn.com/w80/ma.png" alt="Marrocos"
-                                     onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Flag_of_Morocco.svg/80px-Flag_of_Morocco.svg.png'">
+                                <img class="small-flag" src="https://flagcdn.com/w80/ma.png" alt="Marrocos">
                                 MARROCOS
                             </label>
-                            <input type="number" id="golsMarrocos" min="0" max="20" required value="0" step="1">
+                            <input type="number" name="Gols_Marrocos" id="golsMarrocos" min="0" max="20" required value="0" step="1">
                         </div>
                     </div>
                 </div>
 
                 <button type="submit" class="btn-submit" id="submitBtn">
-                    ?? ENVIAR PALPITE
+                    🚀 ENVIAR PALPITE
                 </button>
                 <p style="font-size: 0.7rem; text-align: center; margin-top: 14px; opacity:0.7;">
-                    ? Seu palpite será registrado. Boa sorte!
+                    ✅ Você receberá uma cópia do palpite por e-mail.
                 </p>
             </div>
         </form>
@@ -474,10 +464,10 @@
     </footer>
 </div>
 
-<!-- MODAL DE CONFIRMAÇÃO (CORRIGIDO) -->
+<!-- MODAL DE CONFIRMAÇÃO -->
 <div id="successModal" class="modal-overlay">
     <div class="modal-content">
-        <h3>? PALPITE CONFIRMADO!</h3>
+        <h3>✅ PALPITE ENVIADO!</h3>
         <p id="modalMessage"></p>
         <button class="close-modal" onclick="closeModal()">FECHAR</button>
     </div>
@@ -495,7 +485,7 @@
             
             if (diffMs <= 0) {
                 if (countdownElem) {
-                    countdownElem.innerHTML = "? APOSTAS ENCERRADAS ?";
+                    countdownElem.innerHTML = "⛔ APOSTAS ENCERRADAS ⛔";
                     countdownElem.style.background = "#3c1a28";
                     countdownElem.classList.remove('urgent');
                 }
@@ -503,14 +493,14 @@
                     dynamicDiv.setAttribute('data-closed', 'true');
                     dynamicDiv.innerHTML = `
                         <div class="card" style="text-align:center; background:#2c1118; border-left:8px solid #ff5e6e; padding:2rem; border-radius:32px;">
-                            <h2 style="color:#ffb3bb;">?? APOSTAS ENCERRADAS</h2>
+                            <h2 style="color:#ffb3bb;">🔒 APOSTAS ENCERRADAS</h2>
                             <p style="margin-top:0.8rem;">Brasil x Marrocos - 13/06/2026 às 19h</p>
                             <div style="margin-top:1.5rem; display:flex; justify-content:center; gap:2rem;">
                                 <img src="https://flagcdn.com/w320/br.png" width="60" style="border-radius:12px;">
                                 <span style="font-size:1.5rem;">VS</span>
                                 <img src="https://flagcdn.com/w320/ma.png" width="60" style="border-radius:12px;">
                             </div>
-                            <p style="margin-top:1.3rem;">? Resultados em breve. Fique atento!</p>
+                            <p style="margin-top:1.3rem;">✅ Resultados em breve. Fique atento!</p>
                         </div>
                     `;
                 }
@@ -524,7 +514,7 @@
             const segundos = Math.floor((diffMs % (1000*60)) / 1000);
             
             if (countdownElem) {
-                countdownElem.innerHTML = `? TEMPO PARA ENCERRAR: ${dias}d ${horas}h ${minutos}m ${segundos}s`;
+                countdownElem.innerHTML = `⏳ TEMPO PARA ENCERRAR: ${dias}d ${horas}h ${minutos}m ${segundos}s`;
                 if (horasRest < 1 && horasRest > 0) {
                     countdownElem.classList.add('urgent');
                 } else {
@@ -559,25 +549,26 @@
             if (modal) modal.classList.remove('active');
         };
 
-        function showModal(message) {
+        function showModal(nome, golsB, golsM) {
             const modal = document.getElementById('successModal');
             const msgSpan = document.getElementById('modalMessage');
-            if (msgSpan) msgSpan.innerHTML = message;
+            if (msgSpan) {
+                msgSpan.innerHTML = `Olá ${nome}, seu palpite foi registrado!<br><br>🇧🇷 BRASIL ${golsB} x ${golsM} MARROCOS 🇲🇦<br><br>Você receberá a confirmação por e-mail.<br><br>Boa sorte!`;
+            }
             if (modal) modal.classList.add('active');
             startConfetti();
         }
 
-        // Envio do formulário
+        // Intercepta o submit para mostrar modal, mas permite o envio real
         const form = document.getElementById('bolaoForm');
         const btn = document.getElementById('submitBtn');
         
         if (form) {
             form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
                 const now = new Date();
                 if (now >= encerramentoDate) {
-                    alert("? As apostas já foram encerradas! O tempo para palpites expirou.");
+                    e.preventDefault();
+                    alert("⛔ As apostas já foram encerradas! O tempo para palpites expirou.");
                     return false;
                 }
                 
@@ -585,8 +576,9 @@
                 const email = document.getElementById('emailUsuario')?.value.trim();
                 
                 if (!nome || !email) {
+                    e.preventDefault();
                     alert("Por favor, preencha nome completo e e-mail.");
-                    return;
+                    return false;
                 }
                 
                 let golsB = parseInt(document.getElementById('golsBrasil')?.value, 10) || 0;
@@ -597,21 +589,20 @@
                 if (golsB > 20) golsB = 20;
                 if (golsM > 20) golsM = 20;
                 
-                // Mensagem limpa e formatada (sem caracteres estranhos)
-                const mensagem = `Olá ${nome}, seu palpite foi registrado!<br><br>???? BRASIL ${golsB} x ${golsM} MARROCOS ????<br><br>Boa sorte!`;
-                showModal(mensagem);
+                // Mostra modal antes do envio (ou após, mas é instantâneo)
+                setTimeout(() => {
+                    showModal(nome, golsB, golsM);
+                }, 100);
                 
-                // Feedback no botão
+                // Feedback visual no botão
                 const originalText = btn.innerText;
-                btn.innerText = "? ENVIADO!";
+                btn.innerText = "📧 ENVIANDO...";
                 setTimeout(() => {
                     btn.innerText = originalText;
-                }, 2000);
+                }, 3000);
                 
-                // Limpar campos opcionais (mantém nome/email para não repetir digitação)
-                document.getElementById('equipeOp').value = '';
-                document.getElementById('golsBrasil').value = 0;
-                document.getElementById('golsMarrocos').value = 0;
+                // O formulário continua e envia para o FormSubmit
+                // O modal não impede o envio
             });
         }
         
