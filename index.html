@@ -101,6 +101,18 @@
             font-size: 1rem;
         }
 
+        .prize-card {
+            background: linear-gradient(135deg, #1e3a2f, #0a1f18);
+            border: 2px solid #ffd966;
+        }
+
+        .prize-card .prize-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #ffd966;
+            text-align: center;
+        }
+
         .timer-block {
             text-align: center;
             margin-top: 1rem;
@@ -317,7 +329,7 @@
         }
 
         .participants-list {
-            max-height: 350px;
+            max-height: 300px;
             overflow-y: auto;
         }
 
@@ -389,25 +401,6 @@
             margin-top: 1rem;
         }
 
-        .instruction-box {
-            background: #0a1725;
-            border-radius: 16px;
-            padding: 1rem;
-            margin-top: 1rem;
-            border: 1px dashed #2eff9e;
-        }
-
-        .instruction-box h4 {
-            color: #2eff9e;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-        }
-
-        .instruction-box p {
-            font-size: 0.75rem;
-            opacity: 0.8;
-        }
-
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -470,12 +463,13 @@
     <div class="two-columns">
         <!-- COLUNA ESQUERDA -->
         <div class="col-left">
-            <div class="card">
+            <div class="card prize-card">
                 <div class="info-grid">
                     <div class="info-item"><h3>💰 VALOR</h3><p>R$ 10,00</p></div>
                     <div class="info-item"><h3>📅 PARTIDA</h3><p>13/06/2026 - 19:00</p></div>
                     <div class="info-item"><h3>⏱️ ENCERRAMENTO</h3><p>início do jogo</p></div>
                 </div>
+                <div id="prizeAmount" class="prize-value" style="margin: 0.8rem 0 0.5rem 0;">🏆 R$ 0,00</div>
                 <div id="countdownArea" class="timer-block">🔄 Carregando...</div>
             </div>
 
@@ -560,7 +554,8 @@
                 <h3 style="text-align:center; margin-bottom:1rem;">📜 REGRAS DO BOLÃO</h3>
                 <ul class="rules-list">
                     <li><strong>💰 Valor:</strong> R$ 10,00 por participante</li>
-                    <li><strong>🏆 Premiação:</strong> Vencedor(es) recebem <strong>R$ 10,00 × total de participantes</strong></li>
+                    <li><strong>🏆 Cálculo do prêmio:</strong> (Total participantes × R$10) - R$10 do vencedor</li>
+                    <li><strong>🏆 Exemplo:</strong> 6 participantes = R$ 50,00 para o vencedor</li>
                     <li><strong>👥 2 vencedores:</strong> Prêmio é <strong>DIVIDIDO igualmente</strong> entre os dois</li>
                     <li><strong>👥👥 3+ vencedores:</strong> Prêmio <strong>ACUMULA</strong> para o próximo bolão</li>
                     <li><strong>❌ Nenhum vencedor:</strong> Prêmio <strong>ACUMULA</strong> para o próximo bolão</li>
@@ -597,18 +592,14 @@
         // ============================================================
         // 🔧 LISTA MANUAL DE PARTICIPANTES - EDITAR AQUI 🔧
         // ============================================================
-        // Adicione ou remova participantes neste array.
-        // Formato: {nome: "Nome do Participante", golsB: 2, golsM: 1, horario: "09/06 14:30"}
-        // ============================================================
-        
         const participantesFixos = [
-    {nome: "Adriano do lago", golsB: 2, golsM: 1, horario: "09/06/2026 09:24"},
-    {nome: "Gabriel Rocha", golsB: 1, golsM: 1, horario: "09/06/2026 09:37"},
-    {nome: "Cainã Morais", golsB: 3, golsM: 2, horario: "11/06/2026 11:12"},
-    {nome: "Marcelo Walski", golsB: 0, golsM: 1, horario: "11/06/2026 11:12"},
-    {nome: "Luiz Razera", golsB: 1, golsM: 0, horario: "11/06/2026 11:10"},
-    {nome: "Junior Miranda", golsB: 2, golsM: 1, horario: "11/06/2026 11:38"}
-];
+            {nome: "Adriano do lago", golsB: 2, golsM: 1, horario: "09/06/2026 09:24"},
+            {nome: "Gabriel Rocha", golsB: 1, golsM: 1, horario: "09/06/2026 09:37"},
+            {nome: "Cainã Morais", golsB: 3, golsM: 2, horario: "11/06/2026 11:12"},
+            {nome: "Marcelo Walski", golsB: 0, golsM: 1, horario: "11/06/2026 11:12"},
+            {nome: "Luiz Razera", golsB: 1, golsM: 0, horario: "11/06/2026 11:10"},
+            {nome: "Junior Miranda", golsB: 2, golsM: 1, horario: "11/06/2026 11:38"}
+        ];
         
         // ============================================================
         // NÃO EDITE NADA ABAIXO DESTA LINHA
@@ -616,8 +607,26 @@
         
         let participantes = [];
         
+        function calcularPremio() {
+            const totalParticipantes = participantes.length;
+            if (totalParticipantes <= 1) return 0;
+            // Prêmio = (total × 10) - 10 (o vencedor não paga a si mesmo)
+            return (totalParticipantes * 10) - 10;
+        }
+        
+        function atualizarPremio() {
+            const premio = calcularPremio();
+            const premioElement = document.getElementById('prizeAmount');
+            if (premioElement) {
+                if (premio > 0) {
+                    premioElement.innerHTML = `🏆 PRÊMIO: R$ ${premio.toFixed(2).replace('.', ',')}`;
+                } else {
+                    premioElement.innerHTML = `🏆 AGUARDANDO APOSTAS`;
+                }
+            }
+        }
+        
         function loadParticipants() {
-            // Primeiro, tenta carregar do localStorage (apostas via formulário)
             const saved = localStorage.getItem('cyber_bolao_participantes');
             let localStorageParticipants = [];
             if (saved) {
@@ -626,11 +635,8 @@
                 } catch(e) { localStorageParticipants = []; }
             }
             
-            // Combina participantes fixos (manuais) + participantes do formulário
-            // Remove duplicatas por email (mantém o mais recente)
             const allParticipants = [...participantesFixos, ...localStorageParticipants];
             
-            // Remove duplicatas (mesmo nome + mesmo palpite)
             const unique = [];
             const seen = new Set();
             for (const p of allParticipants) {
@@ -641,7 +647,6 @@
                 }
             }
             
-            // Ordena por horário (mais recente primeiro)
             participantes = unique.sort((a, b) => {
                 const timeA = a.timestamp || 0;
                 const timeB = b.timestamp || 0;
@@ -649,6 +654,7 @@
             });
             
             renderParticipants();
+            atualizarPremio();
         }
         
         function renderParticipants() {
@@ -696,13 +702,11 @@
                 timestamp: now.getTime()
             };
             
-            // Salva no localStorage
             let saved = JSON.parse(localStorage.getItem('cyber_bolao_participantes') || '[]');
             saved.unshift(newParticipant);
             if (saved.length > 50) saved = saved.slice(0, 50);
             localStorage.setItem('cyber_bolao_participantes', JSON.stringify(saved));
             
-            // Recarrega a lista
             loadParticipants();
         }
         
@@ -792,7 +796,6 @@
                 if (golsB < 0) golsB = 0;
                 if (golsM < 0) golsM = 0;
                 
-                // Salva localmente também
                 addParticipant(nome, email, golsB, golsM);
                 setTimeout(() => showModal(nome, golsB, golsM), 50);
                 
@@ -815,7 +818,6 @@
             if (v > 20) this.value = 20;
         });
         
-        // Carrega participantes ao iniciar
         loadParticipants();
     })();
 </script>
