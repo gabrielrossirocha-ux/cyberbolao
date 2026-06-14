@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>CYBER BOLÃO | Brasil x Marrocos • Copa 2026</title>
+    <title>CYBER BOLÃO | RESULTADO • Brasil x Marrocos</title>
     <style>
         * {
             margin: 0;
@@ -71,6 +71,40 @@
             box-shadow: 0 20px 35px -12px rgba(0,0,0,0.5);
         }
 
+        .winner-card {
+            background: linear-gradient(135deg, #1e5a3a, #0a2a1a);
+            border: 3px solid #ffd966;
+            text-align: center;
+        }
+
+        .winner-name {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #ffd966;
+            margin: 0.5rem 0;
+        }
+
+        .winner-palpite {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #2eff9e;
+            margin: 0.5rem 0;
+        }
+
+        .winner-pix {
+            background: #0a1725;
+            border-radius: 20px;
+            padding: 0.8rem;
+            margin-top: 1rem;
+            font-family: monospace;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        .winner-pix span {
+            color: #ffd966;
+        }
+
         .info-grid {
             display: flex;
             flex-wrap: wrap;
@@ -111,30 +145,6 @@
             font-weight: 800;
             color: #ffd966;
             text-align: center;
-        }
-
-        .timer-block {
-            text-align: center;
-            margin-top: 1rem;
-            font-size: 1.2rem;
-            font-weight: 700;
-            background: #0a1420b3;
-            padding: 0.7rem;
-            border-radius: 60px;
-            color: #caffdf;
-            transition: all 0.3s;
-        }
-
-        .timer-block.urgent {
-            background: #8b3a1c;
-            color: #ffd966;
-            animation: pulse 1s infinite;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.9; transform: scale(1.01); }
-            100% { opacity: 1; transform: scale(1); }
         }
 
         .match-title {
@@ -205,131 +215,8 @@
             }
         }
 
-        .form-group {
-            margin-bottom: 1.2rem;
-        }
-
-        .form-row-duo {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .form-row-duo .field {
-            flex: 1;
-            min-width: 150px;
-        }
-
-        input {
-            width: 100%;
-            background: #0c1825;
-            border: 1px solid #2a4a3c;
-            border-radius: 20px;
-            padding: 0.8rem 1rem;
-            color: white;
-            font-size: 0.9rem;
-            font-weight: 500;
-            outline: none;
-        }
-
-        input:focus {
-            border-color: #2eff9e;
-            box-shadow: 0 0 8px #1eff90;
-        }
-
-        .placar-container {
-            background: #07121e;
-            border-radius: 24px;
-            padding: 1rem;
-            margin: 1rem 0;
-        }
-
-        .placar-title {
-            text-align: center;
-            font-weight: 600;
-            color: #b3ffd8;
-            margin-bottom: 0.8rem;
-            font-size: 0.85rem;
-        }
-
-        .score-row {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .score-team {
-            text-align: center;
-            flex: 1;
-            min-width: 120px;
-        }
-
-        .score-team label {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-            color: #e2ffef;
-        }
-
-        .small-flag {
-            width: 28px;
-            height: 20px;
-            border-radius: 6px;
-            object-fit: cover;
-            border: 1px solid #3effab;
-        }
-
-        .score-team input {
-            text-align: center;
-            font-size: 1.8rem;
-            font-weight: 800;
-            width: 100px;
-            background: #0a1725;
-            border: 2px solid #2c6950;
-            border-radius: 40px;
-            padding: 0.4rem;
-        }
-
-        .vs-divider {
-            font-size: 1.6rem;
-            font-weight: 800;
-            background: #173e30;
-            width: 55px;
-            height: 55px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 60px;
-            color: #b6ffdb;
-        }
-
-        .btn-submit {
-            background: linear-gradient(95deg, #1eff9e, #00bc6e);
-            border: none;
-            width: 100%;
-            padding: 0.9rem;
-            font-size: 1.1rem;
-            font-weight: 800;
-            border-radius: 44px;
-            color: #022115;
-            cursor: pointer;
-            transition: 0.2s;
-            margin-top: 0.5rem;
-        }
-
-        .btn-submit:hover {
-            transform: scale(1.01);
-            box-shadow: 0 0 15px #2eff9e;
-        }
-
         .participants-list {
-            max-height: 300px;
+            max-height: 400px;
             overflow-y: auto;
         }
 
@@ -341,9 +228,19 @@
             border-left: 3px solid #2eff9e;
         }
 
+        .participant-item.winner-item {
+            background: #1e3a2f;
+            border-left: 3px solid #ffd966;
+            border: 1px solid #ffd966;
+        }
+
         .participant-name {
             font-weight: 700;
             color: #2eff9e;
+        }
+
+        .winner-item .participant-name {
+            color: #ffd966;
         }
 
         .participant-palpite {
@@ -367,10 +264,40 @@
             margin-left: 0.5rem;
         }
 
-        .empty-message {
+        .next-game-card {
+            background: linear-gradient(135deg, #1e3a2f, #0a1f18);
+            border: 2px solid #2eff9e;
             text-align: center;
-            opacity: 0.5;
-            padding: 2rem;
+        }
+
+        .next-game-card h3 {
+            color: #2eff9e;
+            margin-bottom: 0.8rem;
+        }
+
+        .next-game-date {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #ffd966;
+        }
+
+        .btn-next {
+            background: linear-gradient(95deg, #1eff9e, #00bc6e);
+            border: none;
+            width: 100%;
+            padding: 0.9rem;
+            font-size: 1.1rem;
+            font-weight: 800;
+            border-radius: 44px;
+            color: #022115;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 0.5rem;
+        }
+
+        .btn-next:hover {
+            transform: scale(1.01);
+            box-shadow: 0 0 15px #2eff9e;
         }
 
         .rules-list {
@@ -401,49 +328,6 @@
             margin-top: 1rem;
         }
 
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.85);
-            backdrop-filter: blur(4px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            visibility: hidden;
-            opacity: 0;
-            transition: 0.2s;
-        }
-        .modal-overlay.active {
-            visibility: visible;
-            opacity: 1;
-        }
-        .modal-content {
-            background: #0f212f;
-            border: 1px solid #2eff9e;
-            border-radius: 32px;
-            padding: 2rem;
-            max-width: 380px;
-            text-align: center;
-        }
-        .modal-content h3 {
-            color: #2eff9e;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-        .close-modal {
-            background: #2eff9e;
-            border: none;
-            margin-top: 1.4rem;
-            padding: 0.6rem 1.8rem;
-            border-radius: 40px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
         footer {
             text-align: center;
             font-size: 0.7rem;
@@ -457,95 +341,61 @@
     
     <div class="logo-area">
         <h1>⚡ CYBER BOLÃO</h1>
-        <p>Brasil x Marrocos • Copa do Mundo 2026</p>
+        <p>Brasil x Marrocos • RESULTADO OFICIAL</p>
     </div>
 
     <div class="two-columns">
         <!-- COLUNA ESQUERDA -->
         <div class="col-left">
+            <!-- CARD DO VENCEDOR EM DESTAQUE -->
+            <div class="card winner-card">
+                <h3>🏆 VENCEDOR 🏆</h3>
+                <div class="winner-name">Gabriel Rocha</div>
+                <div class="winner-palpite">🇧🇷 1 x 1 🇲🇦</div>
+                <div class="winner-pix">
+                    📱 PIX para pagamento:<br>
+                    <span>41997816685</span><br>
+                    (Celular - Copia e cola)
+                </div>
+                <p style="margin-top: 0.8rem; font-size: 0.85rem;">✅ Cada participante deve pagar R$ 10,00<br>📌 Total a receber: R$ 90,00</p>
+            </div>
+
+            <!-- INFORMAÇÕES DA PARTIDA -->
             <div class="card prize-card">
                 <div class="info-grid">
                     <div class="info-item"><h3>💰 VALOR</h3><p>R$ 10,00</p></div>
                     <div class="info-item"><h3>📅 PARTIDA</h3><p>13/06/2026 - 19:00</p></div>
-                    <div class="info-item"><h3>⏱️ ENCERRAMENTO</h3><p>início do jogo</p></div>
+                    <div class="info-item"><h3>🏆 PRÊMIO</h3><p>R$ 90,00</p></div>
                 </div>
-                <div id="prizeAmount" class="prize-value" style="margin: 0.8rem 0 0.5rem 0;">🏆 R$ 0,00</div>
-                <div id="countdownArea" class="timer-block">🔄 Carregando...</div>
             </div>
 
-            <div id="dynamicContent">
-                <div class="card">
-                    <div class="match-title">🇧🇷  BRASIL vs MARROCOS  🇲🇦</div>
-                    
-                    <div class="flags-wrapper">
-                        <div class="team-card">
-                            <img class="flag-img" src="https://flagcdn.com/w320/br.png" 
-                                 alt="Brasil" 
-                                 onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/320px-Flag_of_Brazil.svg.png';">
-                            <div class="team-name">BRASIL</div>
-                        </div>
-                        <div class="vs-badge">VS</div>
-                        <div class="team-card">
-                            <img class="flag-img" src="https://flagcdn.com/w320/ma.png" 
-                                 alt="Marrocos"
-                                 onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Flag_of_Morocco.svg/320px-Flag_of_Morocco.svg.png';">
-                            <div class="team-name">MARROCOS</div>
-                        </div>
-                    </div>
+            <!-- PRÓXIMO JOGO -->
+            <div class="card next-game-card">
+                <h3>⚡ PRÓXIMO BOLÃO ⚡</h3>
+                <p>🇧🇷 Brasil vs Haiti 🇭🇹</p>
+                <div class="next-game-date">
+                    📅 Sexta-feira • 21h30
                 </div>
-
-                <form action="https://formsubmit.co/gabriel@cyss.com.br" method="POST" id="bolaoForm">
-                    <input type="hidden" name="_subject" value="NOVO PALPITE - BRASIL x MARROCOS">
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_template" value="table">
-                    
-                    <div class="card">
-                        <div class="form-row-duo">
-                            <div class="field">
-                                <input type="text" name="Nome" id="nomeCompleto" placeholder="Nome completo *" required>
-                            </div>
-                            <div class="field">
-                                <input type="email" name="Email" id="emailUsuario" placeholder="E-mail *" required>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group" style="margin-top: 0.8rem;">
-                            <input type="text" name="Equipe" id="equipeOp" placeholder="Equipe ou empresa (opcional)">
-                        </div>
-
-                        <div class="placar-container">
-                            <div class="placar-title">🎯 PALPITE DO PLACAR</div>
-                            <div class="score-row">
-                                <div class="score-team">
-                                    <label><img class="small-flag" src="https://flagcdn.com/w80/br.png" alt="Brasil"> BRASIL</label>
-                                    <input type="number" name="Gols_Brasil" id="golsBrasil" min="0" max="20" required value="0" step="1">
-                                </div>
-                                <div class="vs-divider">X</div>
-                                <div class="score-team">
-                                    <label><img class="small-flag" src="https://flagcdn.com/w80/ma.png" alt="Marrocos"> MARROCOS</label>
-                                    <input type="number" name="Gols_Marrocos" id="golsMarrocos" min="0" max="20" required value="0" step="1">
-                                </div>
-                            </div>
-                        </div>
-
-                        <button type="submit" class="btn-submit" id="submitBtn">
-                            🚀 ENVIAR PALPITE
-                        </button>                     
-                    </div>
-                </form>
+                <p style="margin-top: 0.8rem;">
+                    ✅ Apostas abertas a partir de <strong>QUARTA-FEIRA</strong><br>
+                    ⏳ Encerramento: início do jogo (Sexta 21h30)
+                </p>
+                <button class="btn-next" onclick="window.location.reload()">
+                    🚀 ATUALIZAR PARA PRÓXIMO BOLÃO
+                </button>
             </div>
         </div>
 
         <!-- COLUNA DIREITA -->
         <div class="col-right">
-            <!-- PARTICIPANTES -->
+            <!-- TODAS AS APOSTAS -->
             <div class="card">
                 <h3 style="text-align:center; margin-bottom:1rem;">
-                    📋 PARTICIPANTES 
+                    📋 TODAS AS APOSTAS 
                     <span id="participantCount" class="badge-count">0</span>
                 </h3>
                 <div id="participantsList" class="participants-list">
-                    <div class="empty-message">⏳ Carregando participantes...</div>
+                    <div class="empty-message">⏳ Carregando apostas...</div>
                 </div>
             </div>
 
@@ -555,15 +405,13 @@
                 <ul class="rules-list">
                     <li><strong>💰 Valor:</strong> R$ 10,00 por participante</li>
                     <li><strong>🏆 Cálculo do prêmio:</strong> (Total participantes × R$10) - R$10 do vencedor</li>
-                    <li><strong>🏆 Exemplo:</strong> 6 participantes = R$ 50,00 para o vencedor</li>
                     <li><strong>👥 2 vencedores:</strong> Prêmio é <strong>DIVIDIDO igualmente</strong> entre os dois</li>
                     <li><strong>👥👥 3+ vencedores:</strong> Prêmio <strong>ACUMULA</strong> para o próximo bolão</li>
                     <li><strong>❌ Nenhum vencedor:</strong> Prêmio <strong>ACUMULA</strong> para o próximo bolão</li>
                     <li><strong>✅ Identificação:</strong> Vale apenas a última aposta com nome e e-mail corretos</li>
                     <li><strong>📝 Registro:</strong> O palpite precisa constar na página oficial do bolão</li>
-                    <li><strong>💸 Pagamento:</strong> Cada participante paga R$ 10,00 <strong>DIRETAMENTE AO VENCEDOR</strong> via PIX (após o resultado)</li>
-                    <li><strong>⏳ Encerramento:</strong> Apostas válidas apenas até o <strong>início da partida</strong> (13/06/2026 - 19h)</li>
-                    <li><strong>📢 Resultado:</strong> O vencedor será divulgado na página após o apito final</li>
+                    <li><strong>💸 Pagamento:</strong> Cada participante paga R$ 10,00 <strong>DIRETAMENTE AO VENCEDOR</strong> via PIX</li>
+                    <li><strong>📢 Resultado:</strong> Vencedor divulgado na página após o apito final</li>
                 </ul>
                 <div class="prize-highlight">
                     📌 2 vencedores = dividem • 3+ vencedores = acumula
@@ -572,29 +420,18 @@
         </div>
     </div>
     <footer>
-        Cyber Bolão® • Aposta simbólica • Organizador não arrecada nada • Tudo vai para o(s) vencedor(es)
+        Cyber Bolão® • Aposta simbólica • Pagamento direto ao vencedor via PIX
     </footer>
-</div>
-
-<!-- MODAL -->
-<div id="successModal" class="modal-overlay">
-    <div class="modal-content">
-        <h3>✅ PALPITE ENVIADO!</h3>
-        <p id="modalMessage"></p>
-        <button class="close-modal" onclick="closeModal()">FECHAR</button>
-    </div>
 </div>
 
 <script>
     (function() {
-        const encerramentoDate = new Date(2026, 5, 13, 19, 0, 0);
-        
         // ============================================================
-        // 🔧 LISTA MANUAL DE PARTICIPANTES - EDITAR AQUI 🔧
+        // 🏆 TODAS AS APOSTAS (LISTA COMPLETA)
         // ============================================================
         const participantesFixos = [
             {nome: "Adriano do lago", golsB: 2, golsM: 1, horario: "09/06/2026 09:24"},
-            {nome: "Gabriel Rocha", golsB: 1, golsM: 1, horario: "09/06/2026 09:37"},
+            {nome: "Gabriel Rocha", golsB: 1, golsM: 1, horario: "09/06/2026 09:37", vencedor: true},
             {nome: "Cainã Morais", golsB: 3, golsM: 2, horario: "11/06/2026 11:12"},
             {nome: "Marcelo Walski", golsB: 0, golsM: 1, horario: "11/06/2026 11:12"},
             {nome: "Luiz Razera", golsB: 1, golsM: 0, horario: "11/06/2026 11:10"},
@@ -605,77 +442,20 @@
         ];
         
         // ============================================================
-        // NÃO EDITE NADA ABAIXO DESTA LINHA
+        // RENDERIZAÇÃO DA LISTA
         // ============================================================
-        
-        let participantes = [];
-        
-        function calcularPremio() {
-            const totalParticipantes = participantes.length;
-            if (totalParticipantes <= 1) return 0;
-            // Prêmio = (total × 10) - 10 (o vencedor não paga a si mesmo)
-            return (totalParticipantes * 10) - 10;
-        }
-        
-        function atualizarPremio() {
-            const premio = calcularPremio();
-            const premioElement = document.getElementById('prizeAmount');
-            if (premioElement) {
-                if (premio > 0) {
-                    premioElement.innerHTML = `🏆 PRÊMIO: R$ ${premio.toFixed(2).replace('.', ',')}`;
-                } else {
-                    premioElement.innerHTML = `🏆 AGUARDANDO APOSTAS`;
-                }
-            }
-        }
-        
-        function loadParticipants() {
-            const saved = localStorage.getItem('cyber_bolao_participantes');
-            let localStorageParticipants = [];
-            if (saved) {
-                try {
-                    localStorageParticipants = JSON.parse(saved);
-                } catch(e) { localStorageParticipants = []; }
-            }
-            
-            const allParticipants = [...participantesFixos, ...localStorageParticipants];
-            
-            const unique = [];
-            const seen = new Set();
-            for (const p of allParticipants) {
-                const key = `${p.nome}_${p.golsB}_${p.golsM}`;
-                if (!seen.has(key)) {
-                    seen.add(key);
-                    unique.push(p);
-                }
-            }
-            
-            participantes = unique.sort((a, b) => {
-                const timeA = a.timestamp || 0;
-                const timeB = b.timestamp || 0;
-                return timeB - timeA;
-            });
-            
-            renderParticipants();
-            atualizarPremio();
-        }
         
         function renderParticipants() {
             const container = document.getElementById('participantsList');
             const countSpan = document.getElementById('participantCount');
             if (!container) return;
             
-            if (participantes.length === 0) {
-                container.innerHTML = '<div class="empty-message">⏳ Nenhum palpite registrado ainda.<br>Seja o primeiro!</div>';
-                if (countSpan) countSpan.textContent = '0';
-                return;
-            }
+            const total = participantesFixos.length;
+            if (countSpan) countSpan.textContent = total;
             
-            if (countSpan) countSpan.textContent = participantes.length;
-            
-            container.innerHTML = participantes.map(p => `
-                <div class="participant-item">
-                    <div class="participant-name">👤 ${escapeHtml(p.nome)}</div>
+            container.innerHTML = participantesFixos.map(p => `
+                <div class="participant-item ${p.vencedor ? 'winner-item' : ''}">
+                    <div class="participant-name">👤 ${escapeHtml(p.nome)} ${p.vencedor ? '🏆 VENCEDOR' : ''}</div>
                     <div class="participant-palpite">🇧🇷 ${p.golsB} x ${p.golsM} 🇲🇦</div>
                     <div class="participant-time">⏰ ${p.horario || 'Data não informada'}</div>
                 </div>
@@ -688,140 +468,8 @@
             return div.innerHTML;
         }
         
-        function addParticipant(nome, email, golsBrasil, golsMarrocos) {
-            const now = new Date();
-            const horario = now.toLocaleString('pt-BR', {
-                day: '2-digit', month: '2-digit', year: 'numeric',
-                hour: '2-digit', minute: '2-digit', second: '2-digit'
-            });
-            
-            const newParticipant = {
-                id: Date.now(),
-                nome: nome,
-                email: email,
-                golsB: golsBrasil,
-                golsM: golsMarrocos,
-                horario: horario,
-                timestamp: now.getTime()
-            };
-            
-            let saved = JSON.parse(localStorage.getItem('cyber_bolao_participantes') || '[]');
-            saved.unshift(newParticipant);
-            if (saved.length > 50) saved = saved.slice(0, 50);
-            localStorage.setItem('cyber_bolao_participantes', JSON.stringify(saved));
-            
-            loadParticipants();
-        }
-        
-        function updateTimerAndLock() {
-            const agora = new Date();
-            const diffMs = encerramentoDate - agora;
-            const countdownElem = document.getElementById('countdownArea');
-            const dynamicDiv = document.getElementById('dynamicContent');
-            
-            if (diffMs <= 0) {
-                if (countdownElem) {
-                    countdownElem.innerHTML = "⛔ APOSTAS ENCERRADAS ⛔";
-                    countdownElem.style.background = "#3c1a28";
-                }
-                if (dynamicDiv && !dynamicDiv.hasAttribute('data-closed')) {
-                    dynamicDiv.setAttribute('data-closed', 'true');
-                    dynamicDiv.innerHTML = `<div class="card" style="text-align:center; background:#2c1118;"><h2>🔒 APOSTAS ENCERRADAS</h2><p>Brasil x Marrocos - 13/06/2026 às 19h</p></div>`;
-                }
-                return;
-            }
-            
-            const dias = Math.floor(diffMs / (1000*60*60*24));
-            const horas = Math.floor((diffMs % (1000*60*60*24)) / (1000*60*60));
-            const minutos = Math.floor((diffMs % (1000*60*60)) / (1000*60));
-            const segundos = Math.floor((diffMs % (1000*60)) / 1000);
-            
-            if (countdownElem) {
-                countdownElem.innerHTML = `⏳ TEMPO: ${dias}d ${horas}h ${minutos}m ${segundos}s`;
-                if (diffMs < 3600000) countdownElem.classList.add('urgent');
-                else countdownElem.classList.remove('urgent');
-            }
-        }
-        
-        updateTimerAndLock();
-        setInterval(updateTimerAndLock, 1000);
-        
-        function startConfetti() {
-            for(let i = 0; i < 50; i++) {
-                const conf = document.createElement('div');
-                conf.style.position = 'fixed';
-                conf.style.left = Math.random() * 100 + '%';
-                conf.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 60%)`;
-                conf.style.width = Math.random() * 8 + 4 + 'px';
-                conf.style.height = Math.random() * 10 + 5 + 'px';
-                conf.style.top = '-10px';
-                conf.style.pointerEvents = 'none';
-                conf.style.zIndex = '9999';
-                document.body.appendChild(conf);
-                setTimeout(() => conf.remove(), 3000);
-            }
-        }
-        
-        window.closeModal = function() {
-            document.getElementById('successModal').classList.remove('active');
-        };
-        
-        function showModal(nome, golsB, golsM) {
-            const modal = document.getElementById('successModal');
-            document.getElementById('modalMessage').innerHTML = `Olá ${nome}!<br><br>🇧🇷 ${golsB} x ${golsM} 🇲🇦<br><br>Boa sorte!`;
-            modal.classList.add('active');
-            startConfetti();
-        }
-        
-        const form = document.getElementById('bolaoForm');
-        const btn = document.getElementById('submitBtn');
-        
-        if (form) {
-            form.addEventListener('submit', function(e) {
-                const now = new Date();
-                if (now >= encerramentoDate) {
-                    e.preventDefault();
-                    alert("⛔ Apostas encerradas!");
-                    return false;
-                }
-                
-                const nome = document.getElementById('nomeCompleto')?.value.trim();
-                const email = document.getElementById('emailUsuario')?.value.trim();
-                
-                if (!nome || !email) {
-                    e.preventDefault();
-                    alert("Preencha nome e e-mail.");
-                    return false;
-                }
-                
-                let golsB = parseInt(document.getElementById('golsBrasil')?.value, 10) || 0;
-                let golsM = parseInt(document.getElementById('golsMarrocos')?.value, 10) || 0;
-                if (golsB < 0) golsB = 0;
-                if (golsM < 0) golsM = 0;
-                
-                addParticipant(nome, email, golsB, golsM);
-                setTimeout(() => showModal(nome, golsB, golsM), 50);
-                
-                const original = btn.innerText;
-                btn.innerText = "📧 ENVIANDO...";
-                setTimeout(() => { btn.innerText = original; }, 3000);
-            });
-        }
-        
-        document.getElementById('golsBrasil')?.addEventListener('change', function() {
-            let v = parseInt(this.value,10);
-            if (isNaN(v)) this.value = 0;
-            if (v < 0) this.value = 0;
-            if (v > 20) this.value = 20;
-        });
-        document.getElementById('golsMarrocos')?.addEventListener('change', function() {
-            let v = parseInt(this.value,10);
-            if (isNaN(v)) this.value = 0;
-            if (v < 0) this.value = 0;
-            if (v > 20) this.value = 20;
-        });
-        
-        loadParticipants();
+        // Carrega participantes ao iniciar
+        renderParticipants();
     })();
 </script>
 </body>
