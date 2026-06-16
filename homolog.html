@@ -879,32 +879,31 @@
         }
         
         function renderParticipants() {
-            const container = document.getElementById('participantsList');
-            const countSpan = document.getElementById('participantCount');
-            if (!container) return;
-            
-            const ativos = participantes.filter(p => !p.desistiu);
-            
-            if (participantes.length === 0) {
-                container.innerHTML = '<div class="empty-message">⏳ Nenhum palpite registrado ainda.<br>Seja o primeiro!</div>';
-                if (countSpan) countSpan.textContent = '0';
-                return;
-            }
-            
-            if (countSpan) countSpan.textContent = ativos.length;
-            
-            container.innerHTML = participantes.map(p => `
-                <div class="participant-item ${p.desistiu ? 'desistiu' : ''}">
-                    <div class="participant-name">
-                        👤 ${escapeHtml(p.nome)} 
-                        ${p.chave ? '🔑' : ''}
-                        ${p.desistiu ? '<span class="badge-desistiu">❌ DESISTIU</span>' : ''}
-                    </div>
-                    <div class="participant-palpite">🇧🇷 ${p.golsB} x ${p.golsM} 🇭🇹</div>
-                    <div class="participant-time">⏰ ${p.horario || 'Data não informada'} ${p.chave ? '• Chave: ' + p.chave : ''}</div>
-                </div>
-            `).join('');
-        }
+    const container = document.getElementById('participantsList');
+    const countSpan = document.getElementById('participantCount');
+    if (!container) return;
+    
+    const ativos = participantes.filter(p => !p.desistiu);
+    
+    if (participantes.length === 0) {
+        container.innerHTML = '<div class="empty-message">⏳ Nenhum palpite registrado ainda.<br>Seja o primeiro!</div>';
+        if (countSpan) countSpan.textContent = '0';
+        return;
+    }
+    
+    if (countSpan) countSpan.textContent = ativos.length;
+    
+    container.innerHTML = participantes.map(p => `
+        <div class="participant-item ${p.desistiu ? 'desistiu' : ''}">
+            <div class="participant-name">
+                👤 ${escapeHtml(p.nome)} 
+                ${p.desistiu ? '<span class="badge-desistiu">❌ DESISTIU</span>' : ''}
+            </div>
+            <div class="participant-palpite">🇧🇷 ${p.golsB} x ${p.golsM} 🇭🇹</div>
+            <div class="participant-time">⏰ ${p.horario || 'Data não informada'}</div>
+        </div>
+    `).join('');
+}
         
         function escapeHtml(text) {
             const div = document.createElement('div');
