@@ -401,23 +401,6 @@
             margin-top: 1rem;
         }
 
-        .btn-whatsapp {
-            display: inline-block;
-            background: #25D366;
-            color: white;
-            padding: 12px 24px;
-            border-radius: 50px;
-            text-decoration: none;
-            margin-top: 10px;
-            font-weight: bold;
-            transition: 0.2s;
-        }
-
-        .btn-whatsapp:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(37, 211, 102, 0.3);
-        }
-
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -585,18 +568,7 @@
                 <div class="prize-highlight">
                     📌 2 vencedores = dividem • 3+ vencedores = acumula
                 </div>
-            </div>
-
-            <!-- BOTÃO WHATSAPP -->
-            <div class="card" style="text-align:center; background:linear-gradient(135deg, #075E54, #128C7E);">
-                <h3 style="color:white;">📱 AVISO NO WHATSAPP</h3>
-                <p style="color:#e0e0e0; font-size:0.9rem;">Avise quando abrir e receba notificações</p>
-                <a href="https://wa.me/5541997816685?text=Oi%2C%20quero%20participar%20do%20bol%C3%A3o%20Brasil%20x%20Haiti%21%0A%0AMeu%20nome%3A%20%0AMeu%20palpite%3A%20" 
-                   target="_blank" 
-                   class="btn-whatsapp">
-                    💬 AVISAR NO WHATSAPP
-                </a>
-            </div>
+            </div>            
         </div>
     </div>
     <footer>
@@ -620,9 +592,16 @@
         // ============================================================
         // 🔧 LISTA MANUAL DE PARTICIPANTES - EDITAR AQUI 🔧
         // ============================================================
+        // Adicione ou remova participantes neste array.
+        // Formato: {nome: "Nome do Participante", golsB: 2, golsM: 1, horario: "19/06 14:30"}
+        // ============================================================
         const participantesFixos = [
-            // Adicione os participantes aqui conforme forem chegando
-            // Exemplo: {nome: "João Silva", golsB: 2, golsM: 1, horario: "16/06/2026 10:30"},
+            // EXEMPLOS (SUBSTITUA PELOS SEUS PARTICIPANTES):
+            // {nome: "João Silva", golsB: 2, golsM: 1, horario: "16/06/2026 10:30"},
+            // {nome: "Maria Santos", golsB: 3, golsM: 0, horario: "16/06/2026 11:00"},
+            
+            // 👇 COLE SEUS PARTICIPANTES AQUI (substitua os exemplos)
+            
         ];
         
         // ============================================================
@@ -650,16 +629,10 @@
         }
         
         function loadParticipants() {
-            const saved = localStorage.getItem('cyber_bolao_participantes_haiti');
-            let localStorageParticipants = [];
-            if (saved) {
-                try {
-                    localStorageParticipants = JSON.parse(saved);
-                } catch(e) { localStorageParticipants = []; }
-            }
+            // Carrega APENAS os participantes fixos (do código)
+            const allParticipants = [...participantesFixos];
             
-            const allParticipants = [...participantesFixos, ...localStorageParticipants];
-            
+            // Remove duplicatas (mesmo nome + mesmo palpite)
             const unique = [];
             const seen = new Set();
             for (const p of allParticipants) {
@@ -670,11 +643,7 @@
                 }
             }
             
-            participantes = unique.sort((a, b) => {
-                const timeA = a.timestamp || 0;
-                const timeB = b.timestamp || 0;
-                return timeB - timeA;
-            });
+            participantes = unique;
             
             renderParticipants();
             atualizarPremio();
@@ -706,31 +675,6 @@
             const div = document.createElement('div');
             div.textContent = text;
             return div.innerHTML;
-        }
-        
-        function addParticipant(nome, email, golsBrasil, golsHaiti) {
-            const now = new Date();
-            const horario = now.toLocaleString('pt-BR', {
-                day: '2-digit', month: '2-digit', year: 'numeric',
-                hour: '2-digit', minute: '2-digit', second: '2-digit'
-            });
-            
-            const newParticipant = {
-                id: Date.now(),
-                nome: nome,
-                email: email,
-                golsB: golsBrasil,
-                golsM: golsHaiti,
-                horario: horario,
-                timestamp: now.getTime()
-            };
-            
-            let saved = JSON.parse(localStorage.getItem('cyber_bolao_participantes_haiti') || '[]');
-            saved.unshift(newParticipant);
-            if (saved.length > 50) saved = saved.slice(0, 50);
-            localStorage.setItem('cyber_bolao_participantes_haiti', JSON.stringify(saved));
-            
-            loadParticipants();
         }
         
         function updateTimerAndLock() {
@@ -819,12 +763,15 @@
                 if (golsB < 0) golsB = 0;
                 if (golsM < 0) golsM = 0;
                 
-                addParticipant(nome, email, golsB, golsM);
+                // Mostra modal de confirmação
                 setTimeout(() => showModal(nome, golsB, golsM), 50);
                 
                 const original = btn.innerText;
                 btn.innerText = "📧 ENVIANDO...";
                 setTimeout(() => { btn.innerText = original; }, 3000);
+                
+                // O formulário continua e envia para o FormSubmit
+                // NÃO salva no localStorage - você controla manualmente
             });
         }
         
@@ -841,6 +788,7 @@
             if (v > 20) this.value = 20;
         });
         
+        // Carrega participantes ao iniciar
         loadParticipants();
     })();
 </script>
