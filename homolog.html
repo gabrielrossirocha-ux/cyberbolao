@@ -531,11 +531,6 @@
             font-size: 0.95rem;
             line-height: 1.5;
         }
-        .modal-content .chave-destaque {
-            color: #ffd966;
-            font-weight: 800;
-            font-size: 1.2rem;
-        }
         .close-modal {
             background: #2eff9e;
             border: none;
@@ -837,7 +832,8 @@
         }
         
         function calcularPremio() {
-            const totalParticipantes = participantes.filter(p => !p.desistiu).length;
+            const ativos = participantes.filter(p => !p.desistiu);
+            const totalParticipantes = ativos.length;
             if (totalParticipantes <= 1) return 0;
             return (totalParticipantes * 10) - 10;
         }
@@ -855,15 +851,20 @@
         }
         
         function loadParticipants() {
-            const allParticipants = [...participantesFixos];
-            
+            // Limpa participantes existentes que não estão no fixo (evita duplicação)
+            // Mantém apenas os participantes fixos
             const unique = [];
             const seen = new Set();
-            for (const p of allParticipants) {
+            for (const p of participantesFixos) {
                 const key = `${p.nome}_${p.golsB}_${p.golsM}`;
                 if (!seen.has(key)) {
                     seen.add(key);
-                    unique.push({...p, desistiu: false});
+                    // Verifica se já existe um participante com este nome (para manter desistência)
+                    const existing = participantes.find(p2 => p2.nome === p.nome && p2.email === p.email);
+                    unique.push({
+                        ...p,
+                        desistiu: existing ? existing.desistiu : false
+                    });
                 }
             }
             
@@ -974,8 +975,10 @@
         
         function gerarNovaChave() {
             chaveAtual = gerarChave();
-            document.getElementById('chaveDisplay').textContent = chaveAtual;
-            document.getElementById('chaveInput').value = chaveAtual;
+            const display = document.getElementById('chaveDisplay');
+            const input = document.getElementById('chaveInput');
+            if (display) display.textContent = chaveAtual;
+            if (input) input.value = chaveAtual;
             return chaveAtual;
         }
         
@@ -1034,13 +1037,14 @@
                         body: formData
                     });
                     
-                    // Adiciona o participante à lista manual (simulação)
+                    // Adiciona o participante à lista manual
+                    const horario = new Date().toLocaleString('pt-BR');
                     participantes.push({
                         nome: nome,
                         email: email,
                         golsB: golsB,
                         golsM: golsM,
-                        horario: new Date().toLocaleString('pt-BR'),
+                        horario: horario,
                         chave: chave,
                         desistiu: false
                     });
@@ -1054,6 +1058,8 @@
                     
                     setTimeout(() => gerarNovaChave(), 500);
                     document.getElementById('equipeOp').value = '';
+                    document.getElementById('golsBrasil').value = 0;
+                    document.getElementById('golsHaiti').value = 0;
                     
                 } catch (error) {
                     console.error('Erro no envio:', error);
@@ -1073,68 +1079,74 @@
         const cancelarBtn = document.getElementById('cancelarDesistencia');
         const enviarDesistenciaBtn = document.getElementById('enviarDesistencia');
         
-        toggleBtn.addEventListener('click', function() {
-            desistenciaForm.classList.toggle('active');
-        });
+        if (toggleBtn) {
+            toggleBtn.addEventListener('click', function() {
+                desistenciaForm.classList.toggle('active');
+            });
+        }
         
-        cancelarBtn.addEventListener('click', function() {
-            desistenciaForm.classList.remove('active');
-            document.getElementById('desistirNome').value = '';
-            document.getElementById('desistirEmail').value = '';
-            document.getElementById('desistirChave').value = '';
-        });
-        
-        enviarDesistenciaBtn.addEventListener('click', function() {
-            const now = new Date();
-            if (now >= encerramentoDate) {
-                alert("⛔ Não é mais possível desistir. O jogo já começou!");
-                return;
-            }
-            
-            const nome = document.getElementById('desistirNome').value.trim();
-            const email = document.getElementById('desistirEmail').value.trim();
-            const chave = document.getElementById('desistirChave').value.trim().toUpperCase();
-            
-            if (!nome || !email || !chave) {
-                alert("Preencha todos os campos para desistir.");
-                return;
-            }
-            
-            if (chave.length !== 5) {
-                alert("A chave deve ter 5 dígitos.");
-                return;
-            }
-            
-            // Busca o participante
-            const participante = participantes.find(p => 
-                p.nome.toLowerCase() === nome.toLowerCase() && 
-                p.email.toLowerCase() === email.toLowerCase() && 
-                p.chave === chave &&
-                !p.desistiu
-            );
-            
-            if (!participante) {
-                alert("❌ Dados não encontrados. Verifique nome, e-mail e chave.");
-                return;
-            }
-            
-            // Confirmação
-            if (confirm(`⚠️ Tem certeza que deseja desistir da aposta de ${participante.nome} (${participante.golsB} x ${participante.golsM})?`)) {
-                participante.desistiu = true;
-                renderParticipants();
-                atualizarPremio();
-                
-                showModal('❌ DESISTÊNCIA CONFIRMADA!',
-                    `Sua aposta foi cancelada.<br><br>👤 ${participante.nome}<br>🇧🇷 ${participante.golsB} x ${participante.golsM} 🇭🇹<br><br>Você não participará mais deste bolão.`,
-                    true
-                );
-                
+        if (cancelarBtn) {
+            cancelarBtn.addEventListener('click', function() {
                 desistenciaForm.classList.remove('active');
                 document.getElementById('desistirNome').value = '';
                 document.getElementById('desistirEmail').value = '';
                 document.getElementById('desistirChave').value = '';
-            }
-        });
+            });
+        }
+        
+        if (enviarDesistenciaBtn) {
+            enviarDesistenciaBtn.addEventListener('click', function() {
+                const now = new Date();
+                if (now >= encerramentoDate) {
+                    alert("⛔ Não é mais possível desistir. O jogo já começou!");
+                    return;
+                }
+                
+                const nome = document.getElementById('desistirNome').value.trim();
+                const email = document.getElementById('desistirEmail').value.trim();
+                const chave = document.getElementById('desistirChave').value.trim().toUpperCase();
+                
+                if (!nome || !email || !chave) {
+                    alert("Preencha todos os campos para desistir.");
+                    return;
+                }
+                
+                if (chave.length !== 5) {
+                    alert("A chave deve ter 5 dígitos.");
+                    return;
+                }
+                
+                // Busca o participante
+                const participante = participantes.find(p => 
+                    p.nome.toLowerCase() === nome.toLowerCase() && 
+                    p.email.toLowerCase() === email.toLowerCase() && 
+                    p.chave === chave &&
+                    !p.desistiu
+                );
+                
+                if (!participante) {
+                    alert("❌ Dados não encontrados. Verifique nome, e-mail e chave.");
+                    return;
+                }
+                
+                // Confirmação
+                if (confirm(`⚠️ Tem certeza que deseja desistir da aposta de ${participante.nome} (${participante.golsB} x ${participante.golsM})?`)) {
+                    participante.desistiu = true;
+                    renderParticipants();
+                    atualizarPremio();
+                    
+                    showModal('❌ DESISTÊNCIA CONFIRMADA!',
+                        `Sua aposta foi cancelada.<br><br>👤 ${participante.nome}<br>🇧🇷 ${participante.golsB} x ${participante.golsM} 🇭🇹<br><br>Você não participará mais deste bolão.`,
+                        true
+                    );
+                    
+                    desistenciaForm.classList.remove('active');
+                    document.getElementById('desistirNome').value = '';
+                    document.getElementById('desistirEmail').value = '';
+                    document.getElementById('desistirChave').value = '';
+                }
+            });
+        }
         
         // ============================================================
         // LIMITE DOS INPUTS
@@ -1157,6 +1169,7 @@
             this.value = this.value.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 5);
         });
         
+        // Carrega participantes ao iniciar
         loadParticipants();
     })();
 </script>
