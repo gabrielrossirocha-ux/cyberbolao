@@ -71,6 +71,14 @@
             box-shadow: 0 20px 35px -12px rgba(0,0,0,0.5);
         }
 
+        .card-history {
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .card-history .card-title {
+            color: #ffd966;
+        }
+
         .info-grid {
             display: flex;
             flex-wrap: wrap;
@@ -329,7 +337,7 @@
         }
 
         .participants-list {
-            max-height: 350px;
+            max-height: 250px;
             overflow-y: auto;
         }
 
@@ -399,6 +407,16 @@
             padding: 0.8rem;
             text-align: center;
             margin-top: 1rem;
+        }
+
+        .winner-badge {
+            background: #ffd966;
+            color: #022115;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.65rem;
+            font-weight: bold;
+            margin-left: 0.5rem;
         }
 
         .modal-overlay {
@@ -538,7 +556,7 @@
 
         <!-- COLUNA DIREITA -->
         <div class="col-right">
-            <!-- PARTICIPANTES -->
+            <!-- PARTICIPANTES (ATUAL) -->
             <div class="card">
                 <h3 style="text-align:center; margin-bottom:1rem;">
                     📋 PARTICIPANTES 
@@ -547,6 +565,68 @@
                 <div id="participantsList" class="participants-list">
                     <div class="empty-message">⏳ Nenhum palpite registrado ainda.<br>Seja o primeiro!</div>
                 </div>
+            </div>
+
+            <!-- HISTÓRICO BRASIL x MARROCOS -->
+            <div class="card card-history">
+                <h3 style="text-align:center; margin-bottom:1rem; color:#ffd966;">
+                    📜 HISTÓRICO • BRASIL x MARROCOS
+                </h3>
+                <p style="text-align:center; font-size:0.9rem; margin-bottom:0.8rem;">
+                    🏆 Vencedor: <strong style="color:#ffd966;">Gabriel Rocha</strong> • 1x1
+                    <br>💰 Prêmio: <strong style="color:#ffd966;">R$ 90,00</strong>
+                    <br>📅 13/06/2026
+                </p>
+                <div class="participants-list" style="max-height:200px;">
+                    <div class="participant-item" style="border-left-color:#ffd966;">
+                        <div class="participant-name">👤 Adriano do lago</div>
+                        <div class="participant-palpite">🇧🇷 2 x 1 🇲🇦</div>
+                        <div class="participant-time">⏰ 09/06/2026 09:24</div>
+                    </div>
+                    <div class="participant-item" style="border-left-color:#ffd966; background:#1e3a2f;">
+                        <div class="participant-name">👤 Gabriel Rocha <span class="winner-badge">🏆 VENCEDOR</span></div>
+                        <div class="participant-palpite">🇧🇷 1 x 1 🇲🇦</div>
+                        <div class="participant-time">⏰ 09/06/2026 09:37</div>
+                    </div>
+                    <div class="participant-item" style="border-left-color:#ffd966;">
+                        <div class="participant-name">👤 Cainã Morais</div>
+                        <div class="participant-palpite">🇧🇷 3 x 2 🇲🇦</div>
+                        <div class="participant-time">⏰ 11/06/2026 11:12</div>
+                    </div>
+                    <div class="participant-item" style="border-left-color:#ffd966;">
+                        <div class="participant-name">👤 Marcelo Walski</div>
+                        <div class="participant-palpite">🇧🇷 0 x 1 🇲🇦</div>
+                        <div class="participant-time">⏰ 11/06/2026 11:12</div>
+                    </div>
+                    <div class="participant-item" style="border-left-color:#ffd966;">
+                        <div class="participant-name">👤 Luiz Razera</div>
+                        <div class="participant-palpite">🇧🇷 1 x 0 🇲🇦</div>
+                        <div class="participant-time">⏰ 11/06/2026 11:10</div>
+                    </div>
+                    <div class="participant-item" style="border-left-color:#ffd966;">
+                        <div class="participant-name">👤 Junior Miranda</div>
+                        <div class="participant-palpite">🇧🇷 2 x 1 🇲🇦</div>
+                        <div class="participant-time">⏰ 11/06/2026 11:38</div>
+                    </div>
+                    <div class="participant-item" style="border-left-color:#ffd966;">
+                        <div class="participant-name">👤 Volney Motta</div>
+                        <div class="participant-palpite">🇧🇷 2 x 1 🇲🇦</div>
+                        <div class="participant-time">⏰ 11/06/2026 11:38</div>
+                    </div>
+                    <div class="participant-item" style="border-left-color:#ffd966;">
+                        <div class="participant-name">👤 Priscila Borges</div>
+                        <div class="participant-palpite">🇧🇷 3 x 1 🇲🇦</div>
+                        <div class="participant-time">⏰ 11/06/2026 17:11</div>
+                    </div>
+                    <div class="participant-item" style="border-left-color:#ffd966;">
+                        <div class="participant-name">👤 Vinicius Lara</div>
+                        <div class="participant-palpite">🇧🇷 4 x 1 🇲🇦</div>
+                        <div class="participant-time">⏰ 11/06/2026 17:11</div>
+                    </div>
+                </div>
+                <p style="font-size:0.7rem; text-align:center; margin-top:0.8rem; opacity:0.6;">
+                    📌 Último bolão finalizado em 13/06/2026
+                </p>
             </div>
 
             <!-- REGRAS -->
@@ -587,19 +667,14 @@
 
 <script>
     (function() {
-        const encerramentoDate = new Date(2026, 5, 19, 21, 30, 0); // 19/06/2026 21:30
+        const encerramentoDate = new Date(2026, 5, 19, 21, 30, 0);
         
         // ============================================================
         // 🔧 LISTA MANUAL DE PARTICIPANTES - EDITAR AQUI 🔧
         // ============================================================
-        // Adicione ou remova participantes neste array.
-        // Formato: {nome: "Nome do Participante", golsB: 2, golsM: 1, horario: "19/06 14:30"}
-        // ============================================================
         const participantesFixos = [
-            // EXEMPLOS (SUBSTITUA PELOS SEUS PARTICIPANTES):
-            {nome: "Gabriel Rocha", golsB: 4, golsM: 0, horario: "16/06/2026 10:30"}     
-            // 👇 COLE SEUS PARTICIPANTES AQUI (substitua os exemplos)
-            
+            // Adicione os participantes aqui conforme forem chegando
+            // Exemplo: {nome: "João Silva", golsB: 2, golsM: 1, horario: "16/06/2026 10:30"},
         ];
         
         // ============================================================
@@ -627,10 +702,8 @@
         }
         
         function loadParticipants() {
-            // Carrega APENAS os participantes fixos (do código)
             const allParticipants = [...participantesFixos];
             
-            // Remove duplicatas (mesmo nome + mesmo palpite)
             const unique = [];
             const seen = new Set();
             for (const p of allParticipants) {
@@ -761,15 +834,11 @@
                 if (golsB < 0) golsB = 0;
                 if (golsM < 0) golsM = 0;
                 
-                // Mostra modal de confirmação
                 setTimeout(() => showModal(nome, golsB, golsM), 50);
                 
                 const original = btn.innerText;
                 btn.innerText = "📧 ENVIANDO...";
                 setTimeout(() => { btn.innerText = original; }, 3000);
-                
-                // O formulário continua e envia para o FormSubmit
-                // NÃO salva no localStorage - você controla manualmente
             });
         }
         
@@ -786,7 +855,6 @@
             if (v > 20) this.value = 20;
         });
         
-        // Carrega participantes ao iniciar
         loadParticipants();
     })();
 </script>
