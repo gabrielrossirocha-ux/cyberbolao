@@ -75,10 +75,6 @@
             border: 1px solid rgba(255, 215, 0, 0.3);
         }
 
-        .card-history .card-title {
-            color: #ffd966;
-        }
-
         .info-grid {
             display: flex;
             flex-wrap: wrap;
@@ -406,7 +402,6 @@
             padding: 0.8rem;
             margin-bottom: 0.8rem;
             border-left: 3px solid #2eff9e;
-            position: relative;
         }
 
         .participant-item.desistiu {
@@ -637,13 +632,14 @@
                             <input type="text" name="Equipe" id="equipeOp" placeholder="Equipe ou empresa (opcional)">
                         </div>
 
-                        <!-- EXIBIÇÃO DA CHAVE -->
+                        <!-- EXIBIÇÃO DA CHAVE (apenas para o participante) -->
                         <div class="chave-container" id="chaveContainer">
                             <p style="font-size:0.85rem; color:#b3ffd8;">🔑 SUA CHAVE DE SEGURANÇA:</p>
                             <div class="chave" id="chaveDisplay">XXXXX</div>
                             <p class="instrucao">
                                 ⚠️ <strong>GUARDE ESTA CHAVE!</strong><br>
-                                Você precisará dela para validar sua aposta ou desistir.
+                                Você precisará dela para validar sua aposta ou desistir.<br>
+                                <span style="color:#ff6b6b;">NUNCA COMPARTILHE ESTA CHAVE!</span>
                             </p>
                         </div>
 
@@ -782,7 +778,7 @@
                     <li><strong>👥 2 vencedores:</strong> Prêmio é <strong>DIVIDIDO igualmente</strong> entre os dois</li>
                     <li><strong>👥👥 3+ vencedores:</strong> Prêmio <strong>ACUMULA</strong> para o próximo bolão</li>
                     <li><strong>❌ Nenhum vencedor:</strong> Prêmio <strong>ACUMULA</strong> para o próximo bolão</li>
-                    <li><strong>🔑 Chave de segurança:</strong> Cada aposta gera uma chave única de 5 dígitos. <strong>GUARDE-A!</strong></li>
+                    <li><strong>🔑 Chave de segurança:</strong> Cada aposta gera uma chave única de 5 dígitos. <strong>GUARDE-A E NUNCA COMPARTILHE!</strong></li>
                     <li><strong>✅ Identificação:</strong> Vale apenas a última aposta com nome, e-mail e chave corretos</li>
                     <li><strong>❌ Desistência:</strong> É possível <strong>desistir da aposta</strong> até o início do jogo, informando nome, e-mail e chave</li>
                     <li><strong>📝 Registro:</strong> O palpite precisa constar na página oficial do bolão</li>
@@ -827,7 +823,6 @@
         // ============================================================
         
         let participantes = [];
-        let desistentes = [];
         
         // ============================================================
         // 🔑 GERADOR DE CHAVE ALEATÓRIA (5 dígitos alfanuméricos)
@@ -879,31 +874,31 @@
         }
         
         function renderParticipants() {
-    const container = document.getElementById('participantsList');
-    const countSpan = document.getElementById('participantCount');
-    if (!container) return;
-    
-    const ativos = participantes.filter(p => !p.desistiu);
-    
-    if (participantes.length === 0) {
-        container.innerHTML = '<div class="empty-message">⏳ Nenhum palpite registrado ainda.<br>Seja o primeiro!</div>';
-        if (countSpan) countSpan.textContent = '0';
-        return;
-    }
-    
-    if (countSpan) countSpan.textContent = ativos.length;
-    
-    container.innerHTML = participantes.map(p => `
-        <div class="participant-item ${p.desistiu ? 'desistiu' : ''}">
-            <div class="participant-name">
-                👤 ${escapeHtml(p.nome)} 
-                ${p.desistiu ? '<span class="badge-desistiu">❌ DESISTIU</span>' : ''}
-            </div>
-            <div class="participant-palpite">🇧🇷 ${p.golsB} x ${p.golsM} 🇭🇹</div>
-            <div class="participant-time">⏰ ${p.horario || 'Data não informada'}</div>
-        </div>
-    `).join('');
-}
+            const container = document.getElementById('participantsList');
+            const countSpan = document.getElementById('participantCount');
+            if (!container) return;
+            
+            const ativos = participantes.filter(p => !p.desistiu);
+            
+            if (participantes.length === 0) {
+                container.innerHTML = '<div class="empty-message">⏳ Nenhum palpite registrado ainda.<br>Seja o primeiro!</div>';
+                if (countSpan) countSpan.textContent = '0';
+                return;
+            }
+            
+            if (countSpan) countSpan.textContent = ativos.length;
+            
+            container.innerHTML = participantes.map(p => `
+                <div class="participant-item ${p.desistiu ? 'desistiu' : ''}">
+                    <div class="participant-name">
+                        👤 ${escapeHtml(p.nome)} 
+                        ${p.desistiu ? '<span class="badge-desistiu">❌ DESISTIU</span>' : ''}
+                    </div>
+                    <div class="participant-palpite">🇧🇷 ${p.golsB} x ${p.golsM} 🇭🇹</div>
+                    <div class="participant-time">⏰ ${p.horario || 'Data não informada'}</div>
+                </div>
+            `).join('');
+        }
         
         function escapeHtml(text) {
             const div = document.createElement('div');
@@ -1157,7 +1152,7 @@
             if (v > 20) this.value = 20;
         });
         
-        // Chave em maiúsculas
+        // Chave em maiúsculas e apenas 5 caracteres
         document.getElementById('desistirChave')?.addEventListener('input', function() {
             this.value = this.value.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 5);
         });
