@@ -344,7 +344,7 @@
             color: #b6ffdb;
         }
 
-        .btn-submit {
+        .btn-submit, .btn-desistir, .btn-enviar-desistencia {
             background: linear-gradient(95deg, #1eff9e, #00bc6e);
             border: none;
             width: 100%;
@@ -358,9 +358,41 @@
             margin-top: 0.5rem;
         }
 
-        .btn-submit:hover {
+        .btn-submit:hover, .btn-enviar-desistencia:hover {
             transform: scale(1.01);
             box-shadow: 0 0 15px #2eff9e;
+        }
+
+        .btn-desistir {
+            background: linear-gradient(95deg, #ff6b6b, #c0392b);
+            color: white;
+            margin-top: 0.3rem;
+        }
+
+        .btn-desistir:hover {
+            transform: scale(1.01);
+            box-shadow: 0 0 15px #ff6b6b;
+        }
+
+        .btn-enviar-desistencia {
+            background: linear-gradient(95deg, #ff6b6b, #c0392b);
+            color: white;
+        }
+
+        .btn-enviar-desistencia:hover {
+            transform: scale(1.01);
+            box-shadow: 0 0 15px #ff6b6b;
+        }
+
+        .desistencia-form {
+            display: none;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(46, 255, 158, 0.2);
+        }
+
+        .desistencia-form.active {
+            display: block;
         }
 
         .participants-list {
@@ -374,11 +406,22 @@
             padding: 0.8rem;
             margin-bottom: 0.8rem;
             border-left: 3px solid #2eff9e;
+            position: relative;
+        }
+
+        .participant-item.desistiu {
+            border-left: 3px solid #ff6b6b;
+            opacity: 0.5;
+            text-decoration: line-through;
         }
 
         .participant-name {
             font-weight: 700;
             color: #2eff9e;
+        }
+
+        .participant-item.desistiu .participant-name {
+            color: #ff6b6b;
         }
 
         .participant-palpite {
@@ -398,6 +441,16 @@
             padding: 0.2rem 0.6rem;
             border-radius: 20px;
             font-size: 0.8rem;
+            font-weight: bold;
+            margin-left: 0.5rem;
+        }
+
+        .badge-desistiu {
+            background: #ff6b6b;
+            color: white;
+            padding: 0.1rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.6rem;
             font-weight: bold;
             margin-left: 0.5rem;
         }
@@ -478,6 +531,15 @@
             color: #2eff9e;
             font-size: 1.5rem;
             margin-bottom: 1rem;
+        }
+        .modal-content p {
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        .modal-content .chave-destaque {
+            color: #ffd966;
+            font-weight: 800;
+            font-size: 1.2rem;
         }
         .close-modal {
             background: #2eff9e;
@@ -581,8 +643,7 @@
                             <div class="chave" id="chaveDisplay">XXXXX</div>
                             <p class="instrucao">
                                 ⚠️ <strong>GUARDE ESTA CHAVE!</strong><br>
-                                Ela é importante para que ninguém se passe por você.<br>
-                                É através dessa chave que sua aposta será validada.
+                                Você precisará dela para validar sua aposta ou desistir.
                             </p>
                         </div>
 
@@ -603,7 +664,34 @@
 
                         <button type="submit" class="btn-submit" id="submitBtn">
                             🚀 ENVIAR PALPITE
-                        </button>                     
+                        </button>
+
+                        <!-- BOTÃO DESISTIR -->
+                        <button type="button" class="btn-desistir" id="toggleDesistencia">
+                            ❌ DESISTIR DA APOSTA
+                        </button>
+
+                        <!-- FORMULÁRIO DE DESISTÊNCIA -->
+                        <div class="desistencia-form" id="desistenciaForm">
+                            <p style="font-size:0.85rem; color:#ff6b6b; margin-bottom:0.8rem;">
+                                ⚠️ Ao desistir, sua aposta será cancelada e você não poderá mais participar deste bolão.
+                            </p>
+                            <div class="form-group">
+                                <input type="text" id="desistirNome" placeholder="Nome completo *" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="desistirEmail" placeholder="E-mail *" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="desistirChave" placeholder="Chave de segurança (5 dígitos) *" maxlength="5" required style="text-transform:uppercase; letter-spacing:2px; font-family:monospace;">
+                            </div>
+                            <button type="button" class="btn-enviar-desistencia" id="enviarDesistencia">
+                                ✅ CONFIRMAR DESISTÊNCIA
+                            </button>
+                            <button type="button" class="btn-submit" style="margin-top:0.3rem; background:#555;" id="cancelarDesistencia">
+                                ↩️ VOLTAR
+                            </button>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -694,8 +782,9 @@
                     <li><strong>👥 2 vencedores:</strong> Prêmio é <strong>DIVIDIDO igualmente</strong> entre os dois</li>
                     <li><strong>👥👥 3+ vencedores:</strong> Prêmio <strong>ACUMULA</strong> para o próximo bolão</li>
                     <li><strong>❌ Nenhum vencedor:</strong> Prêmio <strong>ACUMULA</strong> para o próximo bolão</li>
-                    <li><strong>🔑 Chave de segurança:</strong> Cada aposta gera uma chave única de 5 dígitos. Guarde-a!</li>
+                    <li><strong>🔑 Chave de segurança:</strong> Cada aposta gera uma chave única de 5 dígitos. <strong>GUARDE-A!</strong></li>
                     <li><strong>✅ Identificação:</strong> Vale apenas a última aposta com nome, e-mail e chave corretos</li>
+                    <li><strong>❌ Desistência:</strong> É possível <strong>desistir da aposta</strong> até o início do jogo, informando nome, e-mail e chave</li>
                     <li><strong>📝 Registro:</strong> O palpite precisa constar na página oficial do bolão</li>
                     <li><strong>💸 Pagamento:</strong> Cada participante paga R$ 10,00 <strong>DIRETAMENTE AO VENCEDOR</strong> via PIX (após o resultado)</li>
                     <li><strong>⏳ Encerramento:</strong> Apostas válidas apenas até o <strong>início da partida</strong> (19/06/2026 - 21:30)</li>
@@ -715,7 +804,7 @@
 <!-- MODAL -->
 <div id="successModal" class="modal-overlay">
     <div class="modal-content">
-        <h3>✅ PALPITE ENVIADO!</h3>
+        <h3 id="modalTitle">✅ PALPITE ENVIADO!</h3>
         <p id="modalMessage"></p>
         <button class="close-modal" onclick="closeModal()">FECHAR</button>
     </div>
@@ -738,6 +827,7 @@
         // ============================================================
         
         let participantes = [];
+        let desistentes = [];
         
         // ============================================================
         // 🔑 GERADOR DE CHAVE ALEATÓRIA (5 dígitos alfanuméricos)
@@ -752,7 +842,7 @@
         }
         
         function calcularPremio() {
-            const totalParticipantes = participantes.length;
+            const totalParticipantes = participantes.filter(p => !p.desistiu).length;
             if (totalParticipantes <= 1) return 0;
             return (totalParticipantes * 10) - 10;
         }
@@ -778,7 +868,7 @@
                 const key = `${p.nome}_${p.golsB}_${p.golsM}`;
                 if (!seen.has(key)) {
                     seen.add(key);
-                    unique.push(p);
+                    unique.push({...p, desistiu: false});
                 }
             }
             
@@ -793,17 +883,23 @@
             const countSpan = document.getElementById('participantCount');
             if (!container) return;
             
+            const ativos = participantes.filter(p => !p.desistiu);
+            
             if (participantes.length === 0) {
                 container.innerHTML = '<div class="empty-message">⏳ Nenhum palpite registrado ainda.<br>Seja o primeiro!</div>';
                 if (countSpan) countSpan.textContent = '0';
                 return;
             }
             
-            if (countSpan) countSpan.textContent = participantes.length;
+            if (countSpan) countSpan.textContent = ativos.length;
             
             container.innerHTML = participantes.map(p => `
-                <div class="participant-item">
-                    <div class="participant-name">👤 ${escapeHtml(p.nome)} ${p.chave ? '🔑' : ''}</div>
+                <div class="participant-item ${p.desistiu ? 'desistiu' : ''}">
+                    <div class="participant-name">
+                        👤 ${escapeHtml(p.nome)} 
+                        ${p.chave ? '🔑' : ''}
+                        ${p.desistiu ? '<span class="badge-desistiu">❌ DESISTIU</span>' : ''}
+                    </div>
                     <div class="participant-palpite">🇧🇷 ${p.golsB} x ${p.golsM} 🇭🇹</div>
                     <div class="participant-time">⏰ ${p.horario || 'Data não informada'} ${p.chave ? '• Chave: ' + p.chave : ''}</div>
                 </div>
@@ -869,17 +965,12 @@
             document.getElementById('successModal').classList.remove('active');
         };
         
-        function showModal(nome, golsB, golsM, chave) {
+        function showModal(titulo, mensagem, isDesistencia = false) {
             const modal = document.getElementById('successModal');
-            document.getElementById('modalMessage').innerHTML = `
-                Olá ${nome}!<br><br>
-                🇧🇷 ${golsB} x ${golsM} 🇭🇹<br><br>
-                🔑 <strong>GUARDE SUA CHAVE:</strong> ${chave}<br>
-                <span style="font-size:0.8rem; opacity:0.7;">ÚLTIMA CHANCE DE ANOTAR!.</span>
-                <br><br>Boa sorte!
-            `;
+            document.getElementById('modalTitle').textContent = titulo;
+            document.getElementById('modalMessage').innerHTML = mensagem;
             modal.classList.add('active');
-            startConfetti();
+            if (!isDesistencia) startConfetti();
         }
         
         // ============================================================
@@ -929,7 +1020,6 @@
                 const chave = document.getElementById('chaveInput').value;
                 const equipe = document.getElementById('equipeOp')?.value || '';
                 
-                // Prepara os dados para enviar via fetch
                 const formData = new FormData();
                 formData.append('_subject', 'NOVO PALPITE - BRASIL x HAITI');
                 formData.append('_captcha', 'false');
@@ -941,36 +1031,116 @@
                 formData.append('Gols_Haiti', golsM);
                 formData.append('Chave', chave);
                 
-                // Desabilita o botão e mostra loading
                 btn.disabled = true;
                 btn.innerHTML = '<span class="loading-spinner"></span> ENVIANDO...';
                 
                 try {
-                    // Envia via fetch para o FormSubmit
                     const response = await fetch('https://formsubmit.co/gabriel@cyss.com.br', {
                         method: 'POST',
                         body: formData
                     });
                     
-                    // Mostra modal de sucesso
-                    showModal(nome, golsB, golsM, chave);
+                    // Adiciona o participante à lista manual (simulação)
+                    participantes.push({
+                        nome: nome,
+                        email: email,
+                        golsB: golsB,
+                        golsM: golsM,
+                        horario: new Date().toLocaleString('pt-BR'),
+                        chave: chave,
+                        desistiu: false
+                    });
                     
-                    // Gera nova chave
+                    renderParticipants();
+                    atualizarPremio();
+                    
+                    showModal('✅ PALPITE ENVIADO!',
+                        `Olá ${nome}!<br><br>🇧🇷 ${golsB} x ${golsM} 🇭🇹<br><br>🔑 <strong>GUARDE SUA CHAVE:</strong> ${chave}<br><br>Você pode desistir até o início do jogo usando o botão "DESISTIR DA APOSTA".`
+                    );
+                    
                     setTimeout(() => gerarNovaChave(), 500);
-                    
-                    // Limpa campos (opcional)
                     document.getElementById('equipeOp').value = '';
                     
                 } catch (error) {
                     console.error('Erro no envio:', error);
                     alert('Erro ao enviar o palpite. Tente novamente.');
                 } finally {
-                    // Restaura o botão
                     btn.disabled = false;
                     btn.innerHTML = '🚀 ENVIAR PALPITE';
                 }
             });
         }
+        
+        // ============================================================
+        // ❌ DESISTÊNCIA
+        // ============================================================
+        const toggleBtn = document.getElementById('toggleDesistencia');
+        const desistenciaForm = document.getElementById('desistenciaForm');
+        const cancelarBtn = document.getElementById('cancelarDesistencia');
+        const enviarDesistenciaBtn = document.getElementById('enviarDesistencia');
+        
+        toggleBtn.addEventListener('click', function() {
+            desistenciaForm.classList.toggle('active');
+        });
+        
+        cancelarBtn.addEventListener('click', function() {
+            desistenciaForm.classList.remove('active');
+            document.getElementById('desistirNome').value = '';
+            document.getElementById('desistirEmail').value = '';
+            document.getElementById('desistirChave').value = '';
+        });
+        
+        enviarDesistenciaBtn.addEventListener('click', function() {
+            const now = new Date();
+            if (now >= encerramentoDate) {
+                alert("⛔ Não é mais possível desistir. O jogo já começou!");
+                return;
+            }
+            
+            const nome = document.getElementById('desistirNome').value.trim();
+            const email = document.getElementById('desistirEmail').value.trim();
+            const chave = document.getElementById('desistirChave').value.trim().toUpperCase();
+            
+            if (!nome || !email || !chave) {
+                alert("Preencha todos os campos para desistir.");
+                return;
+            }
+            
+            if (chave.length !== 5) {
+                alert("A chave deve ter 5 dígitos.");
+                return;
+            }
+            
+            // Busca o participante
+            const participante = participantes.find(p => 
+                p.nome.toLowerCase() === nome.toLowerCase() && 
+                p.email.toLowerCase() === email.toLowerCase() && 
+                p.chave === chave &&
+                !p.desistiu
+            );
+            
+            if (!participante) {
+                alert("❌ Dados não encontrados. Verifique nome, e-mail e chave.");
+                return;
+            }
+            
+            // Confirmação
+            if (confirm(`⚠️ Tem certeza que deseja desistir da aposta de ${participante.nome} (${participante.golsB} x ${participante.golsM})?`)) {
+                participante.desistiu = true;
+                renderParticipants();
+                atualizarPremio();
+                
+                showModal('❌ DESISTÊNCIA CONFIRMADA!',
+                    `Sua aposta foi cancelada.<br><br>👤 ${participante.nome}<br>🇧🇷 ${participante.golsB} x ${participante.golsM} 🇭🇹<br><br>Você não participará mais deste bolão.`,
+                    true
+                );
+                
+                desistenciaForm.classList.remove('active');
+                document.getElementById('desistirNome').value = '';
+                document.getElementById('desistirEmail').value = '';
+                document.getElementById('desistirChave').value = '';
+            }
+        });
         
         // ============================================================
         // LIMITE DOS INPUTS
@@ -986,6 +1156,11 @@
             if (isNaN(v)) this.value = 0;
             if (v < 0) this.value = 0;
             if (v > 20) this.value = 20;
+        });
+        
+        // Chave em maiúsculas
+        document.getElementById('desistirChave')?.addEventListener('input', function() {
+            this.value = this.value.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 5);
         });
         
         loadParticipants();
