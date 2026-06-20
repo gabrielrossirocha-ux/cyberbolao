@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>CYBER BOLÃO | RESULTADO • Brasil x Haiti</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: radial-gradient(circle at 15% 25%, #0a2a1f, #030c12);
+            font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, 'Roboto', sans-serif;
+            color: #f0f9ff;
+            padding: 2rem 1.2rem;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .logo-area {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo-area h1 {
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #9effcf, #2eff9e);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 12px rgba(0,255,150,0.3);
+        }
+
+        .logo-area p {
+            color: #bcdfd0;
+            font-weight: 500;
+            margin-top: 6px;
+        }
+
+        .two-columns {
+            display: flex;
+            gap: 1.8rem;
+            flex-wrap: wrap;
+        }
+
+        .col-left {
+            flex: 1.2;
+            min-width: 280px;
+        }
+
+        .col-right {
+            flex: 0.9;
+            min-width: 280px;
+        }
+
+        .card {
+            background: rgba(12, 22, 32, 0.94);
+            backdrop-filter: blur(2px);
+            border: 1px solid rgba(46, 255, 158, 0.35);
+            border-radius: 28px;
+            padding: 1.6rem;
+            margin-bottom: 1.8rem;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.5);
+        }
+
+        .winner-card {
+            background: linear-gradient(135deg, #1e5a3a, #0a2a1a);
+            border: 3px solid #ffd966;
+            text-align: center;
+        }
+
+        .winner-name {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #ffd966;
+            margin: 0.5rem 0;
+        }
+
+        .winner-palpite {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #2eff9e;
+            margin: 0.5rem 0;
+        }
+
+        .winner-pix {
+            background: #0a1725;
+            border-radius: 20px;
+            padding: 0.8rem;
+            margin-top: 1rem;
+            font-family: monospace;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        .winner-pix span {
+            color: #ffd966;
+        }
+
+        .info-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 1rem;
+            text-align: center;
+        }
+
+        .info-item {
+            background: #07121c;
+            border-radius: 20px;
+            padding: 0.9rem 1.2rem;
+            flex: 1;
+            min-width: 100px;
+            border-bottom: 2px solid #2eff9e;
+        }
+
+        .info-item h3 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #b3ffd8;
+            margin-bottom: 0.3rem;
+        }
+
+        .info-item p {
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .prize-card {
+            background: linear-gradient(135deg, #1e3a2f, #0a1f18);
+            border: 2px solid #ffd966;
+        }
+
+        .match-title {
+            text-align: center;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+        }
+
+        .flags-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: nowrap;
+            margin: 1rem 0;
+        }
+
+        .team-card {
+            text-align: center;
+            background: #0f1a24;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px;
+            min-width: 130px;
+        }
+
+        .flag-img {
+            width: 80px;
+            height: 55px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 5px 12px rgba(0,0,0,0.4);
+            border: 1px solid #46ffb0;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .team-name {
+            margin-top: 0.6rem;
+            font-weight: 800;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .vs-badge {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: #1e3a2f;
+            padding: 0.3rem 1.2rem;
+            border-radius: 50px;
+            color: #c0ffe0;
+            display: inline-block;
+        }
+
+        @media (max-width: 550px) {
+            .flags-wrapper {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            .vs-badge {
+                order: 2;
+            }
+            .team-card:first-child {
+                order: 1;
+            }
+            .team-card:last-child {
+                order: 3;
+            }
+        }
+
+        .participants-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .participant-item {
+            background: #0a1725;
+            border-radius: 16px;
+            padding: 0.8rem;
+            margin-bottom: 0.8rem;
+            border-left: 3px solid #2eff9e;
+        }
+
+        .participant-item.winner-item {
+            background: #1e3a2f;
+            border-left: 3px solid #ffd966;
+            border: 1px solid #ffd966;
+        }
+
+        .participant-name {
+            font-weight: 700;
+            color: #2eff9e;
+        }
+
+        .winner-item .participant-name {
+            color: #ffd966;
+        }
+
+        .participant-palpite {
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 0.3rem 0;
+        }
+
+        .participant-time {
+            font-size: 0.65rem;
+            opacity: 0.6;
+        }
+
+        .badge-count {
+            background: #2eff9e;
+            color: #022115;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-left: 0.5rem;
+        }
+
+        .winner-badge {
+            background: #ffd966;
+            color: #022115;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.65rem;
+            font-weight: bold;
+            margin-left: 0.5rem;
+        }
+
+        .empty-message {
+            text-align: center;
+            opacity: 0.5;
+            padding: 2rem;
+        }
+
+        .rules-list {
+            list-style: none;
+            margin-top: 0.5rem;
+        }
+
+        .rules-list li {
+            padding: 0.6rem 0;
+            border-bottom: 1px solid rgba(46, 255, 158, 0.2);
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        .rules-list li:last-child {
+            border-bottom: none;
+        }
+
+        .rules-list strong {
+            color: #2eff9e;
+        }
+
+        .prize-highlight {
+            background: #1e3a2f;
+            border-radius: 16px;
+            padding: 0.8rem;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.7rem;
+            margin-top: 1rem;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    
+    <div class="logo-area">
+        <h1>⚡ CYBER BOLÃO</h1>
+        <p>Brasil x Haiti • RESULTADO OFICIAL</p>
+    </div>
+
+    <div class="two-columns">
+        <!-- COLUNA ESQUERDA -->
+        <div class="col-left">
+            <!-- CARD DO VENCEDOR EM DESTAQUE -->
+            <div class="card winner-card">
+                <h3>🏆 VENCEDORA 🏆</h3>
+                <div class="winner-name">Priscila Borges</div>
+                <div class="winner-palpite">🇧🇷 3 x 0 🇭🇹</div>
+                <div class="winner-pix">
+                    📱 PIX para pagamento:<br>
+                    <span>074.901.089-42</span><br>
+                    (CPF - Copia e cola)
+                </div>
+                <p style="margin-top: 0.8rem; font-size: 0.85rem;">
+                    ✅ Cada participante deve pagar R$ 10,00<br>
+                    📌 Total a receber: <strong style="color:#ffd966;">R$ 90,00</strong>
+                </p>
+                <p style="margin-top: 0.5rem; font-size: 0.8rem; opacity:0.7;">
+                    🎯 Palpite vencedor: 3x0 para o Brasil
+                </p>
+            </div>
+
+            <!-- INFORMAÇÕES DA PARTIDA -->
+            <div class="card prize-card">
+                <div class="info-grid">
+                    <div class="info-item"><h3>💰 VALOR</h3><p>R$ 10,00</p></div>
+                    <div class="info-item"><h3>📅 PARTIDA</h3><p>19/06/2026 - 21:30</p></div>
+                    <div class="info-item"><h3>🏆 PRÊMIO</h3><p>R$ 90,00</p></div>
+                </div>
+                <div style="text-align:center; margin-top:0.8rem; background:#07121c; border-radius:16px; padding:0.5rem;">
+                    <p style="font-size:0.85rem; color:#b3ffd8;">📊 Total de participantes: <strong style="color:#ffd966;">10</strong></p>
+                </div>
+            </div>
+
+            <!-- PRÓXIMO JOGO -->
+            <div class="card" style="background: linear-gradient(135deg, #1e3a2f, #0a1f18); border: 2px solid #2eff9e; text-align:center;">
+                <h3 style="color: #2eff9e; margin-bottom: 0.8rem;">⚡ PRÓXIMO BOLÃO ⚡</h3>
+                <p>🇧🇷 Brasil vs [PRÓXIMO ADVERSÁRIO] 🇽🇽</p>
+                <div style="font-size: 1.2rem; font-weight: 700; color: #ffd966; margin: 0.5rem 0;">
+                    📅 [DATA] • [HORÁRIO]
+                </div>
+                <p style="margin-top: 0.8rem;">
+                    ✅ Apostas abertas em breve!<br>
+                    ⏳ Fique atento para não perder o prazo.
+                </p>
+            </div>
+        </div>
+
+        <!-- COLUNA DIREITA -->
+        <div class="col-right">
+            <!-- TODAS AS APOSTAS -->
+            <div class="card">
+                <h3 style="text-align:center; margin-bottom:1rem;">
+                    📋 TODAS AS APOSTAS 
+                    <span id="participantCount" class="badge-count">0</span>
+                </h3>
+                <div id="participantsList" class="participants-list">
+                    <div class="empty-message">⏳ Carregando apostas...</div>
+                </div>
+            </div>
+
+            <!-- REGRAS -->
+            <div class="card">
+                <h3 style="text-align:center; margin-bottom:1rem;">📜 REGRAS DO BOLÃO</h3>
+                <ul class="rules-list">
+                    <li><strong>💰 Valor:</strong> R$ 10,00 por participante</li>
+                    <li><strong>🏆 Cálculo do prêmio:</strong> (Total participantes × R$10) - R$10 do vencedor</li>
+                    <li><strong>👥 2 vencedores:</strong> Prêmio é <strong>DIVIDIDO igualmente</strong> entre os dois</li>
+                    <li><strong>👥👥 3+ vencedores:</strong> Prêmio <strong>ACUMULA</strong> para o próximo bolão</li>
+                    <li><strong>❌ Nenhum vencedor:</strong> Prêmio <strong>ACUMULA</strong> para o próximo bolão</li>
+                    <li><strong>🔑 Chave de segurança:</strong> Cada aposta gera uma chave única de 5 dígitos. <strong>GUARDE-A E NUNCA COMPARTILHE!</strong></li>
+                    <li><strong>✅ Identificação:</strong> Vale apenas a última aposta com nome, e-mail e chave corretos</li>
+                    <li><strong>📝 Registro:</strong> O palpite precisa constar na página oficial do bolão</li>
+                    <li><strong>💸 Pagamento:</strong> Cada participante paga R$ 10,00 <strong>DIRETAMENTE AO VENCEDOR</strong> via PIX (após o resultado)</li>
+                    <li><strong>⏳ Encerramento:</strong> Apostas válidas apenas até o <strong>início da partida</strong></li>
+                    <li><strong>📢 Resultado:</strong> O vencedor é divulgado na página após o apito final</li>
+                </ul>
+                <div class="prize-highlight">
+                    📌 2 vencedores = dividem • 3+ vencedores = acumula
+                </div>
+            </div>            
+        </div>
+    </div>
+    <footer>
+        Cyber Bolão® • Aposta simbólica • Pagamento direto ao vencedor via PIX
+    </footer>
+</div>
+
+<script>
+    (function() {
+        // ============================================================
+        // 📋 TODAS AS APOSTAS (LISTA COMPLETA)
+        // ============================================================
+        const participantesFixos = [
+            {nome: "Adriano do lago", golsB: 2, golsM: 1, horario: "09/06/2026 09:24"},
+            {nome: "Gabriel Rocha", golsB: 1, golsM: 1, horario: "09/06/2026 09:37"},
+            {nome: "Cainã Morais", golsB: 3, golsM: 2, horario: "11/06/2026 11:12"},
+            {nome: "Marcelo Walski", golsB: 0, golsM: 1, horario: "11/06/2026 11:12"},
+            {nome: "Luiz Razera", golsB: 1, golsM: 0, horario: "11/06/2026 11:10"},
+            {nome: "Junior Miranda", golsB: 2, golsM: 1, horario: "11/06/2026 11:38"},
+            {nome: "Volney Motta", golsB: 2, golsM: 1, horario: "11/06/2026 11:38"},
+            {nome: "Priscila Borges", golsB: 3, golsM: 0, horario: "11/06/2026 17:11", vencedor: true},
+            {nome: "Vinicius Lara", golsB: 4, golsM: 1, horario: "11/06/2026 17:11"}
+        ];
+        
+        // ============================================================
+        // 🏆 DADOS DO VENCEDOR
+        // ============================================================
+        const vencedor = {
+            nome: "Priscila Borges",
+            golsB: 3,
+            golsM: 0,
+            premio: 90
+        };
+        
+        // ============================================================
+        // NÃO EDITE NADA ABAIXO DESTA LINHA
+        // ============================================================
+        
+        function renderParticipants() {
+            const container = document.getElementById('participantsList');
+            const countSpan = document.getElementById('participantCount');
+            
+            if (!container) return;
+            
+            const total = participantesFixos.length;
+            
+            if (countSpan) countSpan.textContent = total;
+            
+            if (participantesFixos.length === 0) {
+                container.innerHTML = '<div class="empty-message">⏳ Nenhuma aposta registrada.</div>';
+                return;
+            }
+            
+            container.innerHTML = participantesFixos.map(p => {
+                const isWinner = p.vencedor || false;
+                return `
+                    <div class="participant-item ${isWinner ? 'winner-item' : ''}">
+                        <div class="participant-name">
+                            👤 ${escapeHtml(p.nome)} ${isWinner ? '<span class="winner-badge">🏆 VENCEDORA</span>' : ''}
+                        </div>
+                        <div class="participant-palpite">🇧🇷 ${p.golsB} x ${p.golsM} 🇭🇹</div>
+                        <div class="participant-time">⏰ ${p.horario || 'Data não informada'}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        // Carrega participantes ao iniciar
+        renderParticipants();
+    })();
+</script>
+</body>
+</html>
