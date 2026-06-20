@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>CYBER BOLÃO | RESULTADO • Brasil x Haiti</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: radial-gradient(circle at 15% 25%, #0a2a1f, #030c12);
+            font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, 'Roboto', sans-serif;
+            color: #f0f9ff;
+            padding: 2rem 1.2rem;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .logo-area {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo-area h1 {
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #9effcf, #2eff9e);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 12px rgba(0,255,150,0.3);
+        }
+
+        .logo-area p {
+            color: #bcdfd0;
+            font-weight: 500;
+            margin-top: 6px;
+        }
+
+        .card {
+            background: rgba(12, 22, 32, 0.94);
+            backdrop-filter: blur(2px);
+            border: 1px solid rgba(46, 255, 158, 0.35);
+            border-radius: 28px;
+            padding: 2.5rem 2rem;
+            margin-bottom: 1.8rem;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+
+        .winner-card {
+            background: linear-gradient(135deg, #1e5a3a, #0a2a1a);
+            border: 3px solid #ffd966;
+        }
+
+        .winner-card .trophy {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .winner-card .label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #b3ffd8;
+            margin-bottom: 0.3rem;
+        }
+
+        .winner-name {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #ffd966;
+            margin: 0.3rem 0;
+        }
+
+        .winner-palpite {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #2eff9e;
+            margin: 0.5rem 0;
+        }
+
+        .winner-pix {
+            background: #0a1725;
+            border-radius: 20px;
+            padding: 1rem;
+            margin-top: 1.2rem;
+            font-family: monospace;
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+        }
+
+        .winner-pix span {
+            color: #ffd966;
+        }
+
+        .info-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .info-item {
+            background: #07121c;
+            border-radius: 20px;
+            padding: 0.8rem 1.5rem;
+            flex: 1;
+            min-width: 120px;
+            border-bottom: 2px solid #2eff9e;
+        }
+
+        .info-item h3 {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #b3ffd8;
+            margin-bottom: 0.2rem;
+        }
+
+        .info-item p {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .btn-next {
+            background: linear-gradient(95deg, #1eff9e, #00bc6e);
+            border: none;
+            width: 100%;
+            padding: 0.9rem;
+            font-size: 1.1rem;
+            font-weight: 800;
+            border-radius: 44px;
+            color: #022115;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 0.5rem;
+        }
+
+        .btn-next:hover {
+            transform: scale(1.01);
+            box-shadow: 0 0 15px #2eff9e;
+        }
+
+        .mensagem-pagamento {
+            font-size: 0.9rem;
+            color: #b3ffd8;
+            margin-top: 1rem;
+            line-height: 1.6;
+        }
+
+        .mensagem-pagamento strong {
+            color: #ffd966;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.7rem;
+            margin-top: 1rem;
+            opacity: 0.6;
+        }
+
+        @media (max-width: 550px) {
+            .winner-name {
+                font-size: 2rem;
+            }
+            .winner-palpite {
+                font-size: 1.8rem;
+            }
+            .winner-pix {
+                font-size: 1rem;
+            }
+            .card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    
+    <div class="logo-area">
+        <h1>⚡ CYBER BOLÃO</h1>
+        <p>Brasil x Haiti • RESULTADO OFICIAL</p>
+    </div>
+
+    <!-- CARD DO VENCEDOR -->
+    <div class="card winner-card">
+        <div class="trophy">🏆</div>
+        <div class="label">VENCEDORA</div>
+        <div class="winner-name">Priscila Borges</div>
+        <div class="winner-palpite">🇧🇷 3 x 0 🇭🇹</div>
+        
+        <div class="winner-pix">
+            📱 PIX para pagamento:<br>
+            <span>074.901.089-42</span><br>
+            <span style="font-size:0.8rem; color:#b3ffd8;">(CPF - Copia e cola)</span>
+        </div>
+
+        <div class="mensagem-pagamento">
+            ✅ Cada participante deve pagar <strong>R$ 10,00</strong><br>
+            📌 Total a receber: <strong>R$ 90,00</strong>
+        </div>
+    </div>
+
+    <!-- INFORMAÇÕES DA PARTIDA -->
+    <div class="card">
+        <div class="info-grid">
+            <div class="info-item">
+                <h3>💰 VALOR</h3>
+                <p>R$ 10,00</p>
+            </div>
+            <div class="info-item">
+                <h3>📅 PARTIDA</h3>
+                <p>19/06/2026 - 21:30</p>
+            </div>
+            <div class="info-item">
+                <h3>🏆 PRÊMIO</h3>
+                <p>R$ 90,00</p>
+            </div>
+        </div>
+        <div style="margin-top:0.8rem; background:#07121c; border-radius:16px; padding:0.5rem;">
+            <p style="font-size:0.85rem; color:#b3ffd8;">📊 Total de participantes: <strong style="color:#ffd966;">10</strong></p>
+        </div>
+    </div>
+
+    <!-- PRÓXIMO JOGO -->
+    <div class="card" style="background: linear-gradient(135deg, #1e3a2f, #0a1f18); border: 2px solid #2eff9e;">
+        <h3 style="color: #2eff9e; margin-bottom: 0.5rem;">⚡ PRÓXIMO BOLÃO ⚡</h3>
+        <p style="font-size:1.1rem;">🇧🇷 Brasil vs [PRÓXIMO ADVERSÁRIO] 🇽🇽</p>
+        <div style="font-size: 1.1rem; font-weight: 700; color: #ffd966; margin: 0.5rem 0;">
+            📅 [DATA] • [HORÁRIO]
+        </div>
+        <p style="margin-top: 0.5rem; font-size:0.9rem;">
+            ✅ Apostas abertas em breve!<br>
+            ⏳ Fique atento para não perder o prazo.
+        </p>
+        <button class="btn-next" onclick="window.location.reload()">
+            🚀 ATUALIZAR PARA PRÓXIMO BOLÃO
+        </button>
+    </div>
+
+    <footer>
+        Cyber Bolão® • Aposta simbólica • Pagamento direto ao vencedor via PIX
+    </footer>
+</div>
+</body>
+</html>
