@@ -59,6 +59,8 @@
         .col-right {
             flex: 0.9;
             min-width: 280px;
+            display: flex;
+            flex-direction: column;
         }
 
         .card {
@@ -73,7 +75,6 @@
 
         .card-classificacao {
             border: 1px solid rgba(255, 215, 0, 0.3);
-            padding: 1rem 1.2rem;
         }
 
         .info-grid {
@@ -87,33 +88,32 @@
         .info-item {
             background: #07121c;
             border-radius: 20px;
-            padding: 0.7rem 1rem;
+            padding: 0.9rem 1.2rem;
             flex: 1;
-            min-width: 80px;
+            min-width: 100px;
             border-bottom: 2px solid #2eff9e;
         }
 
         .info-item h3 {
-            font-size: 0.65rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             color: #b3ffd8;
-            margin-bottom: 0.2rem;
+            margin-bottom: 0.3rem;
         }
 
         .info-item p {
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 1rem;
         }
 
         .prize-card {
             background: linear-gradient(135deg, #1e3a2f, #0a1f18);
             border: 2px solid #ffd966;
-            padding: 1.2rem 1.6rem;
         }
 
         .prize-card .prize-value {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 800;
             color: #ffd966;
             text-align: center;
@@ -121,11 +121,11 @@
 
         .timer-block {
             text-align: center;
-            margin-top: 0.8rem;
-            font-size: 1.1rem;
+            margin-top: 1rem;
+            font-size: 1.2rem;
             font-weight: 700;
             background: #0a1420b3;
-            padding: 0.5rem;
+            padding: 0.7rem;
             border-radius: 60px;
             color: #caffdf;
             transition: all 0.3s;
@@ -145,31 +145,31 @@
 
         .match-title {
             text-align: center;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: 700;
-            margin-bottom: 0.8rem;
+            margin-bottom: 1.2rem;
         }
 
         .flags-wrapper {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 1.5rem;
+            gap: 2rem;
             flex-wrap: nowrap;
-            margin: 0.5rem 0;
+            margin: 1rem 0;
         }
 
         .team-card {
             text-align: center;
             background: #0f1a24;
-            padding: 0.5rem 1.2rem;
+            padding: 0.8rem 1.5rem;
             border-radius: 40px;
-            min-width: 110px;
+            min-width: 130px;
         }
 
         .flag-img {
-            width: 65px;
-            height: 45px;
+            width: 80px;
+            height: 55px;
             object-fit: cover;
             border-radius: 12px;
             box-shadow: 0 5px 12px rgba(0,0,0,0.4);
@@ -179,17 +179,17 @@
         }
 
         .team-name {
-            margin-top: 0.4rem;
+            margin-top: 0.6rem;
             font-weight: 800;
-            font-size: 0.95rem;
+            font-size: 1.1rem;
             text-align: center;
         }
 
         .vs-badge {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: 800;
             background: #1e3a2f;
-            padding: 0.2rem 1rem;
+            padding: 0.3rem 1.2rem;
             border-radius: 50px;
             color: #c0ffe0;
             display: inline-block;
@@ -212,12 +212,12 @@
         }
 
         .form-group {
-            margin-bottom: 0.8rem;
+            margin-bottom: 1.2rem;
         }
 
         .form-row-duo {
             display: flex;
-            gap: 0.8rem;
+            gap: 1rem;
             flex-wrap: wrap;
         }
 
@@ -229,34 +229,34 @@
         .chave-container {
             background: #0a1725;
             border-radius: 16px;
-            padding: 0.7rem;
-            margin: 0.7rem 0;
+            padding: 1rem;
+            margin: 1rem 0;
             text-align: center;
             border: 2px dashed #2eff9e;
         }
 
         .chave-container .chave {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: 800;
             letter-spacing: 4px;
             color: #ffd966;
             font-family: 'Courier New', monospace;
             background: #07121c;
-            padding: 0.3rem 0.5rem;
+            padding: 0.5rem;
             border-radius: 12px;
             display: inline-block;
         }
 
         .chave-container .instrucao {
-            font-size: 0.75rem;
+            font-size: 0.85rem;
             color: #b3ffd8;
-            margin-top: 0.3rem;
+            margin-top: 0.5rem;
         }
 
         .chave-container .aviso-sigilo {
-            font-size: 0.7rem;
+            font-size: 0.8rem;
             color: #ff6b6b;
-            margin-top: 0.2rem;
+            margin-top: 0.3rem;
             font-weight: bold;
         }
 
@@ -265,9 +265,9 @@
             background: #0c1825;
             border: 1px solid #2a4a3c;
             border-radius: 20px;
-            padding: 0.6rem 1rem;
+            padding: 0.8rem 1rem;
             color: white;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: 500;
             outline: none;
         }
@@ -280,30 +280,30 @@
         .placar-container {
             background: #07121e;
             border-radius: 24px;
-            padding: 0.8rem;
-            margin: 0.7rem 0;
+            padding: 1rem;
+            margin: 1rem 0;
         }
 
         .placar-title {
             text-align: center;
             font-weight: 600;
             color: #b3ffd8;
-            margin-bottom: 0.5rem;
-            font-size: 0.8rem;
+            margin-bottom: 0.8rem;
+            font-size: 0.85rem;
         }
 
         .score-row {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.8rem;
+            gap: 1rem;
             flex-wrap: wrap;
         }
 
         .score-team {
             text-align: center;
             flex: 1;
-            min-width: 100px;
+            min-width: 120px;
         }
 
         .score-team label {
@@ -312,14 +312,14 @@
             justify-content: center;
             gap: 6px;
             font-weight: 700;
-            font-size: 0.8rem;
-            margin-bottom: 0.3rem;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
             color: #e2ffef;
         }
 
         .small-flag {
-            width: 24px;
-            height: 16px;
+            width: 28px;
+            height: 20px;
             border-radius: 6px;
             object-fit: cover;
             border: 1px solid #3effab;
@@ -327,21 +327,21 @@
 
         .score-team input {
             text-align: center;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: 800;
-            width: 80px;
+            width: 100px;
             background: #0a1725;
             border: 2px solid #2c6950;
             border-radius: 40px;
-            padding: 0.3rem;
+            padding: 0.4rem;
         }
 
         .vs-divider {
-            font-size: 1.3rem;
+            font-size: 1.6rem;
             font-weight: 800;
             background: #173e30;
-            width: 45px;
-            height: 45px;
+            width: 55px;
+            height: 55px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -353,14 +353,14 @@
             background: linear-gradient(95deg, #1eff9e, #00bc6e);
             border: none;
             width: 100%;
-            padding: 0.7rem;
-            font-size: 1rem;
+            padding: 0.9rem;
+            font-size: 1.1rem;
             font-weight: 800;
             border-radius: 44px;
             color: #022115;
             cursor: pointer;
             transition: 0.2s;
-            margin-top: 0.3rem;
+            margin-top: 0.5rem;
         }
 
         .btn-submit:hover {
@@ -368,42 +368,43 @@
             box-shadow: 0 0 15px #2eff9e;
         }
 
+        /* ============================================================
+           LISTA DE PARTICIPANTES - SEM HEIGHT FIXA, CRESCE DINAMICAMENTE
+           ============================================================ */
         .participants-list {
-            max-height: 250px;
-            overflow-y: auto;
+            /* SEM max-height, SEM overflow-y: auto - cresce livremente */
         }
 
         .participant-item {
             background: #0a1725;
             border-radius: 16px;
-            padding: 0.5rem 0.8rem;
-            margin-bottom: 0.5rem;
+            padding: 0.8rem;
+            margin-bottom: 0.8rem;
             border-left: 3px solid #2eff9e;
         }
 
         .participant-name {
             font-weight: 700;
             color: #2eff9e;
-            font-size: 0.9rem;
         }
 
         .participant-palpite {
-            font-size: 0.85rem;
+            font-size: 1rem;
             font-weight: 600;
-            margin: 0.2rem 0;
+            margin: 0.3rem 0;
         }
 
         .participant-time {
-            font-size: 0.6rem;
+            font-size: 0.65rem;
             opacity: 0.6;
         }
 
         .badge-count {
             background: #2eff9e;
             color: #022115;
-            padding: 0.15rem 0.5rem;
+            padding: 0.2rem 0.6rem;
             border-radius: 20px;
-            font-size: 0.7rem;
+            font-size: 0.8rem;
             font-weight: bold;
             margin-left: 0.5rem;
         }
@@ -411,20 +412,19 @@
         .empty-message {
             text-align: center;
             opacity: 0.5;
-            padding: 1.5rem;
-            font-size: 0.9rem;
+            padding: 2rem;
         }
 
         .rules-list {
             list-style: none;
-            margin-top: 0.3rem;
+            margin-top: 0.5rem;
         }
 
         .rules-list li {
-            padding: 0.3rem 0;
-            border-bottom: 1px solid rgba(46, 255, 158, 0.15);
-            font-size: 0.75rem;
-            line-height: 1.3;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid rgba(46, 255, 158, 0.2);
+            font-size: 0.85rem;
+            line-height: 1.4;
         }
 
         .rules-list li:last-child {
@@ -438,34 +438,32 @@
         .prize-highlight {
             background: #1e3a2f;
             border-radius: 16px;
-            padding: 0.5rem;
+            padding: 0.8rem;
             text-align: center;
-            margin-top: 0.5rem;
-            font-size: 0.8rem;
+            margin-top: 1rem;
         }
 
-        /* === CLASSIFICAÇÃO COMPACTA === */
         .classificacao-table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 0.7rem;
-            margin-top: 0.3rem;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
         }
 
         .classificacao-table th {
             text-align: center;
-            padding: 0.2rem 0.1rem;
+            padding: 0.5rem 0.2rem;
             color: #b3ffd8;
             font-weight: 600;
-            font-size: 0.6rem;
+            font-size: 0.7rem;
             text-transform: uppercase;
             border-bottom: 1px solid rgba(46, 255, 158, 0.3);
         }
 
         .classificacao-table td {
             text-align: center;
-            padding: 0.2rem 0.1rem;
-            border-bottom: 1px solid rgba(46, 255, 158, 0.08);
+            padding: 0.5rem 0.2rem;
+            border-bottom: 1px solid rgba(46, 255, 158, 0.1);
         }
 
         .classificacao-table .posicao {
@@ -476,17 +474,16 @@
         .classificacao-table .time-nome {
             font-weight: 600;
             text-align: left;
-            padding-left: 0.3rem;
-            font-size: 0.7rem;
+            padding-left: 0.5rem;
         }
 
         .classificacao-table .time-nome .flag-mini {
-            width: 16px;
-            height: 12px;
+            width: 20px;
+            height: 14px;
             border-radius: 4px;
             object-fit: cover;
             vertical-align: middle;
-            margin-right: 0.2rem;
+            margin-right: 0.3rem;
         }
 
         .classificacao-table .destaque {
@@ -495,36 +492,35 @@
         }
 
         .proximos-jogos {
-            margin-top: 0.5rem;
-            padding-top: 0.5rem;
-            border-top: 1px solid rgba(46, 255, 158, 0.15);
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(46, 255, 158, 0.2);
         }
 
         .proximo-jogo-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0.2rem 0;
-            font-size: 0.7rem;
+            padding: 0.3rem 0;
+            font-size: 0.85rem;
         }
 
         .proximo-jogo-item .local {
             color: #b3ffd8;
-            font-size: 0.6rem;
+            font-size: 0.75rem;
         }
 
         .proximo-jogo-item .times {
             font-weight: 600;
-            font-size: 0.7rem;
         }
 
         .proximo-jogo-item .bandeira-mini {
-            width: 18px;
-            height: 13px;
+            width: 22px;
+            height: 16px;
             border-radius: 4px;
             object-fit: cover;
             vertical-align: middle;
-            margin: 0 0.15rem;
+            margin: 0 0.2rem;
         }
 
         .modal-overlay {
@@ -577,8 +573,8 @@
 
         .loading-spinner {
             display: inline-block;
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
             border: 3px solid #022115;
             border-radius: 50%;
             border-top-color: #fff;
@@ -589,14 +585,9 @@
             to { transform: rotate(360deg); }
         }
 
-        .card-title-small {
-            font-size: 0.9rem !important;
-            margin-bottom: 0.5rem !important;
-        }
-
         footer {
             text-align: center;
-            font-size: 0.65rem;
+            font-size: 0.7rem;
             margin-top: 1rem;
             opacity: 0.6;
         }
@@ -619,12 +610,12 @@
                     <div class="info-item"><h3>📅 PARTIDA</h3><p>24/06/2026 - 19:00</p></div>
                     <div class="info-item"><h3>⏱️ ENCERRAMENTO</h3><p>início do jogo</p></div>
                 </div>
-                <div id="prizeAmount" class="prize-value" style="margin: 0.5rem 0 0.3rem 0;">🏆 R$ 0,00</div>
+                <div id="prizeAmount" class="prize-value" style="margin: 0.8rem 0 0.5rem 0;">🏆 R$ 0,00</div>
                 <div id="countdownArea" class="timer-block">🔄 Carregando...</div>
             </div>
 
             <div id="dynamicContent">
-                <div class="card" style="padding: 1rem 1.2rem;">
+                <div class="card">
                     <div class="match-title">🇧🇷  BRASIL vs ESCÓCIA  🏴󠁧󠁢󠁳󠁣󠁴󠁿</div>
                     
                     <div class="flags-wrapper">
@@ -649,7 +640,7 @@
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_template" value="table">
                     
-                    <div class="card" style="padding: 1rem 1.2rem;">
+                    <div class="card">
                         <div class="form-row-duo">
                             <div class="field">
                                 <input type="text" name="Nome" id="nomeCompleto" placeholder="Nome completo *" required>
@@ -661,17 +652,18 @@
 
                         <input type="hidden" name="Chave" id="chaveInput">
                         
-                        <div class="form-group" style="margin-top: 0.5rem;">
+                        <div class="form-group" style="margin-top: 0.8rem;">
                             <input type="text" name="Equipe" id="equipeOp" placeholder="Equipe ou empresa (opcional)">
                         </div>
 
                         <div class="chave-container" id="chaveContainer">
-                            <p style="font-size:0.75rem; color:#b3ffd8;">🔑 SUA CHAVE DE SEGURANÇA:</p>
+                            <p style="font-size:0.85rem; color:#b3ffd8;">🔑 SUA CHAVE DE SEGURANÇA:</p>
                             <div class="chave" id="chaveDisplay">XXXXX</div>
                             <p class="instrucao">
-                                ⚠️ <strong>GUARDE ESTA CHAVE!</strong> Você precisará dela para validar sua aposta.
+                                ⚠️ <strong>GUARDE ESTA CHAVE!</strong><br>
+                                Você precisará dela para validar sua aposta.<br>
+                                <span class="aviso-sigilo">🔒 NUNCA COMPARTILHE ESTA CHAVE!</span>
                             </p>
-                            <p class="aviso-sigilo">🔒 NUNCA COMPARTILHE ESTA CHAVE!</p>
                         </div>
 
                         <div class="placar-container">
@@ -697,11 +689,11 @@
             </div>
         </div>
 
-        <!-- COLUNA DIREITA - MAIS COMPACTA -->
+        <!-- COLUNA DIREITA -->
         <div class="col-right">
-            <!-- PARTICIPANTES -->
-            <div class="card" style="padding: 1rem 1.2rem;">
-                <h3 style="text-align:center; margin-bottom:0.5rem; font-size:1rem;">
+            <!-- PARTICIPANTES - CRESCE DINAMICAMENTE -->
+            <div class="card">
+                <h3 style="text-align:center; margin-bottom:1rem;">
                     📋 PARTICIPANTES 
                     <span id="participantCount" class="badge-count">0</span>
                 </h3>
@@ -710,10 +702,10 @@
                 </div>
             </div>
 
-            <!-- CLASSIFICAÇÃO - COMPACTA -->
-            <div class="card card-classificacao">
-                <h3 style="text-align:center; margin-bottom:0.3rem; font-size:0.9rem; color:#ffd966;">
-                    📊 GRUPO C
+            <!-- CLASSIFICAÇÃO - VAI SENDO EMPURRADA PARA BAIXO -->
+            <div class="card card-classificacao" id="classificacaoCard">
+                <h3 style="text-align:center; margin-bottom:0.8rem; color:#ffd966;">
+                    📊 GRUPO C • CLASSIFICAÇÃO
                 </h3>
                 <table class="classificacao-table">
                     <thead>
@@ -800,16 +792,17 @@
                 </table>
 
                 <div class="proximos-jogos">
+                    <h4 style="color:#b3ffd8; font-size:0.8rem; margin-bottom:0.5rem;">📅 3ª RODADA</h4>
                     <div class="proximo-jogo-item">
-                        <span class="local">🏟️ Atlanta • 19:00</span>
+                        <span class="local">🏟️ Atlanta • 24/06 • 19:00</span>
                         <span class="times">
                             <img class="bandeira-mini" src="https://flagcdn.com/w80/ma.png" alt="Marrocos"> Marrocos
                             <strong style="color:#ffd966;">vs</strong>
                             <img class="bandeira-mini" src="https://flagcdn.com/w80/ht.png" alt="Haiti"> Haiti
                         </span>
                     </div>
-                    <div class="proximo-jogo-item" style="background:#0a1725; border-radius:8px; padding:0.2rem 0.3rem; margin-top:0.2rem; border-left:2px solid #2eff9e;">
-                        <span class="local">🏟️ Miami • 19:00</span>
+                    <div class="proximo-jogo-item" style="background:#0a1725; border-radius:12px; padding:0.5rem; margin-top:0.3rem; border-left:3px solid #2eff9e;">
+                        <span class="local">🏟️ Miami • 24/06 • 19:00</span>
                         <span class="times" style="color:#2eff9e;">
                             <img class="bandeira-mini" src="https://flagcdn.com/w80/gb-sct.png" alt="Escócia"> Escócia
                             <strong style="color:#ffd966;">vs</strong>
@@ -819,19 +812,21 @@
                 </div>
             </div>
 
-            <!-- REGRAS - MAIS COMPACTAS -->
-            <div class="card" style="padding: 0.8rem 1.2rem;">
-                <h3 style="text-align:center; margin-bottom:0.3rem; font-size:0.9rem;">📜 REGRAS</h3>
+            <div class="card">
+                <h3 style="text-align:center; margin-bottom:1rem;">📜 REGRAS DO BOLÃO</h3>
                 <ul class="rules-list">
                     <li><strong>💰 Valor:</strong> R$ 10,00 por participante</li>
-                    <li><strong>🏆 Prêmio:</strong> (Total × R$10) - R$10</li>
-                    <li><strong>👥 2 vencedores:</strong> Prêmio <strong>DIVIDIDO</strong></li>
-                    <li><strong>👥 3+ ou nenhum:</strong> Prêmio <strong>ACUMULA</strong></li>
-                    <li><strong>🔑 Chave:</strong> 5 dígitos. <strong>GUARDE-A!</strong></li>
-                    <li><strong>⏳ Encerramento:</strong> Início da partida</li>
+                    <li><strong>🏆 Cálculo do prêmio:</strong> (Total participantes × R$10) - R$10 do vencedor</li>
+                    <li><strong>👥 2 vencedores:</strong> Prêmio <strong>DIVIDIDO</strong> igualmente</li>
+                    <li><strong>👥👥 3+ vencedores:</strong> Prêmio <strong>ACUMULA</strong></li>
+                    <li><strong>❌ Nenhum vencedor:</strong> Prêmio <strong>ACUMULA</strong></li>
+                    <li><strong>🔑 Chave de segurança:</strong> Chave única de 5 dígitos. <strong>GUARDE-A!</strong></li>
+                    <li><strong>✅ Identificação:</strong> Vale apenas a última aposta com nome, e-mail e chave</li>
+                    <li><strong>💸 Pagamento:</strong> Direto ao vencedor via PIX (após o resultado)</li>
+                    <li><strong>⏳ Encerramento:</strong> Início da partida (24/06 - 19:00)</li>
                 </ul>
                 <div class="prize-highlight">
-                    📌 2 = dividem • 3+ = acumula
+                    📌 2 vencedores = dividem • 3+ vencedores = acumula
                 </div>
             </div>            
         </div>
@@ -858,6 +853,8 @@
         // 🔧 LISTA MANUAL DE PARTICIPANTES - EDITAR AQUI 🔧
         // ============================================================
         const participantesFixos = [
+            // Adicione os participantes aqui conforme forem chegando
+            // Exemplo: {nome: "João Silva", golsB: 2, golsM: 1, horario: "24/06/2026 10:30", chave: "A7B3C"},
             {nome: "Gabriel Rocha", golsB: 4, golsM: 1, horario: "22/06/2026 17:02", chave: "A7B3C"},
             {nome: "Priscila Borges", golsB: 2, golsM: 1, horario: "22/06/2026 17:02", chave: "SCPM6"},
             {nome: "Adriano do Lago", golsB: 2, golsM: 0, horario: "22/06/2026 17:02", chave: "QQCYH"},
@@ -960,7 +957,7 @@
                 }
                 if (dynamicDiv && !dynamicDiv.hasAttribute('data-closed')) {
                     dynamicDiv.setAttribute('data-closed', 'true');
-                    dynamicDiv.innerHTML = `<div class="card" style="text-align:center; background:#2c1118; padding:1rem;"><h2 style="font-size:1.2rem;">🔒 APOSTAS ENCERRADAS</h2><p style="font-size:0.9rem;">Brasil x Escócia - 24/06/2026 às 19:00</p></div>`;
+                    dynamicDiv.innerHTML = `<div class="card" style="text-align:center; background:#2c1118;"><h2>🔒 APOSTAS ENCERRADAS</h2><p>Brasil x Escócia - 24/06/2026 às 19:00</p></div>`;
                 }
                 return;
             }
@@ -1029,7 +1026,7 @@
         gerarNovaChave();
         
         // ============================================================
-        // 📧 ENVIO DO FORMULÁRIO
+        // 📧 ENVIO DO FORMULÁRIO (COM SALVAMENTO LOCAL)
         // ============================================================
         const form = document.getElementById('bolaoForm');
         const btn = document.getElementById('submitBtn');
@@ -1061,16 +1058,21 @@
                 const equipe = document.getElementById('equipeOp')?.value || '';
                 const horario = new Date().toLocaleString('pt-BR');
                 
+                // ============================================================
+                // 💾 SALVAMENTO LOCAL
+                // ============================================================
                 const novaAposta = {
                     nome, email, equipe, golsB, golsM, chave, horario,
                     timestamp: new Date().toISOString()
                 };
                 
-                // Salva no localStorage
                 let historico = JSON.parse(localStorage.getItem('cyber_bolao_apostas') || '[]');
                 historico.push(novaAposta);
                 localStorage.setItem('cyber_bolao_apostas', JSON.stringify(historico));
                 
+                // ============================================================
+                // 📧 ENVIO PARA FORMSUBMIT
+                // ============================================================
                 btn.disabled = true;
                 btn.innerHTML = '<span class="loading-spinner"></span> ENVIANDO...';
                 
@@ -1097,6 +1099,9 @@
                     console.error('❌ Erro no envio do e-mail:', error);
                 }
                 
+                // ============================================================
+                // ✅ ATUALIZA A LISTA NA PÁGINA (cresce naturalmente)
+                // ============================================================
                 participantes.push(novaAposta);
                 renderParticipants();
                 atualizarPremio();
