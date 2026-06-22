@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>CYBER BOLÃO | Brasil x Haiti • Copa 2026</title>
+    <title>CYBER BOLÃO | Brasil x Escócia • Copa 2026</title>
     <style>
         * {
             margin: 0;
@@ -71,12 +71,9 @@
             box-shadow: 0 20px 35px -12px rgba(0,0,0,0.5);
         }
 
-        .card-history {
+        .card-classificacao {
             border: 1px solid rgba(255, 215, 0, 0.3);
-        }
-
-        .card-history .card-title {
-            color: #ffd966;
+            padding: 1rem 1.2rem;
         }
 
         .info-grid {
@@ -90,32 +87,33 @@
         .info-item {
             background: #07121c;
             border-radius: 20px;
-            padding: 0.9rem 1.2rem;
+            padding: 0.7rem 1rem;
             flex: 1;
-            min-width: 100px;
+            min-width: 80px;
             border-bottom: 2px solid #2eff9e;
         }
 
         .info-item h3 {
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             color: #b3ffd8;
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.2rem;
         }
 
         .info-item p {
             font-weight: 700;
-            font-size: 1rem;
+            font-size: 0.9rem;
         }
 
         .prize-card {
             background: linear-gradient(135deg, #1e3a2f, #0a1f18);
             border: 2px solid #ffd966;
+            padding: 1.2rem 1.6rem;
         }
 
         .prize-card .prize-value {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 800;
             color: #ffd966;
             text-align: center;
@@ -123,11 +121,11 @@
 
         .timer-block {
             text-align: center;
-            margin-top: 1rem;
-            font-size: 1.2rem;
+            margin-top: 0.8rem;
+            font-size: 1.1rem;
             font-weight: 700;
             background: #0a1420b3;
-            padding: 0.7rem;
+            padding: 0.5rem;
             border-radius: 60px;
             color: #caffdf;
             transition: all 0.3s;
@@ -147,31 +145,31 @@
 
         .match-title {
             text-align: center;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: 700;
-            margin-bottom: 1.2rem;
+            margin-bottom: 0.8rem;
         }
 
         .flags-wrapper {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 2rem;
+            gap: 1.5rem;
             flex-wrap: nowrap;
-            margin: 1rem 0;
+            margin: 0.5rem 0;
         }
 
         .team-card {
             text-align: center;
             background: #0f1a24;
-            padding: 0.8rem 1.5rem;
+            padding: 0.5rem 1.2rem;
             border-radius: 40px;
-            min-width: 130px;
+            min-width: 110px;
         }
 
         .flag-img {
-            width: 80px;
-            height: 55px;
+            width: 65px;
+            height: 45px;
             object-fit: cover;
             border-radius: 12px;
             box-shadow: 0 5px 12px rgba(0,0,0,0.4);
@@ -181,17 +179,17 @@
         }
 
         .team-name {
-            margin-top: 0.6rem;
+            margin-top: 0.4rem;
             font-weight: 800;
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             text-align: center;
         }
 
         .vs-badge {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 800;
             background: #1e3a2f;
-            padding: 0.3rem 1.2rem;
+            padding: 0.2rem 1rem;
             border-radius: 50px;
             color: #c0ffe0;
             display: inline-block;
@@ -214,12 +212,12 @@
         }
 
         .form-group {
-            margin-bottom: 1.2rem;
+            margin-bottom: 0.8rem;
         }
 
         .form-row-duo {
             display: flex;
-            gap: 1rem;
+            gap: 0.8rem;
             flex-wrap: wrap;
         }
 
@@ -231,34 +229,34 @@
         .chave-container {
             background: #0a1725;
             border-radius: 16px;
-            padding: 1rem;
-            margin: 1rem 0;
+            padding: 0.7rem;
+            margin: 0.7rem 0;
             text-align: center;
             border: 2px dashed #2eff9e;
         }
 
         .chave-container .chave {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 800;
             letter-spacing: 4px;
             color: #ffd966;
             font-family: 'Courier New', monospace;
             background: #07121c;
-            padding: 0.5rem;
+            padding: 0.3rem 0.5rem;
             border-radius: 12px;
             display: inline-block;
         }
 
         .chave-container .instrucao {
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             color: #b3ffd8;
-            margin-top: 0.5rem;
+            margin-top: 0.3rem;
         }
 
         .chave-container .aviso-sigilo {
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             color: #ff6b6b;
-            margin-top: 0.3rem;
+            margin-top: 0.2rem;
             font-weight: bold;
         }
 
@@ -267,9 +265,9 @@
             background: #0c1825;
             border: 1px solid #2a4a3c;
             border-radius: 20px;
-            padding: 0.8rem 1rem;
+            padding: 0.6rem 1rem;
             color: white;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 500;
             outline: none;
         }
@@ -282,30 +280,30 @@
         .placar-container {
             background: #07121e;
             border-radius: 24px;
-            padding: 1rem;
-            margin: 1rem 0;
+            padding: 0.8rem;
+            margin: 0.7rem 0;
         }
 
         .placar-title {
             text-align: center;
             font-weight: 600;
             color: #b3ffd8;
-            margin-bottom: 0.8rem;
-            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.8rem;
         }
 
         .score-row {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 1rem;
+            gap: 0.8rem;
             flex-wrap: wrap;
         }
 
         .score-team {
             text-align: center;
             flex: 1;
-            min-width: 120px;
+            min-width: 100px;
         }
 
         .score-team label {
@@ -314,14 +312,14 @@
             justify-content: center;
             gap: 6px;
             font-weight: 700;
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
+            font-size: 0.8rem;
+            margin-bottom: 0.3rem;
             color: #e2ffef;
         }
 
         .small-flag {
-            width: 28px;
-            height: 20px;
+            width: 24px;
+            height: 16px;
             border-radius: 6px;
             object-fit: cover;
             border: 1px solid #3effab;
@@ -329,21 +327,21 @@
 
         .score-team input {
             text-align: center;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 800;
-            width: 100px;
+            width: 80px;
             background: #0a1725;
             border: 2px solid #2c6950;
             border-radius: 40px;
-            padding: 0.4rem;
+            padding: 0.3rem;
         }
 
         .vs-divider {
-            font-size: 1.6rem;
+            font-size: 1.3rem;
             font-weight: 800;
             background: #173e30;
-            width: 55px;
-            height: 55px;
+            width: 45px;
+            height: 45px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -355,14 +353,14 @@
             background: linear-gradient(95deg, #1eff9e, #00bc6e);
             border: none;
             width: 100%;
-            padding: 0.9rem;
-            font-size: 1.1rem;
+            padding: 0.7rem;
+            font-size: 1rem;
             font-weight: 800;
             border-radius: 44px;
             color: #022115;
             cursor: pointer;
             transition: 0.2s;
-            margin-top: 0.5rem;
+            margin-top: 0.3rem;
         }
 
         .btn-submit:hover {
@@ -378,33 +376,34 @@
         .participant-item {
             background: #0a1725;
             border-radius: 16px;
-            padding: 0.8rem;
-            margin-bottom: 0.8rem;
+            padding: 0.5rem 0.8rem;
+            margin-bottom: 0.5rem;
             border-left: 3px solid #2eff9e;
         }
 
         .participant-name {
             font-weight: 700;
             color: #2eff9e;
+            font-size: 0.9rem;
         }
 
         .participant-palpite {
-            font-size: 1rem;
+            font-size: 0.85rem;
             font-weight: 600;
-            margin: 0.3rem 0;
+            margin: 0.2rem 0;
         }
 
         .participant-time {
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             opacity: 0.6;
         }
 
         .badge-count {
             background: #2eff9e;
             color: #022115;
-            padding: 0.2rem 0.6rem;
+            padding: 0.15rem 0.5rem;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             font-weight: bold;
             margin-left: 0.5rem;
         }
@@ -412,19 +411,20 @@
         .empty-message {
             text-align: center;
             opacity: 0.5;
-            padding: 2rem;
+            padding: 1.5rem;
+            font-size: 0.9rem;
         }
 
         .rules-list {
             list-style: none;
-            margin-top: 0.5rem;
+            margin-top: 0.3rem;
         }
 
         .rules-list li {
-            padding: 0.6rem 0;
-            border-bottom: 1px solid rgba(46, 255, 158, 0.2);
-            font-size: 0.85rem;
-            line-height: 1.4;
+            padding: 0.3rem 0;
+            border-bottom: 1px solid rgba(46, 255, 158, 0.15);
+            font-size: 0.75rem;
+            line-height: 1.3;
         }
 
         .rules-list li:last-child {
@@ -438,19 +438,93 @@
         .prize-highlight {
             background: #1e3a2f;
             border-radius: 16px;
-            padding: 0.8rem;
+            padding: 0.5rem;
             text-align: center;
-            margin-top: 1rem;
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
         }
 
-        .winner-badge {
-            background: #ffd966;
-            color: #022115;
-            padding: 0.2rem 0.6rem;
-            border-radius: 12px;
-            font-size: 0.65rem;
-            font-weight: bold;
-            margin-left: 0.5rem;
+        /* === CLASSIFICAÇÃO COMPACTA === */
+        .classificacao-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.7rem;
+            margin-top: 0.3rem;
+        }
+
+        .classificacao-table th {
+            text-align: center;
+            padding: 0.2rem 0.1rem;
+            color: #b3ffd8;
+            font-weight: 600;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            border-bottom: 1px solid rgba(46, 255, 158, 0.3);
+        }
+
+        .classificacao-table td {
+            text-align: center;
+            padding: 0.2rem 0.1rem;
+            border-bottom: 1px solid rgba(46, 255, 158, 0.08);
+        }
+
+        .classificacao-table .posicao {
+            color: #ffd966;
+            font-weight: 700;
+        }
+
+        .classificacao-table .time-nome {
+            font-weight: 600;
+            text-align: left;
+            padding-left: 0.3rem;
+            font-size: 0.7rem;
+        }
+
+        .classificacao-table .time-nome .flag-mini {
+            width: 16px;
+            height: 12px;
+            border-radius: 4px;
+            object-fit: cover;
+            vertical-align: middle;
+            margin-right: 0.2rem;
+        }
+
+        .classificacao-table .destaque {
+            color: #2eff9e;
+            font-weight: 700;
+        }
+
+        .proximos-jogos {
+            margin-top: 0.5rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid rgba(46, 255, 158, 0.15);
+        }
+
+        .proximo-jogo-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.2rem 0;
+            font-size: 0.7rem;
+        }
+
+        .proximo-jogo-item .local {
+            color: #b3ffd8;
+            font-size: 0.6rem;
+        }
+
+        .proximo-jogo-item .times {
+            font-weight: 600;
+            font-size: 0.7rem;
+        }
+
+        .proximo-jogo-item .bandeira-mini {
+            width: 18px;
+            height: 13px;
+            border-radius: 4px;
+            object-fit: cover;
+            vertical-align: middle;
+            margin: 0 0.15rem;
         }
 
         .modal-overlay {
@@ -503,8 +577,8 @@
 
         .loading-spinner {
             display: inline-block;
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             border: 3px solid #022115;
             border-radius: 50%;
             border-top-color: #fff;
@@ -515,9 +589,14 @@
             to { transform: rotate(360deg); }
         }
 
+        .card-title-small {
+            font-size: 0.9rem !important;
+            margin-bottom: 0.5rem !important;
+        }
+
         footer {
             text-align: center;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             margin-top: 1rem;
             opacity: 0.6;
         }
@@ -528,7 +607,7 @@
     
     <div class="logo-area">
         <h1>⚡ CYBER BOLÃO</h1>
-        <p>Brasil x Haiti • Copa do Mundo 2026</p>
+        <p>Brasil x Escócia • Copa do Mundo 2026</p>
     </div>
 
     <div class="two-columns">
@@ -537,16 +616,16 @@
             <div class="card prize-card">
                 <div class="info-grid">
                     <div class="info-item"><h3>💰 VALOR</h3><p>R$ 10,00</p></div>
-                    <div class="info-item"><h3>📅 PARTIDA</h3><p>19/06/2026 - 21:30</p></div>
+                    <div class="info-item"><h3>📅 PARTIDA</h3><p>24/06/2026 - 19:00</p></div>
                     <div class="info-item"><h3>⏱️ ENCERRAMENTO</h3><p>início do jogo</p></div>
                 </div>
-                <div id="prizeAmount" class="prize-value" style="margin: 0.8rem 0 0.5rem 0;">🏆 R$ 0,00</div>
+                <div id="prizeAmount" class="prize-value" style="margin: 0.5rem 0 0.3rem 0;">🏆 R$ 0,00</div>
                 <div id="countdownArea" class="timer-block">🔄 Carregando...</div>
             </div>
 
             <div id="dynamicContent">
-                <div class="card">
-                    <div class="match-title">🇧🇷  BRASIL vs HAITI  🇭🇹</div>
+                <div class="card" style="padding: 1rem 1.2rem;">
+                    <div class="match-title">🇧🇷  BRASIL vs ESCÓCIA  🏴󠁧󠁢󠁳󠁣󠁴󠁿</div>
                     
                     <div class="flags-wrapper">
                         <div class="team-card">
@@ -557,20 +636,20 @@
                         </div>
                         <div class="vs-badge">VS</div>
                         <div class="team-card">
-                            <img class="flag-img" src="https://flagcdn.com/w320/ht.png" 
-                                 alt="Haiti"
-                                 onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Flag_of_Haiti.svg/320px-Flag_of_Haiti.svg.png';">
-                            <div class="team-name">HAITI</div>
+                            <img class="flag-img" src="https://flagcdn.com/w320/gb-sct.png" 
+                                 alt="Escócia"
+                                 onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Flag_of_Scotland.svg/320px-Flag_of_Scotland.svg.png';">
+                            <div class="team-name">ESCÓCIA</div>
                         </div>
                     </div>
                 </div>
 
                 <form id="bolaoForm">
-                    <input type="hidden" name="_subject" value="NOVO PALPITE - BRASIL x HAITI">
+                    <input type="hidden" name="_subject" value="NOVO PALPITE - BRASIL x ESCÓCIA">
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_template" value="table">
                     
-                    <div class="card">
+                    <div class="card" style="padding: 1rem 1.2rem;">
                         <div class="form-row-duo">
                             <div class="field">
                                 <input type="text" name="Nome" id="nomeCompleto" placeholder="Nome completo *" required>
@@ -580,22 +659,19 @@
                             </div>
                         </div>
 
-                        <!-- CAMPO OCULTO PARA A CHAVE -->
                         <input type="hidden" name="Chave" id="chaveInput">
                         
-                        <div class="form-group" style="margin-top: 0.8rem;">
+                        <div class="form-group" style="margin-top: 0.5rem;">
                             <input type="text" name="Equipe" id="equipeOp" placeholder="Equipe ou empresa (opcional)">
                         </div>
 
-                        <!-- EXIBIÇÃO DA CHAVE (apenas para o participante) -->
                         <div class="chave-container" id="chaveContainer">
-                            <p style="font-size:0.85rem; color:#b3ffd8;">🔑 SUA CHAVE DE SEGURANÇA:</p>
+                            <p style="font-size:0.75rem; color:#b3ffd8;">🔑 SUA CHAVE DE SEGURANÇA:</p>
                             <div class="chave" id="chaveDisplay">XXXXX</div>
                             <p class="instrucao">
-                                ⚠️ <strong>GUARDE ESTA CHAVE!</strong><br>
-                                Você precisará dela para validar sua aposta.<br>
-                                <span class="aviso-sigilo">🔒 NUNCA COMPARTILHE ESTA CHAVE!</span>
+                                ⚠️ <strong>GUARDE ESTA CHAVE!</strong> Você precisará dela para validar sua aposta.
                             </p>
+                            <p class="aviso-sigilo">🔒 NUNCA COMPARTILHE ESTA CHAVE!</p>
                         </div>
 
                         <div class="placar-container">
@@ -607,8 +683,8 @@
                                 </div>
                                 <div class="vs-divider">X</div>
                                 <div class="score-team">
-                                    <label><img class="small-flag" src="https://flagcdn.com/w80/ht.png" alt="Haiti"> HAITI</label>
-                                    <input type="number" name="Gols_Haiti" id="golsHaiti" min="0" max="20" required value="0" step="1">
+                                    <label><img class="small-flag" src="https://flagcdn.com/w80/gb-sct.png" alt="Escócia"> ESCÓCIA</label>
+                                    <input type="number" name="Gols_Escocia" id="golsEscocia" min="0" max="20" required value="0" step="1">
                                 </div>
                             </div>
                         </div>
@@ -621,11 +697,11 @@
             </div>
         </div>
 
-        <!-- COLUNA DIREITA -->
+        <!-- COLUNA DIREITA - MAIS COMPACTA -->
         <div class="col-right">
-            <!-- PARTICIPANTES (ATUAL) -->
-            <div class="card">
-                <h3 style="text-align:center; margin-bottom:1rem;">
+            <!-- PARTICIPANTES -->
+            <div class="card" style="padding: 1rem 1.2rem;">
+                <h3 style="text-align:center; margin-bottom:0.5rem; font-size:1rem;">
                     📋 PARTICIPANTES 
                     <span id="participantCount" class="badge-count">0</span>
                 </h3>
@@ -634,87 +710,128 @@
                 </div>
             </div>
 
-            <!-- HISTÓRICO BRASIL x MARROCOS -->
-            <div class="card card-history">
-                <h3 style="text-align:center; margin-bottom:1rem; color:#ffd966;">
-                    📜 HISTÓRICO • BRASIL x MARROCOS
+            <!-- CLASSIFICAÇÃO - COMPACTA -->
+            <div class="card card-classificacao">
+                <h3 style="text-align:center; margin-bottom:0.3rem; font-size:0.9rem; color:#ffd966;">
+                    📊 GRUPO C
                 </h3>
-                <p style="text-align:center; font-size:0.9rem; margin-bottom:0.8rem;">
-                    🏆 Vencedor: <strong style="color:#ffd966;">Gabriel Rocha</strong> • 1x1
-                    <br>💰 Prêmio: <strong style="color:#ffd966;">R$ 90,00</strong>
-                    <br>📅 13/06/2026
-                </p>
-                <div class="participants-list" style="max-height:200px;">
-                    <div class="participant-item" style="border-left-color:#ffd966;">
-                        <div class="participant-name">👤 Adriano do lago</div>
-                        <div class="participant-palpite">🇧🇷 2 x 1 🇲🇦</div>
-                        <div class="participant-time">⏰ 09/06/2026 09:24</div>
+                <table class="classificacao-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th style="text-align:left;">Seleção</th>
+                            <th>P</th>
+                            <th>J</th>
+                            <th>V</th>
+                            <th>E</th>
+                            <th>D</th>
+                            <th>GP</th>
+                            <th>GC</th>
+                            <th>SG</th>
+                            <th>%</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="posicao">1</td>
+                            <td class="time-nome">
+                                <img class="flag-mini" src="https://flagcdn.com/w80/br.png" alt="Brasil">
+                                Brasil
+                            </td>
+                            <td><strong style="color:#ffd966;">4</strong></td>
+                            <td>2</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>4</td>
+                            <td>1</td>
+                            <td><strong style="color:#2eff9e;">+3</strong></td>
+                            <td><span class="destaque">66%</span></td>
+                        </tr>
+                        <tr>
+                            <td class="posicao">2</td>
+                            <td class="time-nome">
+                                <img class="flag-mini" src="https://flagcdn.com/w80/ma.png" alt="Marrocos">
+                                Marrocos
+                            </td>
+                            <td><strong style="color:#ffd966;">4</strong></td>
+                            <td>2</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>2</td>
+                            <td>1</td>
+                            <td><strong style="color:#2eff9e;">+1</strong></td>
+                            <td><span class="destaque">66%</span></td>
+                        </tr>
+                        <tr>
+                            <td class="posicao">3</td>
+                            <td class="time-nome">
+                                <img class="flag-mini" src="https://flagcdn.com/w80/gb-sct.png" alt="Escócia">
+                                Escócia
+                            </td>
+                            <td><strong style="color:#ffd966;">3</strong></td>
+                            <td>2</td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td><strong style="color:#ff6b6b;">0</strong></td>
+                            <td><span>50%</span></td>
+                        </tr>
+                        <tr>
+                            <td class="posicao">4</td>
+                            <td class="time-nome">
+                                <img class="flag-mini" src="https://flagcdn.com/w80/ht.png" alt="Haiti">
+                                Haiti
+                            </td>
+                            <td><strong style="color:#ff6b6b;">0</strong></td>
+                            <td>2</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>2</td>
+                            <td>0</td>
+                            <td>4</td>
+                            <td><strong style="color:#ff6b6b;">-4</strong></td>
+                            <td><span>0%</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="proximos-jogos">
+                    <div class="proximo-jogo-item">
+                        <span class="local">🏟️ Atlanta • 19:00</span>
+                        <span class="times">
+                            <img class="bandeira-mini" src="https://flagcdn.com/w80/ma.png" alt="Marrocos"> Marrocos
+                            <strong style="color:#ffd966;">vs</strong>
+                            <img class="bandeira-mini" src="https://flagcdn.com/w80/ht.png" alt="Haiti"> Haiti
+                        </span>
                     </div>
-                    <div class="participant-item" style="border-left-color:#ffd966; background:#1e3a2f;">
-                        <div class="participant-name">👤 Gabriel Rocha <span class="winner-badge">🏆 VENCEDOR</span></div>
-                        <div class="participant-palpite">🇧🇷 1 x 1 🇲🇦</div>
-                        <div class="participant-time">⏰ 09/06/2026 09:37</div>
-                    </div>
-                    <div class="participant-item" style="border-left-color:#ffd966;">
-                        <div class="participant-name">👤 Cainã Morais</div>
-                        <div class="participant-palpite">🇧🇷 3 x 2 🇲🇦</div>
-                        <div class="participant-time">⏰ 11/06/2026 11:12</div>
-                    </div>
-                    <div class="participant-item" style="border-left-color:#ffd966;">
-                        <div class="participant-name">👤 Marcelo Walski</div>
-                        <div class="participant-palpite">🇧🇷 0 x 1 🇲🇦</div>
-                        <div class="participant-time">⏰ 11/06/2026 11:12</div>
-                    </div>
-                    <div class="participant-item" style="border-left-color:#ffd966;">
-                        <div class="participant-name">👤 Luiz Razera</div>
-                        <div class="participant-palpite">🇧🇷 1 x 0 🇲🇦</div>
-                        <div class="participant-time">⏰ 11/06/2026 11:10</div>
-                    </div>
-                    <div class="participant-item" style="border-left-color:#ffd966;">
-                        <div class="participant-name">👤 Junior Miranda</div>
-                        <div class="participant-palpite">🇧🇷 2 x 1 🇲🇦</div>
-                        <div class="participant-time">⏰ 11/06/2026 11:38</div>
-                    </div>
-                    <div class="participant-item" style="border-left-color:#ffd966;">
-                        <div class="participant-name">👤 Volney Motta</div>
-                        <div class="participant-palpite">🇧🇷 2 x 1 🇲🇦</div>
-                        <div class="participant-time">⏰ 11/06/2026 11:38</div>
-                    </div>
-                    <div class="participant-item" style="border-left-color:#ffd966;">
-                        <div class="participant-name">👤 Priscila Borges</div>
-                        <div class="participant-palpite">🇧🇷 3 x 1 🇲🇦</div>
-                        <div class="participant-time">⏰ 11/06/2026 17:11</div>
-                    </div>
-                    <div class="participant-item" style="border-left-color:#ffd966;">
-                        <div class="participant-name">👤 Vinicius Lara</div>
-                        <div class="participant-palpite">🇧🇷 4 x 1 🇲🇦</div>
-                        <div class="participant-time">⏰ 11/06/2026 17:11</div>
+                    <div class="proximo-jogo-item" style="background:#0a1725; border-radius:8px; padding:0.2rem 0.3rem; margin-top:0.2rem; border-left:2px solid #2eff9e;">
+                        <span class="local">🏟️ Miami • 19:00</span>
+                        <span class="times" style="color:#2eff9e;">
+                            <img class="bandeira-mini" src="https://flagcdn.com/w80/gb-sct.png" alt="Escócia"> Escócia
+                            <strong style="color:#ffd966;">vs</strong>
+                            <img class="bandeira-mini" src="https://flagcdn.com/w80/br.png" alt="Brasil"> <strong>Brasil</strong>
+                        </span>
                     </div>
                 </div>
-                <p style="font-size:0.7rem; text-align:center; margin-top:0.8rem; opacity:0.6;">
-                    📌 Último bolão finalizado em 13/06/2026
-                </p>
             </div>
 
-            <!-- REGRAS -->
-            <div class="card">
-                <h3 style="text-align:center; margin-bottom:1rem;">📜 REGRAS DO BOLÃO</h3>
+            <!-- REGRAS - MAIS COMPACTAS -->
+            <div class="card" style="padding: 0.8rem 1.2rem;">
+                <h3 style="text-align:center; margin-bottom:0.3rem; font-size:0.9rem;">📜 REGRAS</h3>
                 <ul class="rules-list">
                     <li><strong>💰 Valor:</strong> R$ 10,00 por participante</li>
-                    <li><strong>🏆 Cálculo do prêmio:</strong> (Total participantes × R$10) - R$10 do vencedor</li>
-                    <li><strong>🏆 Exemplo:</strong> 6 participantes = R$ 50,00 para o vencedor</li>
-                    <li><strong>👥 2 vencedores:</strong> Prêmio é <strong>DIVIDIDO igualmente</strong> entre os dois</li>
-                    <li><strong>👥👥 3+ vencedores:</strong> Prêmio <strong>ACUMULA</strong> para o próximo bolão</li>
-                    <li><strong>❌ Nenhum vencedor:</strong> Prêmio <strong>ACUMULA</strong> para o próximo bolão</li>
-                    <li><strong>🔑 Chave de segurança:</strong> Cada aposta gera uma chave única de 5 dígitos. <strong>GUARDE-A E NUNCA COMPARTILHE!</strong></li>
-                    <li><strong>✅ Identificação:</strong> Vale apenas a última aposta com nome, e-mail e chave corretos</li>
-                    <li><strong>📝 Registro:</strong> O palpite precisa constar na página oficial do bolão</li>
-                    <li><strong>💸 Pagamento:</strong> Cada participante paga R$ 10,00 <strong>DIRETAMENTE AO VENCEDOR</strong> via PIX (após o resultado)</li>
-                    <li><strong>⏳ Encerramento:</strong> Apostas válidas apenas até o <strong>início da partida</strong> (19/06/2026 - 21:30)</li>
-                    <li><strong>📢 Resultado:</strong> O vencedor será divulgado na página após o apito final</li>
+                    <li><strong>🏆 Prêmio:</strong> (Total × R$10) - R$10</li>
+                    <li><strong>👥 2 vencedores:</strong> Prêmio <strong>DIVIDIDO</strong></li>
+                    <li><strong>👥 3+ ou nenhum:</strong> Prêmio <strong>ACUMULA</strong></li>
+                    <li><strong>🔑 Chave:</strong> 5 dígitos. <strong>GUARDE-A!</strong></li>
+                    <li><strong>⏳ Encerramento:</strong> Início da partida</li>
                 </ul>
                 <div class="prize-highlight">
-                    📌 2 vencedores = dividem • 3+ vencedores = acumula
+                    📌 2 = dividem • 3+ = acumula
                 </div>
             </div>            
         </div>
@@ -735,15 +852,16 @@
 
 <script>
     (function() {
-        const encerramentoDate = new Date(2026, 5, 19, 21, 30, 0);
+        const encerramentoDate = new Date(2026, 5, 24, 19, 0, 0);
         
         // ============================================================
         // 🔧 LISTA MANUAL DE PARTICIPANTES - EDITAR AQUI 🔧
         // ============================================================
         const participantesFixos = [
-            // Adicione os participantes aqui conforme forem chegando
-            // Exemplo: {nome: "João Silva", golsB: 2, golsM: 1, horario: "16/06/2026 10:30", chave: "A7B3C"},
-            {nome: "Gabriel Rocha", golsB: 4, golsM: 0, horario: "17/06/2026 08:00", chave: "X9K2L"}
+            {nome: "Gabriel Rocha", golsB: 4, golsM: 1, horario: "22/06/2026 17:02", chave: "A7B3C"},
+            {nome: "Priscila Borges", golsB: 2, golsM: 1, horario: "22/06/2026 17:02", chave: "SCPM6"},
+            {nome: "Adriano do Lago", golsB: 2, golsM: 0, horario: "22/06/2026 17:02", chave: "QQCYH"},
+            {nome: "Junior Miranda", golsB: 3, golsM: 1, horario: "22/06/2026 17:08", chave: "26OM1"}
         ];
         
         // ============================================================
@@ -753,7 +871,7 @@
         let participantes = [];
         
         // ============================================================
-        // 🔑 GERADOR DE CHAVE ALEATÓRIA (5 dígitos alfanuméricos)
+        // 🔑 GERADOR DE CHAVE
         // ============================================================
         function gerarChave() {
             const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -817,7 +935,7 @@
             container.innerHTML = participantes.map(p => `
                 <div class="participant-item">
                     <div class="participant-name">👤 ${escapeHtml(p.nome)}</div>
-                    <div class="participant-palpite">🇧🇷 ${p.golsB} x ${p.golsM} 🇭🇹</div>
+                    <div class="participant-palpite">🇧🇷 ${p.golsB} x ${p.golsM} 🏴󠁧󠁢󠁳󠁣󠁴󠁿</div>
                     <div class="participant-time">⏰ ${p.horario || 'Data não informada'}</div>
                 </div>
             `).join('');
@@ -842,7 +960,7 @@
                 }
                 if (dynamicDiv && !dynamicDiv.hasAttribute('data-closed')) {
                     dynamicDiv.setAttribute('data-closed', 'true');
-                    dynamicDiv.innerHTML = `<div class="card" style="text-align:center; background:#2c1118;"><h2>🔒 APOSTAS ENCERRADAS</h2><p>Brasil x Haiti - 19/06/2026 às 21:30</p></div>`;
+                    dynamicDiv.innerHTML = `<div class="card" style="text-align:center; background:#2c1118; padding:1rem;"><h2 style="font-size:1.2rem;">🔒 APOSTAS ENCERRADAS</h2><p style="font-size:0.9rem;">Brasil x Escócia - 24/06/2026 às 19:00</p></div>`;
                 }
                 return;
             }
@@ -887,7 +1005,7 @@
             document.getElementById('modalTitle').textContent = '✅ PALPITE ENVIADO!';
             document.getElementById('modalMessage').innerHTML = `
                 Olá ${nome}!<br><br>
-                🇧🇷 ${golsB} x ${golsM} 🇭🇹<br><br>
+                🇧🇷 ${golsB} x ${golsM} 🏴󠁧󠁢󠁳󠁣󠁴󠁿<br><br>
                 🔑 <strong>GUARDE SUA CHAVE:</strong> <span class="chave-destaque">${chave}</span><br>
                 <span style="font-size:0.8rem; opacity:0.7;">Você também receberá por e-mail.</span>
                 <br><br>Boa sorte!
@@ -897,7 +1015,7 @@
         }
         
         // ============================================================
-        // 🔑 INICIALIZAÇÃO DA CHAVE NA PÁGINA
+        // 🔑 INICIALIZAÇÃO DA CHAVE
         // ============================================================
         let chaveAtual = '';
         
@@ -908,11 +1026,10 @@
             return chaveAtual;
         }
         
-        // Gera a chave ao carregar a página
         gerarNovaChave();
         
         // ============================================================
-        // 📧 ENVIO DO FORMULÁRIO VIA FETCH (SEM REDIRECIONAMENTO)
+        // 📧 ENVIO DO FORMULÁRIO
         // ============================================================
         const form = document.getElementById('bolaoForm');
         const btn = document.getElementById('submitBtn');
@@ -936,63 +1053,84 @@
                 }
                 
                 let golsB = parseInt(document.getElementById('golsBrasil')?.value, 10) || 0;
-                let golsM = parseInt(document.getElementById('golsHaiti')?.value, 10) || 0;
+                let golsM = parseInt(document.getElementById('golsEscocia')?.value, 10) || 0;
                 if (golsB < 0) golsB = 0;
                 if (golsM < 0) golsM = 0;
                 
                 const chave = document.getElementById('chaveInput').value;
                 const equipe = document.getElementById('equipeOp')?.value || '';
+                const horario = new Date().toLocaleString('pt-BR');
                 
-                // Prepara os dados para enviar via fetch
-                const formData = new FormData();
-                formData.append('_subject', 'NOVO PALPITE - BRASIL x HAITI');
-                formData.append('_captcha', 'false');
-                formData.append('_template', 'table');
-                formData.append('Nome', nome);
-                formData.append('Email', email);
-                formData.append('Equipe', equipe);
-                formData.append('Gols_Brasil', golsB);
-                formData.append('Gols_Haiti', golsM);
-                formData.append('Chave', chave);
+                const novaAposta = {
+                    nome, email, equipe, golsB, golsM, chave, horario,
+                    timestamp: new Date().toISOString()
+                };
                 
-                // Desabilita o botão e mostra loading
+                // Salva no localStorage
+                let historico = JSON.parse(localStorage.getItem('cyber_bolao_apostas') || '[]');
+                historico.push(novaAposta);
+                localStorage.setItem('cyber_bolao_apostas', JSON.stringify(historico));
+                
                 btn.disabled = true;
                 btn.innerHTML = '<span class="loading-spinner"></span> ENVIANDO...';
                 
                 try {
-                    // Envia via fetch para o FormSubmit
-                    const response = await fetch('https://formsubmit.co/gabriel@cyss.com.br', {
+                    const formData = new FormData();
+                    formData.append('_subject', 'NOVO PALPITE - BRASIL x ESCÓCIA');
+                    formData.append('_captcha', 'false');
+                    formData.append('_template', 'table');
+                    formData.append('Nome', nome);
+                    formData.append('Email', email);
+                    formData.append('Equipe', equipe);
+                    formData.append('Gols_Brasil', golsB);
+                    formData.append('Gols_Escocia', golsM);
+                    formData.append('Chave', chave);
+                    
+                    await fetch('https://formsubmit.co/gabriel@cyss.com.br', {
                         method: 'POST',
                         body: formData
                     });
                     
-                    // Mostra modal de sucesso com a chave
-                    showModal(nome, golsB, golsM, chave);
-                    
-                    // Gera nova chave
-                    setTimeout(() => gerarNovaChave(), 500);
-                    
-                    // Limpa campos opcionais
-                    document.getElementById('equipeOp').value = '';
+                    console.log('📧 E-mail enviado para formsubmit.co');
                     
                 } catch (error) {
-                    console.error('Erro no envio:', error);
-                    alert('Erro ao enviar o palpite. Tente novamente.');
-                } finally {
-                    // Restaura o botão
-                    btn.disabled = false;
-                    btn.innerHTML = '🚀 ENVIAR PALPITE';
+                    console.error('❌ Erro no envio do e-mail:', error);
                 }
+                
+                participantes.push(novaAposta);
+                renderParticipants();
+                atualizarPremio();
+                
+                showModal(nome, golsB, golsM, chave);
+                
+                setTimeout(() => gerarNovaChave(), 500);
+                document.getElementById('equipeOp').value = '';
+                
+                btn.disabled = false;
+                btn.innerHTML = '🚀 ENVIAR PALPITE';
             });
         }
         
+        // ============================================================
+        // 🛠️ FUNÇÃO PARA VISUALIZAR AS APOSTAS NO CONSOLE
+        // ============================================================
+        window.verApostas = function() {
+            const apostas = JSON.parse(localStorage.getItem('cyber_bolao_apostas') || '[]');
+            console.log('📋 Todas as apostas salvas:');
+            console.table(apostas);
+            return apostas;
+        };
+        
+        // ============================================================
+        // LIMITE DOS INPUTS
+        // ============================================================
         document.getElementById('golsBrasil')?.addEventListener('change', function() {
             let v = parseInt(this.value,10);
             if (isNaN(v)) this.value = 0;
             if (v < 0) this.value = 0;
             if (v > 20) this.value = 20;
         });
-        document.getElementById('golsHaiti')?.addEventListener('change', function() {
+        document.getElementById('golsEscocia')?.addEventListener('change', function() {
             let v = parseInt(this.value,10);
             if (isNaN(v)) this.value = 0;
             if (v < 0) this.value = 0;
