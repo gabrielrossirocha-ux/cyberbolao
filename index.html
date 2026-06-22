@@ -59,6 +59,8 @@
         .col-right {
             flex: 0.9;
             min-width: 280px;
+            display: flex;
+            flex-direction: column;
         }
 
         .card {
@@ -366,9 +368,11 @@
             box-shadow: 0 0 15px #2eff9e;
         }
 
+        /* ============================================================
+           LISTA DE PARTICIPANTES - SEM HEIGHT FIXA, CRESCE DINAMICAMENTE
+           ============================================================ */
         .participants-list {
-            max-height: 300px;
-            overflow-y: auto;
+            /* SEM max-height, SEM overflow-y: auto - cresce livremente */
         }
 
         .participant-item {
@@ -687,6 +691,7 @@
 
         <!-- COLUNA DIREITA -->
         <div class="col-right">
+            <!-- PARTICIPANTES - CRESCE DINAMICAMENTE -->
             <div class="card">
                 <h3 style="text-align:center; margin-bottom:1rem;">
                     📋 PARTICIPANTES 
@@ -697,8 +702,8 @@
                 </div>
             </div>
 
-            <!-- CLASSIFICAÇÃO -->
-            <div class="card card-classificacao">
+            <!-- CLASSIFICAÇÃO - VAI SENDO EMPURRADA PARA BAIXO -->
+            <div class="card card-classificacao" id="classificacaoCard">
                 <h3 style="text-align:center; margin-bottom:0.8rem; color:#ffd966;">
                     📊 GRUPO C • CLASSIFICAÇÃO
                 </h3>
@@ -1021,7 +1026,7 @@
         gerarNovaChave();
         
         // ============================================================
-        // 📧 ENVIO DO FORMULÁRIO (COM SALVAMENTO LOCAL E DEBUG)
+        // 📧 ENVIO DO FORMULÁRIO (COM SALVAMENTO LOCAL)
         // ============================================================
         const form = document.getElementById('bolaoForm');
         const btn = document.getElementById('submitBtn');
@@ -1054,20 +1059,19 @@
                 const horario = new Date().toLocaleString('pt-BR');
                 
                 // ============================================================
-                // 💾 SALVAMENTO LOCAL (NUNCA PERDE OS DADOS)
+                // 💾 SALVAMENTO LOCAL
                 // ============================================================
                 const novaAposta = {
                     nome, email, equipe, golsB, golsM, chave, horario,
                     timestamp: new Date().toISOString()
                 };
                 
-                // Salva no localStorage
                 let historico = JSON.parse(localStorage.getItem('cyber_bolao_apostas') || '[]');
                 historico.push(novaAposta);
                 localStorage.setItem('cyber_bolao_apostas', JSON.stringify(historico));
                 
                 // ============================================================
-                // 📧 ENVIO PARA FORMSUBMIT (com fallback)
+                // 📧 ENVIO PARA FORMSUBMIT
                 // ============================================================
                 btn.disabled = true;
                 btn.innerHTML = '<span class="loading-spinner"></span> ENVIANDO...';
@@ -1084,21 +1088,19 @@
                     formData.append('Gols_Escocia', golsM);
                     formData.append('Chave', chave);
                     
-                    const response = await fetch('https://formsubmit.co/gabriel@cyss.com.br', {
+                    await fetch('https://formsubmit.co/gabriel@cyss.com.br', {
                         method: 'POST',
                         body: formData
                     });
                     
                     console.log('📧 E-mail enviado para formsubmit.co');
-                    console.log('📋 Dados da aposta:', novaAposta);
                     
                 } catch (error) {
                     console.error('❌ Erro no envio do e-mail:', error);
-                    console.log('📋 Dados salvos localmente:', novaAposta);
                 }
                 
                 // ============================================================
-                // ✅ ATUALIZA A LISTA NA PÁGINA
+                // ✅ ATUALIZA A LISTA NA PÁGINA (cresce naturalmente)
                 // ============================================================
                 participantes.push(novaAposta);
                 renderParticipants();
@@ -1117,10 +1119,6 @@
         // ============================================================
         // 🛠️ FUNÇÃO PARA VISUALIZAR AS APOSTAS NO CONSOLE
         // ============================================================
-        console.log('💡 Para ver todas as apostas salvas, digite no console:');
-        console.log('   JSON.parse(localStorage.getItem("cyber_bolao_apostas"))');
-        console.log('   Ou use a função: verApostas()');
-        
         window.verApostas = function() {
             const apostas = JSON.parse(localStorage.getItem('cyber_bolao_apostas') || '[]');
             console.log('📋 Todas as apostas salvas:');
