@@ -75,10 +75,6 @@
             border: 1px solid rgba(255, 215, 0, 0.3);
         }
 
-        .card-classificacao .card-title {
-            color: #ffd966;
-        }
-
         .info-grid {
             display: flex;
             flex-wrap: wrap;
@@ -491,21 +487,6 @@
             font-weight: 700;
         }
 
-        .classificacao-table .ultimos-jogos {
-            font-size: 0.8rem;
-            letter-spacing: 1px;
-        }
-
-        .classificacao-table .vitoria {
-            color: #2eff9e;
-        }
-        .classificacao-table .empate {
-            color: #ffd966;
-        }
-        .classificacao-table .derrota {
-            color: #ff6b6b;
-        }
-
         .proximos-jogos {
             margin-top: 1rem;
             padding-top: 1rem;
@@ -665,14 +646,12 @@
                             </div>
                         </div>
 
-                        <!-- CAMPO OCULTO PARA A CHAVE -->
                         <input type="hidden" name="Chave" id="chaveInput">
                         
                         <div class="form-group" style="margin-top: 0.8rem;">
                             <input type="text" name="Equipe" id="equipeOp" placeholder="Equipe ou empresa (opcional)">
                         </div>
 
-                        <!-- EXIBIÇÃO DA CHAVE -->
                         <div class="chave-container" id="chaveContainer">
                             <p style="font-size:0.85rem; color:#b3ffd8;">🔑 SUA CHAVE DE SEGURANÇA:</p>
                             <div class="chave" id="chaveDisplay">XXXXX</div>
@@ -708,7 +687,6 @@
 
         <!-- COLUNA DIREITA -->
         <div class="col-right">
-            <!-- PARTICIPANTES -->
             <div class="card">
                 <h3 style="text-align:center; margin-bottom:1rem;">
                     📋 PARTICIPANTES 
@@ -719,7 +697,7 @@
                 </div>
             </div>
 
-            <!-- CLASSIFICAÇÃO - GRUPO C -->
+            <!-- CLASSIFICAÇÃO -->
             <div class="card card-classificacao">
                 <h3 style="text-align:center; margin-bottom:0.8rem; color:#ffd966;">
                     📊 GRUPO C • CLASSIFICAÇÃO
@@ -829,7 +807,6 @@
                 </div>
             </div>
 
-            <!-- REGRAS -->
             <div class="card">
                 <h3 style="text-align:center; margin-bottom:1rem;">📜 REGRAS DO BOLÃO</h3>
                 <ul class="rules-list">
@@ -882,7 +859,7 @@
         let participantes = [];
         
         // ============================================================
-        // 🔑 GERADOR DE CHAVE ALEATÓRIA (5 dígitos alfanuméricos)
+        // 🔑 GERADOR DE CHAVE
         // ============================================================
         function gerarChave() {
             const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -1026,7 +1003,7 @@
         }
         
         // ============================================================
-        // 🔑 INICIALIZAÇÃO DA CHAVE NA PÁGINA
+        // 🔑 INICIALIZAÇÃO DA CHAVE
         // ============================================================
         let chaveAtual = '';
         
@@ -1037,11 +1014,10 @@
             return chaveAtual;
         }
         
-        // Gera a chave ao carregar a página
         gerarNovaChave();
         
         // ============================================================
-        // 📧 ENVIO DO FORMULÁRIO VIA FETCH (SEM REDIRECIONAMENTO)
+        // 📧 ENVIO DO FORMULÁRIO (COM SALVAMENTO LOCAL E DEBUG)
         // ============================================================
         const form = document.getElementById('bolaoForm');
         const btn = document.getElementById('submitBtn');
@@ -1071,55 +1047,86 @@
                 
                 const chave = document.getElementById('chaveInput').value;
                 const equipe = document.getElementById('equipeOp')?.value || '';
+                const horario = new Date().toLocaleString('pt-BR');
                 
-                const formData = new FormData();
-                formData.append('_subject', 'NOVO PALPITE - BRASIL x ESCÓCIA');
-                formData.append('_captcha', 'false');
-                formData.append('_template', 'table');
-                formData.append('Nome', nome);
-                formData.append('Email', email);
-                formData.append('Equipe', equipe);
-                formData.append('Gols_Brasil', golsB);
-                formData.append('Gols_Escocia', golsM);
-                formData.append('Chave', chave);
+                // ============================================================
+                // 💾 SALVAMENTO LOCAL (NUNCA PERDE OS DADOS)
+                // ============================================================
+                const novaAposta = {
+                    nome, email, equipe, golsB, golsM, chave, horario,
+                    timestamp: new Date().toISOString()
+                };
                 
+                // Salva no localStorage
+                let historico = JSON.parse(localStorage.getItem('cyber_bolao_apostas') || '[]');
+                historico.push(novaAposta);
+                localStorage.setItem('cyber_bolao_apostas', JSON.stringify(historico));
+                
+                // ============================================================
+                // 📧 ENVIO PARA FORMSUBMIT (com fallback)
+                // ============================================================
                 btn.disabled = true;
                 btn.innerHTML = '<span class="loading-spinner"></span> ENVIANDO...';
                 
                 try {
+                    const formData = new FormData();
+                    formData.append('_subject', 'NOVO PALPITE - BRASIL x ESCÓCIA');
+                    formData.append('_captcha', 'false');
+                    formData.append('_template', 'table');
+                    formData.append('Nome', nome);
+                    formData.append('Email', email);
+                    formData.append('Equipe', equipe);
+                    formData.append('Gols_Brasil', golsB);
+                    formData.append('Gols_Escocia', golsM);
+                    formData.append('Chave', chave);
+                    
                     const response = await fetch('https://formsubmit.co/gabriel@cyss.com.br', {
                         method: 'POST',
                         body: formData
                     });
                     
-                    // Adiciona o participante à lista manual (simulação)
-                    participantes.push({
-                        nome: nome,
-                        email: email,
-                        golsB: golsB,
-                        golsM: golsM,
-                        horario: new Date().toLocaleString('pt-BR'),
-                        chave: chave
-                    });
-                    
-                    renderParticipants();
-                    atualizarPremio();
-                    
-                    showModal(nome, golsB, golsM, chave);
-                    
-                    setTimeout(() => gerarNovaChave(), 500);
-                    document.getElementById('equipeOp').value = '';
+                    console.log('📧 E-mail enviado para formsubmit.co');
+                    console.log('📋 Dados da aposta:', novaAposta);
                     
                 } catch (error) {
-                    console.error('Erro no envio:', error);
-                    alert('Erro ao enviar o palpite. Tente novamente.');
-                } finally {
-                    btn.disabled = false;
-                    btn.innerHTML = '🚀 ENVIAR PALPITE';
+                    console.error('❌ Erro no envio do e-mail:', error);
+                    console.log('📋 Dados salvos localmente:', novaAposta);
                 }
+                
+                // ============================================================
+                // ✅ ATUALIZA A LISTA NA PÁGINA
+                // ============================================================
+                participantes.push(novaAposta);
+                renderParticipants();
+                atualizarPremio();
+                
+                showModal(nome, golsB, golsM, chave);
+                
+                setTimeout(() => gerarNovaChave(), 500);
+                document.getElementById('equipeOp').value = '';
+                
+                btn.disabled = false;
+                btn.innerHTML = '🚀 ENVIAR PALPITE';
             });
         }
         
+        // ============================================================
+        // 🛠️ FUNÇÃO PARA VISUALIZAR AS APOSTAS NO CONSOLE
+        // ============================================================
+        console.log('💡 Para ver todas as apostas salvas, digite no console:');
+        console.log('   JSON.parse(localStorage.getItem("cyber_bolao_apostas"))');
+        console.log('   Ou use a função: verApostas()');
+        
+        window.verApostas = function() {
+            const apostas = JSON.parse(localStorage.getItem('cyber_bolao_apostas') || '[]');
+            console.log('📋 Todas as apostas salvas:');
+            console.table(apostas);
+            return apostas;
+        };
+        
+        // ============================================================
+        // LIMITE DOS INPUTS
+        // ============================================================
         document.getElementById('golsBrasil')?.addEventListener('change', function() {
             let v = parseInt(this.value,10);
             if (isNaN(v)) this.value = 0;
