@@ -20,7 +20,7 @@
         }
 
         .container {
-            max-width: 1100px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
@@ -97,7 +97,7 @@
             font-size: 1.4rem;
             font-weight: 700;
             color: #2eff9e;
-            margin-bottom: 1.2rem;
+            margin-bottom: 1rem;
         }
 
         .section-title span {
@@ -109,19 +109,19 @@
             flex-wrap: wrap;
             justify-content: center;
             gap: 1.5rem;
-            margin-top: 1rem;
+            margin-top: 0.5rem;
         }
 
         .info-item {
             background: #07121c;
             border-radius: 20px;
-            padding: 0.8rem 1.5rem;
+            padding: 0.6rem 1.2rem;
             text-align: center;
-            min-width: 120px;
+            min-width: 100px;
         }
 
         .info-item h4 {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             text-transform: uppercase;
             color: #b3ffd8;
             letter-spacing: 1px;
@@ -129,7 +129,7 @@
 
         .info-item p {
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: #ffd966;
         }
 
@@ -154,11 +154,11 @@
 
         .rules-list {
             list-style: none;
-            margin-top: 0.5rem;
+            margin-top: 0.3rem;
         }
 
         .rules-list li {
-            padding: 0.6rem 0;
+            padding: 0.5rem 0;
             border-bottom: 1px solid rgba(46, 255, 158, 0.15);
             font-size: 0.85rem;
             line-height: 1.4;
@@ -195,7 +195,7 @@
         }
 
         .historico-item .fase {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             color: #b3ffd8;
             background: #0a1725;
             padding: 0.1rem 0.6rem;
@@ -211,102 +211,6 @@
             margin: 0 0.2rem;
         }
 
-        .classificacao-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.75rem;
-        }
-
-        .classificacao-table th {
-            text-align: center;
-            padding: 0.3rem 0.1rem;
-            color: #b3ffd8;
-            font-weight: 600;
-            font-size: 0.6rem;
-            text-transform: uppercase;
-            border-bottom: 2px solid rgba(46, 255, 158, 0.3);
-        }
-
-        .classificacao-table td {
-            text-align: center;
-            padding: 0.3rem 0.1rem;
-            border-bottom: 1px solid rgba(46, 255, 158, 0.08);
-        }
-
-        .classificacao-table .posicao {
-            color: #ffd966;
-            font-weight: 700;
-        }
-
-        .classificacao-table .time-nome {
-            font-weight: 600;
-            text-align: left;
-            padding-left: 0.2rem;
-            font-size: 0.7rem;
-        }
-
-        .classificacao-table .time-nome .flag-mini {
-            width: 18px;
-            height: 12px;
-            border-radius: 4px;
-            object-fit: cover;
-            vertical-align: middle;
-            margin-right: 0.2rem;
-        }
-
-        .classificacao-table .destaque {
-            color: #2eff9e;
-            font-weight: 700;
-        }
-
-        .classificacao-table .eliminado {
-            color: #ff6b6b;
-        }
-
-        .grupo-tabs {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-            justify-content: center;
-            margin-bottom: 0.8rem;
-        }
-
-        .grupo-tab {
-            background: #0a1725;
-            border: 1px solid #2a4a3c;
-            border-radius: 30px;
-            padding: 0.3rem 0.8rem;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.7rem;
-            color: #b3ffd8;
-            transition: all 0.2s;
-        }
-
-        .grupo-tab:hover {
-            border-color: #2eff9e;
-        }
-
-        .grupo-tab.active {
-            background: #2eff9e;
-            border-color: #2eff9e;
-            color: #022115;
-        }
-
-        .grupo-content {
-            display: none;
-        }
-
-        .grupo-content.active {
-            display: block;
-        }
-
-        .next-game-card {
-            background: linear-gradient(135deg, #1e3a2f, #0a1f18);
-            border: 2px solid #2eff9e;
-            text-align: center;
-        }
-
         footer {
             text-align: center;
             font-size: 0.7rem;
@@ -314,12 +218,15 @@
             opacity: 0.6;
         }
 
-        @media (max-width: 768px) {
-            .two-columns {
-                grid-template-columns: 1fr;
+        @media (max-width: 550px) {
+            .winner-name {
+                font-size: 1.3rem;
             }
-            .classificacao-table {
-                font-size: 0.65rem;
+            .winner-palpite {
+                font-size: 1.1rem;
+            }
+            .card {
+                padding: 1rem;
             }
         }
     </style>
@@ -345,7 +252,7 @@
         <div class="winner-name">Kaylaine</div>
         <div class="winner-name">Adriano do Lago</div>
         <div class="winner-palpite">Palpite: 🇧🇷 2 x 1 🇯🇵</div>
-        <div style="text-align:center; margin-top:1rem; color:#b3ffd8; font-size:0.9rem;">
+        <div style="text-align:center; margin-top:0.8rem; color:#b3ffd8; font-size:0.9rem;">
             🎯 3 acertadores do placar exato!
         </div>
     </div>
@@ -367,18 +274,18 @@
     <!-- ============================================================ -->
     <!-- PRÓXIMO BOLÃO -->
     <!-- ============================================================ -->
-    <div class="card next-game-card">
-        <h3 style="color: #2eff9e; margin-bottom: 0.5rem;">⚡ PRÓXIMO BOLÃO ⚡</h3>
-        <p style="font-size:1.1rem;">🇧🇷 Brasil vs [PRÓXIMO ADVERSÁRIO] 🇽🇽</p>
-        <div style="font-size: 1.1rem; font-weight: 700; color: #ffd966; margin: 0.5rem 0;">
+    <div class="card" style="background: linear-gradient(135deg, #1e3a2f, #0a1f18); border: 2px solid #2eff9e;">
+        <h3 style="text-align:center; color: #2eff9e; margin-bottom: 0.5rem;">⚡ PRÓXIMO BOLÃO ⚡</h3>
+        <p style="text-align:center; font-size:1.1rem;">🇧🇷 Brasil vs [PRÓXIMO ADVERSÁRIO] 🇽🇽</p>
+        <div style="text-align:center; font-size: 1.1rem; font-weight: 700; color: #ffd966; margin: 0.5rem 0;">
             📅 Oitavas de Final • [DATA] • [HORÁRIO]
         </div>
-        <p style="margin-top: 0.5rem; font-size:0.9rem;">
+        <div style="text-align:center; margin-top: 0.5rem; font-size:0.9rem;">
             ✅ Apostas liberadas a partir de <strong style="color:#ffd966;">QUINTA-FEIRA (02/07)</strong><br>
             ⏳ Encerramento: início da partida
-        </p>
-        <div style="margin-top: 0.8rem; background:#0a1725; border-radius:16px; padding:0.5rem;">
-            <p style="font-size:0.85rem; color:#b3ffd8;">
+        </div>
+        <div style="margin-top: 0.8rem; background:#0a1725; border-radius:16px; padding:0.5rem; text-align:center;">
+            <p style="font-size:0.9rem; color:#b3ffd8;">
                 💰 Valor da aposta: <strong style="color:#ffd966;">R$ 20,00</strong>
             </p>
         </div>
@@ -433,183 +340,23 @@
     </div>
 
     <!-- ============================================================ -->
-    <!-- CLASSIFICAÇÃO PARA OITAVAS DE FINAL (GRUPOS A-L) -->
+    <!-- REGRAS DO BOLÃO -->
     <!-- ============================================================ -->
     <div class="card">
-        <div class="section-title">📊 <span>CLASSIFICAÇÃO</span> • FASE DE GRUPOS</div>
-        <p style="text-align:center; font-size:0.8rem; color:#b3ffd8; margin-bottom:0.8rem;">
-            ⚡ Grupos A até L • Classificados para as oitavas de final em destaque
-        </p>
-
-        <div class="grupo-tabs">
-            <div class="grupo-tab active" data-grupo="A">A</div>
-            <div class="grupo-tab" data-grupo="B">B</div>
-            <div class="grupo-tab" data-grupo="C">C</div>
-            <div class="grupo-tab" data-grupo="D">D</div>
-            <div class="grupo-tab" data-grupo="E">E</div>
-            <div class="grupo-tab" data-grupo="F">F</div>
-            <div class="grupo-tab" data-grupo="G">G</div>
-            <div class="grupo-tab" data-grupo="H">H</div>
-            <div class="grupo-tab" data-grupo="I">I</div>
-            <div class="grupo-tab" data-grupo="J">J</div>
-            <div class="grupo-tab" data-grupo="K">K</div>
-            <div class="grupo-tab" data-grupo="L">L</div>
-        </div>
-
-        <!-- GRUPO A -->
-        <div id="grupoA" class="grupo-content active">
-            <table class="classificacao-table">
-                <thead><tr><th>#</th><th style="text-align:left;">Seleção</th><th>P</th><th>J</th><th>V</th><th>E</th><th>D</th><th>GP</th><th>GC</th><th>SG</th><th>%</th></tr></thead>
-                <tbody>
-                    <tr><td class="posicao">1</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/mx.png" alt="México"> México</td><td>9</td><td>3</td><td>3</td><td>0</td><td>0</td><td>6</td><td>0</td><td class="destaque">+6</td><td class="destaque">100%</td></tr>
-                    <tr><td class="posicao">2</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/za.png" alt="África do Sul"> África do Sul</td><td>4</td><td>3</td><td>1</td><td>1</td><td>1</td><td>2</td><td>3</td><td>-1</td><td>44%</td></tr>
-                    <tr><td class="posicao">3</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/kr.png" alt="Coreia do Sul"> Coreia do Sul</td><td>3</td><td>3</td><td>1</td><td>0</td><td>2</td><td>2</td><td>3</td><td>-1</td><td>33%</td></tr>
-                    <tr><td class="posicao">4</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/cz.png" alt="Tchéquia"> Tchéquia</td><td>1</td><td>3</td><td>0</td><td>1</td><td>2</td><td>2</td><td>6</td><td>-4</td><td>11%</td></tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- GRUPO B -->
-        <div id="grupoB" class="grupo-content">
-            <table class="classificacao-table">
-                <thead><tr><th>#</th><th style="text-align:left;">Seleção</th><th>P</th><th>J</th><th>V</th><th>E</th><th>D</th><th>GP</th><th>GC</th><th>SG</th><th>%</th></tr></thead>
-                <tbody>
-                    <tr><td class="posicao">1</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/ch.png" alt="Suíça"> Suíça</td><td>7</td><td>3</td><td>2</td><td>1</td><td>0</td><td>7</td><td>3</td><td class="destaque">+4</td><td class="destaque">77%</td></tr>
-                    <tr><td class="posicao">2</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/ca.png" alt="Canadá"> Canadá</td><td>4</td><td>3</td><td>1</td><td>1</td><td>1</td><td>8</td><td>3</td><td class="destaque">+5</td><td>44%</td></tr>
-                    <tr><td class="posicao">3</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/ba.png" alt="Bósnia"> Bósnia</td><td>4</td><td>3</td><td>1</td><td>1</td><td>1</td><td>5</td><td>6</td><td>-1</td><td>44%</td></tr>
-                    <tr><td class="posicao">4</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/qa.png" alt="Catar"> Catar</td><td>1</td><td>3</td><td>0</td><td>1</td><td>2</td><td>2</td><td>10</td><td>-8</td><td>11%</td></tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- GRUPO C (com destaque para Brasil) -->
-        <div id="grupoC" class="grupo-content">
-            <table class="classificacao-table">
-                <thead><tr><th>#</th><th style="text-align:left;">Seleção</th><th>P</th><th>J</th><th>V</th><th>E</th><th>D</th><th>GP</th><th>GC</th><th>SG</th><th>%</th></tr></thead>
-                <tbody>
-                    <tr><td class="posicao">1</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/br.png" alt="Brasil"> <strong>Brasil</strong></td><td>7</td><td>3</td><td>2</td><td>1</td><td>0</td><td>7</td><td>1</td><td class="destaque">+6</td><td class="destaque">77%</td></tr>
-                    <tr><td class="posicao">2</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/ma.png" alt="Marrocos"> Marrocos</td><td>7</td><td>3</td><td>2</td><td>1</td><td>0</td><td>6</td><td>3</td><td class="destaque">+3</td><td class="destaque">77%</td></tr>
-                    <tr><td class="posicao">3</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/gb-sct.png" alt="Escócia"> Escócia</td><td>3</td><td>3</td><td>1</td><td>0</td><td>2</td><td>1</td><td>4</td><td>-3</td><td>33%</td></tr>
-                    <tr><td class="posicao">4</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/ht.png" alt="Haiti"> Haiti</td><td>0</td><td>3</td><td>0</td><td>0</td><td>3</td><td>2</td><td>8</td><td>-6</td><td>0%</td></tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- GRUPO D -->
-        <div id="grupoD" class="grupo-content">
-            <table class="classificacao-table">
-                <thead><tr><th>#</th><th style="text-align:left;">Seleção</th><th>P</th><th>J</th><th>V</th><th>E</th><th>D</th><th>GP</th><th>GC</th><th>SG</th><th>%</th></tr></thead>
-                <tbody>
-                    <tr><td class="posicao">1</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/us.png" alt="EUA"> EUA</td><td>6</td><td>3</td><td>2</td><td>0</td><td>1</td><td>8</td><td>4</td><td class="destaque">+4</td><td class="destaque">66%</td></tr>
-                    <tr><td class="posicao">2</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/au.png" alt="Austrália"> Austrália</td><td>4</td><td>3</td><td>1</td><td>1</td><td>1</td><td>2</td><td>2</td><td>0</td><td>44%</td></tr>
-                    <tr><td class="posicao">3</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/py.png" alt="Paraguai"> Paraguai</td><td>4</td><td>3</td><td>1</td><td>1</td><td>1</td><td>2</td><td>4</td><td>-2</td><td>44%</td></tr>
-                    <tr><td class="posicao">4</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/tr.png" alt="Turquia"> Turquia</td><td>3</td><td>3</td><td>1</td><td>0</td><td>2</td><td>3</td><td>5</td><td>-2</td><td>33%</td></tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- GRUPO E -->
-        <div id="grupoE" class="grupo-content">
-            <table class="classificacao-table">
-                <thead><tr><th>#</th><th style="text-align:left;">Seleção</th><th>P</th><th>J</th><th>V</th><th>E</th><th>D</th><th>GP</th><th>GC</th><th>SG</th><th>%</th></tr></thead>
-                <tbody>
-                    <tr><td class="posicao">1</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/de.png" alt="Alemanha"> Alemanha</td><td>6</td><td>3</td><td>2</td><td>0</td><td>1</td><td>10</td><td>4</td><td class="destaque">+6</td><td class="destaque">66%</td></tr>
-                    <tr><td class="posicao">2</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/ci.png" alt="Costa do Marfim"> Costa do Marfim</td><td>6</td><td>3</td><td>2</td><td>0</td><td>1</td><td>4</td><td>2</td><td class="destaque">+2</td><td class="destaque">66%</td></tr>
-                    <tr><td class="posicao">3</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/ec.png" alt="Equador"> Equador</td><td>4</td><td>3</td><td>1</td><td>1</td><td>1</td><td>2</td><td>2</td><td>0</td><td>44%</td></tr>
-                    <tr><td class="posicao">4</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/cw.png" alt="Curaçau"> Curaçau</td><td>1</td><td>3</td><td>0</td><td>1</td><td>2</td><td>1</td><td>9</td><td>-8</td><td>11%</td></tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- GRUPO F -->
-        <div id="grupoF" class="grupo-content">
-            <table class="classificacao-table">
-                <thead><tr><th>#</th><th style="text-align:left;">Seleção</th><th>P</th><th>J</th><th>V</th><th>E</th><th>D</th><th>GP</th><th>GC</th><th>SG</th><th>%</th></tr></thead>
-                <tbody>
-                    <tr><td class="posicao">1</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/nl.png" alt="Holanda"> Holanda</td><td>7</td><td>3</td><td>2</td><td>1</td><td>0</td><td>10</td><td>4</td><td class="destaque">+6</td><td class="destaque">77%</td></tr>
-                    <tr><td class="posicao">2</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/jp.png" alt="Japão"> Japão</td><td>5</td><td>3</td><td>1</td><td>2</td><td>0</td><td>7</td><td>3</td><td class="destaque">+4</td><td>55%</td></tr>
-                    <tr><td class="posicao">3</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/se.png" alt="Suécia"> Suécia</td><td>4</td><td>3</td><td>1</td><td>1</td><td>1</td><td>7</td><td>7</td><td>0</td><td>44%</td></tr>
-                    <tr><td class="posicao">4</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/tn.png" alt="Tunísia"> Tunísia</td><td>0</td><td>3</td><td>0</td><td>0</td><td>3</td><td>2</td><td>12</td><td>-10</td><td>0%</td></tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- GRUPO G -->
-        <div id="grupoG" class="grupo-content">
-            <table class="classificacao-table">
-                <thead><tr><th>#</th><th style="text-align:left;">Seleção</th><th>P</th><th>J</th><th>V</th><th>E</th><th>D</th><th>GP</th><th>GC</th><th>SG</th><th>%</th></tr></thead>
-                <tbody>
-                    <tr><td class="posicao">1</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/be.png" alt="Bélgica"> Bélgica</td><td>5</td><td>3</td><td>1</td><td>2</td><td>0</td><td>6</td><td>2</td><td class="destaque">+4</td><td>55%</td></tr>
-                    <tr><td class="posicao">2</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/eg.png" alt="Egito"> Egito</td><td>5</td><td>3</td><td>1</td><td>2</td><td>0</td><td>5</td><td>3</td><td class="destaque">+2</td><td>55%</td></tr>
-                    <tr><td class="posicao">3</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/ir.png" alt="Irã"> Irã</td><td>3</td><td>3</td><td>0</td><td>3</td><td>0</td><td>3</td><td>3</td><td>0</td><td>33%</td></tr>
-                    <tr><td class="posicao">4</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/nz.png" alt="Nova Zelândia"> Nova Zelândia</td><td>1</td><td>3</td><td>0</td><td>1</td><td>2</td><td>4</td><td>10</td><td>-6</td><td>11%</td></tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- GRUPO H -->
-        <div id="grupoH" class="grupo-content">
-            <table class="classificacao-table">
-                <thead><tr><th>#</th><th style="text-align:left;">Seleção</th><th>P</th><th>J</th><th>V</th><th>E</th><th>D</th><th>GP</th><th>GC</th><th>SG</th><th>%</th></tr></thead>
-                <tbody>
-                    <tr><td class="posicao">1</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/es.png" alt="Espanha"> Espanha</td><td>7</td><td>3</td><td>2</td><td>1</td><td>0</td><td>5</td><td>0</td><td class="destaque">+5</td><td class="destaque">77%</td></tr>
-                    <tr><td class="posicao">2</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/cv.png" alt="Cabo Verde"> Cabo Verde</td><td>3</td><td>3</td><td>0</td><td>3</td><td>0</td><td>2</td><td>2</td><td>0</td><td>33%</td></tr>
-                    <tr><td class="posicao">3</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/uy.png" alt="Uruguai"> Uruguai</td><td>2</td><td>3</td><td>0</td><td>2</td><td>1</td><td>3</td><td>4</td><td>-1</td><td>22%</td></tr>
-                    <tr><td class="posicao">4</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/sa.png" alt="Arábia Saudita"> Arábia Saudita</td><td>2</td><td>3</td><td>0</td><td>2</td><td>1</td><td>1</td><td>5</td><td>-4</td><td>22%</td></tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- GRUPO I -->
-        <div id="grupoI" class="grupo-content">
-            <table class="classificacao-table">
-                <thead><tr><th>#</th><th style="text-align:left;">Seleção</th><th>P</th><th>J</th><th>V</th><th>E</th><th>D</th><th>GP</th><th>GC</th><th>SG</th><th>%</th></tr></thead>
-                <tbody>
-                    <tr><td class="posicao">1</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/fr.png" alt="França"> França</td><td>9</td><td>3</td><td>3</td><td>0</td><td>0</td><td>10</td><td>2</td><td class="destaque">+8</td><td class="destaque">100%</td></tr>
-                    <tr><td class="posicao">2</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/no.png" alt="Noruega"> Noruega</td><td>6</td><td>3</td><td>2</td><td>0</td><td>1</td><td>8</td><td>7</td><td class="destaque">+1</td><td class="destaque">66%</td></tr>
-                    <tr><td class="posicao">3</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/sn.png" alt="Senegal"> Senegal</td><td>3</td><td>3</td><td>1</td><td>0</td><td>2</td><td>8</td><td>6</td><td>+2</td><td>33%</td></tr>
-                    <tr><td class="posicao">4</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/iq.png" alt="Iraque"> Iraque</td><td>0</td><td>3</td><td>0</td><td>0</td><td>3</td><td>1</td><td>12</td><td>-11</td><td>0%</td></tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- GRUPO J -->
-        <div id="grupoJ" class="grupo-content">
-            <table class="classificacao-table">
-                <thead><tr><th>#</th><th style="text-align:left;">Seleção</th><th>P</th><th>J</th><th>V</th><th>E</th><th>D</th><th>GP</th><th>GC</th><th>SG</th><th>%</th></tr></thead>
-                <tbody>
-                    <tr><td class="posicao">1</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/ar.png" alt="Argentina"> Argentina</td><td>9</td><td>3</td><td>3</td><td>0</td><td>0</td><td>8</td><td>1</td><td class="destaque">+7</td><td class="destaque">100%</td></tr>
-                    <tr><td class="posicao">2</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/at.png" alt="Áustria"> Áustria</td><td>4</td><td>3</td><td>1</td><td>1</td><td>1</td><td>6</td><td>6</td><td>0</td><td>44%</td></tr>
-                    <tr><td class="posicao">3</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/dz.png" alt="Argélia"> Argélia</td><td>4</td><td>3</td><td>1</td><td>1</td><td>1</td><td>5</td><td>7</td><td>-2</td><td>44%</td></tr>
-                    <tr><td class="posicao">4</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/jo.png" alt="Jordânia"> Jordânia</td><td>0</td><td>3</td><td>0</td><td>0</td><td>3</td><td>3</td><td>8</td><td>-5</td><td>0%</td></tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- GRUPO K -->
-        <div id="grupoK" class="grupo-content">
-            <table class="classificacao-table">
-                <thead><tr><th>#</th><th style="text-align:left;">Seleção</th><th>P</th><th>J</th><th>V</th><th>E</th><th>D</th><th>GP</th><th>GC</th><th>SG</th><th>%</th></tr></thead>
-                <tbody>
-                    <tr><td class="posicao">1</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/co.png" alt="Colômbia"> Colômbia</td><td>7</td><td>3</td><td>2</td><td>1</td><td>0</td><td>4</td><td>1</td><td class="destaque">+3</td><td class="destaque">77%</td></tr>
-                    <tr><td class="posicao">2</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/pt.png" alt="Portugal"> Portugal</td><td>5</td><td>3</td><td>1</td><td>2</td><td>0</td><td>6</td><td>1</td><td class="destaque">+5</td><td>55%</td></tr>
-                    <tr><td class="posicao">3</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/cd.png" alt="RD Congo"> RD Congo</td><td>4</td><td>3</td><td>1</td><td>1</td><td>1</td><td>4</td><td>3</td><td>+1</td><td>44%</td></tr>
-                    <tr><td class="posicao">4</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/uz.png" alt="Uzbequistão"> Uzbequistão</td><td>0</td><td>3</td><td>0</td><td>0</td><td>3</td><td>2</td><td>11</td><td>-9</td><td>0%</td></tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- GRUPO L -->
-        <div id="grupoL" class="grupo-content">
-            <table class="classificacao-table">
-                <thead><tr><th>#</th><th style="text-align:left;">Seleção</th><th>P</th><th>J</th><th>V</th><th>E</th><th>D</th><th>GP</th><th>GC</th><th>SG</th><th>%</th></tr></thead>
-                <tbody>
-                    <tr><td class="posicao">1</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/gb-eng.png" alt="Inglaterra"> Inglaterra</td><td>7</td><td>3</td><td>2</td><td>1</td><td>0</td><td>6</td><td>2</td><td class="destaque">+4</td><td class="destaque">77%</td></tr>
-                    <tr><td class="posicao">2</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/hr.png" alt="Croácia"> Croácia</td><td>6</td><td>3</td><td>2</td><td>0</td><td>1</td><td>5</td><td>5</td><td>0</td><td class="destaque">66%</td></tr>
-                    <tr><td class="posicao">3</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/gh.png" alt="Gana"> Gana</td><td>4</td><td>3</td><td>1</td><td>1</td><td>1</td><td>2</td><td>2</td><td>0</td><td>44%</td></tr>
-                    <tr><td class="posicao">4</td><td class="time-nome"><img class="flag-mini" src="https://flagcdn.com/w80/pa.png" alt="Panamá"> Panamá</td><td>0</td><td>3</td><td>0</td><td>0</td><td>3</td><td>0</td><td>4</td><td>-4</td><td>0%</td></tr>
-                </tbody>
-            </table>
+        <h3 style="text-align:center; margin-bottom:0.8rem; color:#2eff9e;">📜 REGRAS DO BOLÃO</h3>
+        <ul class="rules-list">
+            <li><strong>💰 Valor:</strong> R$ 10,00 por participante (próximo bolão: R$ 20,00)</li>
+            <li><strong>🏆 Cálculo do prêmio:</strong> (Total participantes × R$10) - R$10 do vencedor</li>
+            <li><strong>👥 2 vencedores:</strong> Prêmio <strong>DIVIDIDO</strong> igualmente</li>
+            <li><strong>👥👥 3+ vencedores:</strong> Prêmio <strong>ACUMULA</strong> para o próximo bolão</li>
+            <li><strong>❌ Nenhum vencedor:</strong> Prêmio <strong>ACUMULA</strong></li>
+            <li><strong>🔑 Chave de segurança:</strong> Chave única de 5 dígitos. <strong>GUARDE-A!</strong></li>
+            <li><strong>✅ Identificação:</strong> Vale apenas a última aposta com nome, e-mail e chave</li>
+            <li><strong>💸 Pagamento:</strong> Direto ao vencedor via PIX (após o resultado)</li>
+            <li><strong>⏳ Encerramento:</strong> Início da partida</li>
+        </ul>
+        <div style="margin-top:0.8rem; background:#1e3a2f; border-radius:16px; padding:0.6rem; text-align:center;">
+            📌 2 vencedores = dividem • 3+ vencedores = acumula
         </div>
     </div>
 
@@ -617,17 +364,5 @@
         Cyber Bolão® • Aposta simbólica • Pagamento direto ao vencedor via PIX
     </footer>
 </div>
-
-<script>
-    document.querySelectorAll('.grupo-tab').forEach(tab => {
-        tab.addEventListener('click', function() {
-            document.querySelectorAll('.grupo-tab').forEach(t => t.classList.remove('active'));
-            this.classList.add('active');
-            const grupo = this.dataset.grupo;
-            document.querySelectorAll('.grupo-content').forEach(c => c.classList.remove('active'));
-            document.getElementById('grupo' + grupo).classList.add('active');
-        });
-    });
-</script>
 </body>
 </html>
